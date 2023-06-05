@@ -1,24 +1,24 @@
 <script setup lang="ts" generic="T extends ListItem ">
-import { ref, useAttrs } from 'vue'
-import { useClipboard } from '@vueuse/core'
-import type { ListItem, HelloWorldProps } from './types'
+import { ref, useAttrs } from "vue";
+import { useClipboard } from "@vueuse/core";
+import type { ListItem, HelloWorldProps } from "./types";
 // defineOptions({
 //   inheritAttrs: true
 // })
 defineSlots<{
-  content?: (props: { item: T }) => any
-}>()
+  content?: (props: { item: T }) => any;
+}>();
 
-defineProps<HelloWorldProps<T>>()
+defineProps<HelloWorldProps<T>>();
 
-const attrs = useAttrs()
-console.log('attrs', attrs)
-const count = ref(0)
+const attrs = useAttrs();
+console.log("attrs", attrs);
+const count = ref(0);
 
 const { copied, copy, text, isSupported } = useClipboard({ legacy: true }); // legacy 表示降级https://juejin.cn/post/7236656669752590391?utm_source=gold_browser_extension#heading-6
 const click = async () => {
-  return await copy('文章看完了，别忘了评论、点赞、关注哦，你真棒~~');
-}
+  return await copy("文章看完了，别忘了评论、点赞、关注哦，你真棒~~");
+};
 </script>
 
 <template>
@@ -27,12 +27,15 @@ const click = async () => {
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <ul>
-      <li v-for="item in list">
+      <li v-for="item in list" :key="item.value">
         {{ item.label }}
         <slot name="content" :item="item" />
       </li>
     </ul>
-    <div>text: {{ text }}<br/>copied: {{ copied }}<br/>isSupported: {{ isSupported }}</div>
+    <div>
+      text: {{ text }}<br>copied: {{ copied }}<br>isSupported:
+      {{ isSupported }}
+    </div>
     <el-button @click="click" :loading="copied">Copy</el-button>
   </div>
 </template>
