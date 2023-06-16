@@ -1,8 +1,9 @@
 export interface ListItem {
-  label: string;
-  value: any;
+  label: string
+  value: any
+  color: string
 }
 export interface HelloWorldProps<T> {
-  msg: string;
-  list: T[];
+  msg: string
+  list: T[]
 }

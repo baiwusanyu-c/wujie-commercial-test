@@ -1,0 +1,84 @@
+// 数组用()表示，用$定义变量
+$breakpoints: (
+  'screen1': (
+    400px,
+    500px,
+  ),
+  'screen2': (
+    500px,
+    600px,
+  ),
+  'screen3': (
+    600px,
+    700px,
+  ),
+  'screen4': (
+    700px,
+    800px,
+  ),
+  'screen5': (
+    800px,
+    900px,
+  ),
+  'screen6': (
+    900px,
+    1000px,
+  ),
+  'screen7': (
+    1000px,
+    1100px,
+  ),
+  'tv': 1100px,
+);
+// 混合
+@mixin respond-to($breakname) {
+  $bp: map-get($breakpoints, $breakname); // 取出对应的值
+  // 如果是数组
+  @if type-of($bp) == 'list' {
+    $min: nth($bp, 1); // 取出数组第一项
+    $max: nth($bp, 2); // 取出数组第二项
+    @media (min-width: $min) and (max-width: $max) {
+      @content; // 相当于插槽
+    }
+  } @else {
+    @media (min-width: $bp) {
+      @content;
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  @include respond-to('screen1') {
+    background-color: red;
+    font-size: 26px;
+  }
+  @include respond-to('screen2') {
+    background-color: yellow;
+    font-size: 24px;
+  }
+  @include respond-to('screen3') {
+    background-color: blue;
+    font-size: 22px;
+  }
+  @include respond-to('screen4') {
+    background-color: green;
+    font-size: 20px;
+  }
+  @include respond-to('screen5') {
+    background-color: cyan;
+    font-size: 18px;
+  }
+  @include respond-to('screen6') {
+    background-color: indigo;
+    font-size: 16px;
+  }
+  @include respond-to('screen7') {
+    background-color: purple;
+    font-size: 14px;
+  }
+  @include respond-to('tv') {
+    background-color: black;
+    font-size: 12px;
+  }
+}

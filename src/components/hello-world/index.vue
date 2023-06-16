@@ -22,20 +22,21 @@ const click = async () => {
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <ul>
-      <li v-for="item in list" :key="item.value">
-        {{ item.label }}
-        <slot name="content" :item="item" />
-      </li>
-    </ul>
-    <div>
-      text: {{ text }}<br>copied: {{ copied }}<br>isSupported:
-      {{ isSupported }}
+  <div>
+    <h1>{{ msg }}</h1>
+    <div class="card">
+      <button type="button" @click="count++">count is {{ count }}</button>
+      <ul>
+        <li v-for="item in list" :key="item.value">
+          {{ item.label }}
+          <slot name="content" :item="item" />
+        </li>
+      </ul>
+      <div>
+        text: {{ text }}<br>copied: {{ copied }}<br>isSupported:
+        {{ isSupported }}
+      </div>
+      <el-button @click="click" :loading="copied">Copy</el-button>
     </div>
-    <el-button @click="click" :loading="copied">Copy</el-button>
   </div>
 </template>
