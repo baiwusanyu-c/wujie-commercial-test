@@ -1,34 +1,34 @@
 // 数组用()表示，用$定义变量
 $breakpoints: (
   'screen1': (
-    400px,
-    500px,
-  ),
-  'screen2': (
-    500px,
+    300px,
     600px,
   ),
-  'screen3': (
+  'screen2': (
     600px,
     700px,
   ),
-  'screen4': (
+  'screen3': (
     700px,
     800px,
   ),
-  'screen5': (
+  'screen4': (
     800px,
     900px,
   ),
-  'screen6': (
+  'screen5': (
     900px,
     1000px,
   ),
-  'screen7': (
+  'screen6': (
     1000px,
     1100px,
   ),
-  'tv': 1100px,
+  'screen7': (
+    1100px,
+    1200px,
+  ),
+  'tv': 1200px,
 );
 // 混合
 @mixin respond-to($breakname) {
