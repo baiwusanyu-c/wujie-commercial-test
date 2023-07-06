@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import store from '@/store'
 import ElementPlus from 'element-plus'
 import locale from 'element-plus/lib/locale/lang/zh-cn' // 中文语言
 import 'element-plus/dist/index.css'
@@ -10,4 +11,5 @@ app.use(ElementPlus, {
   locale,
   size: 'default', // 支持 large、default、small
 })
+app.use(store)
 app.mount('#app')

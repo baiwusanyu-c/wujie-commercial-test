@@ -12,9 +12,12 @@
   "dependencies": {
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
+    "pinia": "^2.1.4",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@types/node": "^20.3.3",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "@vitejs/plugin-vue": "^4.1.0",
