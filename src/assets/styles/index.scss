@@ -1,3 +1,7 @@
+// 引入element-plus全部变量 https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+// @use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+// 引入重置element-plus全部变量
+@use "./theme.scss" as *;
 @import './common.scss';
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

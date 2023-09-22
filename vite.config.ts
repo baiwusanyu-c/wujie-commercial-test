@@ -12,7 +12,7 @@ export default defineConfig({
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
   },
-  server: { port: 5174 },
+  server: { port: 5170 },
   css: {
     devSourcemap: true,
     postcss: {
