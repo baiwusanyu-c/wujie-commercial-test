@@ -1,0 +1,3 @@
+interface File {
+  msg?: string
+}

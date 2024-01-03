@@ -1,6 +1,8 @@
 <script setup lang="ts" generic="T extends ListItem ">
 import { ref, useAttrs } from "vue";
 import { useCssVar, useClipboard } from "@vueuse/core";
+import Form from './form.vue'
+import Snabbdom from './snabbdom/index.vue'
 import type { ListItem, HelloWorldProps } from "./types";
 
 // defineOptions({
@@ -35,7 +37,7 @@ const click = async () => {
 
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1><img src="@/assets/images/cbd.png">{{ msg }}</h1>
     <div class="card">
       <button type="button" @click="count++">count is {{ count }}</button>
       <ul>
@@ -49,6 +51,8 @@ const click = async () => {
         {{ isSupported }}
       </div>
       <el-button ref="el" style="--color: #7fa998;" :style="{ color: color }" @click="click" :loading="copied">Copy {{ color }}</el-button>
+      <Form />
+      <Snabbdom />
     </div>
   </div>
 </template>
