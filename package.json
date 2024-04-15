@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "init": "pnpm i",
+    "serve:dev": "vite --host --mode development",
+    "serve:qa": "vite --host --mode staging",
+    "serve:prod": "vite --host --mode production",
     "build": "vue-tsc && vite build",
     "build:prod": "vite build --mode production",
     "build:dev": "vite build --mode development",
@@ -13,6 +16,7 @@
     "lint:ts-fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json,.md"
   },
   "dependencies": {
+    "@cbd-wujie-components/osp-query": "1.0.5-beta.0",
     "@element-plus/icons-vue": "^2.1.0",
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
@@ -20,7 +24,10 @@
     "pinia-plugin-persistedstate": "^3.1.0",
     "snabbdom": "^3.5.1",
     "vue": "^3.2.47",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "wujie-polyfill": "^1.0.11",
+    "wujie-react": "^1.0.22",
+    "wujie-vue3": "^1.0.22"
   },
   "devDependencies": {
     "@types/node": "^20.3.3",

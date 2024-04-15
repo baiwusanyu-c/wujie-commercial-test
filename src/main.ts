@@ -6,10 +6,12 @@ import locale from 'element-plus/lib/locale/lang/zh-cn' // 中文语言
 import 'element-plus/dist/index.css'
 import './assets/styles/index.scss'
 import App from './App.vue'
-import './utils/auto-update'
+// import './utils/auto-update'
+import WujieVue from "wujie-vue3";
 
 const app = createApp(App)
-console.log(app, App)
+
+app.use(WujieVue);
 app.use(ElementPlus, {
   locale,
   size: 'default', // 支持 large、default、small

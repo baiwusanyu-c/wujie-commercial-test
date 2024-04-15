@@ -9,18 +9,5 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
-    <script src="./no-cache.js"></script>
-    <script>
-      if(getVersion) {
-        const version = getVersion()
-        let localVersion = localStorage.getItem('version')
-        const url = `${window.location.origin}${window.location.pathname}${version}.html${location.hash}`
-        console.log('=============', url, version, localVersion)
-        if(version != localVersion) {
-          localStorage.setItem('version', version)
-          window.location.replace(url)
-        }
-      }
-    </script>
   </body>
 </html>
