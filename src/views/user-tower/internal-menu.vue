@@ -7,7 +7,7 @@
     url="https://datadashboard-dev.shuxinyc.com/data-dashboard-app/home"
     :plugins="[InstanceofPlugin()]"
   /> -->
-  <div>自定义菜单</div>
+  <div class="app-container">自定义菜单</div>
 </template>
 
 <script lang="ts" setup name="internal-menu">

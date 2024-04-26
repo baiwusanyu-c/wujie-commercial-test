@@ -1,7 +1,7 @@
 <template>
   <div class="userTower-warap">
     <div class="left-warap">
-      <div style="padding: 20px;">
+      <div class="menu-container">
         <el-button type="primary" @click="back" style="margin-bottom: 20px;">返回首页</el-button>
         <el-menu
           :default-active="activeMenu"
@@ -113,6 +113,11 @@ const back = () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .menu-container {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
   }
   .right-warap {
     width: calc(100% - var(--navigation-width));
@@ -135,9 +140,10 @@ const back = () => {
 .headerr {
   width: 100%;
   height: 100%;
-  background-color: #fff;
   border-radius: 6px;
-  padding: 10px;
+  overflow: hidden;
+  // background-color: #fff;
+  // padding: 10px;
 }
 
 .el-menu {

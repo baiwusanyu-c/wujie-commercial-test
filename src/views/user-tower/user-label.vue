@@ -23,7 +23,7 @@ const { destroyApp } = WujieVue
 const storeUser = useStoreUser()
 const props = {
   ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/label-manage/user-label' as any),
-  // url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
+  url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
   scrollElement() {
     return document.querySelector('.container')
   },

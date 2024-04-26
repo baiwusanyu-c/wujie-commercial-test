@@ -67,7 +67,9 @@ svg,
 img {
   display: initial !important;
 }
-
+::-webkit-scrollbar {
+  display: none; /* 针对Webkit浏览器，隐藏滚动条 */
+}
 // ::-webkit-scrollbar {
 //   width: 10px;
 //   height: 10px;
