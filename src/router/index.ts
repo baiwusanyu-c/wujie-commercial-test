@@ -26,7 +26,7 @@ const router = createRouter({
       path: '/label-tank',
       component: () => import('../views/user-tower/index.vue'),
       name: 'LabelTank',
-      redirect: '/user-tower',
+      redirect: '/internal-menu',
       children: [
         {
           path: '/internal-menu',

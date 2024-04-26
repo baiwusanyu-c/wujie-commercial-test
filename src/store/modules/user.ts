@@ -4,7 +4,6 @@ const useUserStore = defineStore('user', {
     token: null,
     brand: '', // 品牌
     phoneNumber: '', // 手机号
-    authInsight: true, // 人群洞察权限
     menuList: [],
   }),
   actions: {
@@ -15,9 +14,8 @@ const useUserStore = defineStore('user', {
     setBrand(value: string) {
       this.brand = value
     },
-    setUserInfo({ phoneNumber, authInsight }: any) {
+    setUserInfo({ phoneNumber }: any) {
       this.phoneNumber = phoneNumber
-      this.authInsight = authInsight
     },
     getUserInfo() {
       return { phoneNumber: this.phoneNumber, authInsight: this.authInsight }

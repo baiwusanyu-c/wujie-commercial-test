@@ -1,6 +1,6 @@
 <template>
   <div class="userTower-warap">
-    <div class="left">
+    <div class="left-warap">
       <div style="padding: 20px;">
         <el-button type="primary" @click="back" style="margin-bottom: 20px;">返回首页</el-button>
         <el-menu
@@ -12,6 +12,7 @@
           background-color="#ffffff"
           active-text-color="#1d86f0"
         >
+          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">自定义菜单</el-menu-item>
           <template v-for="subItem in menuList" :key="subItem.id">
             <el-sub-menu v-if="subItem.children && subItem.children?.length > 0" :index="subItem.id">
               <template #title>
@@ -23,15 +24,27 @@
             </el-sub-menu>
             <el-menu-item v-else :index="subItem.path" @click="go(subItem.path)">{{ subItem.label }}</el-menu-item>
           </template>
-          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">内部菜单</el-menu-item>
         </el-menu>
       </div>
-      <div>
-        <div :class="`${brandvalue === 'tea' && 'gao'}`" @click="handleChange('tea')">茶白道</div>
-        <div :class="`${brandvalue === 'coffee' && 'gao'}`" @click="handleChange('coffee')">咖灰</div>
+      <div class="sidebar-bottom">
+        <div
+          v-for="item in brandList"
+          :key="item.value"
+          class="sidebar-bottom__item"
+          :class="brandvalue === item.value ? 'is-action' : ''"
+          @click="handleChange(item.value)"
+        >
+          <div class="left">
+            <img :src="item.icon">
+            <span>{{ item.lable }}</span>
+          </div>
+          <div v-if="brandvalue === item.value" class="right">
+            <SvgIcon icon-class="check" />
+          </div>
+        </div>
       </div>
     </div>
-    <div class="right">
+    <div class="right-warap">
       <div class="headerr">
         <div class="container"><router-view /></div>
       </div>
@@ -45,7 +58,18 @@ import WujieVue from 'wujie-vue3'
 import { useRoute, useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
-
+import tea from '@/assets/images/tea.png'
+import coffee from '@/assets/images/coffee.png'
+interface BrandItem {
+  lable: string
+  value: string
+  icon: string
+}
+// 品牌列表
+const brandList: BrandItem[] = [
+  { lable: '茶百道', value: 'tea', icon: tea },
+  { lable: '咖灰', value: 'coffee', icon: coffee },
+]
 const route = useRoute()
 const router = useRouter()
 const storeUser = useStoreUser()
@@ -54,7 +78,7 @@ const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu
 const brandvalue = computed(() => {
   return storeUser.brand || 'tea'
 })
-const handleChange = (brand: 'tea' | 'coffee') => {
+const handleChange = (brand: string) => {
   storeUser.setBrand(brand)
   WujieVue.bus.$emit('__USER_TOWER_OSP_BRANDCHANGE', { brand })
 }
@@ -82,7 +106,7 @@ const back = () => {
     cursor: pointer;
   }
   --navigation-width: 250px;
-  .left {
+  .left-warap {
     width: var(--navigation-width);
     text-align: center;
     line-height: 40px;
@@ -90,7 +114,7 @@ const back = () => {
     flex-direction: column;
     justify-content: space-between;
   }
-  .right {
+  .right-warap {
     width: calc(100% - var(--navigation-width));
     background-color: aliceblue;
     padding: 20px;
@@ -134,8 +158,48 @@ const back = () => {
     height: 44px;
     margin-bottom: 8px
   }
+  .el-menu-item.is-active {
+    color: var(--el-color-primary);
+  }
 }
 .is-active {
   background-color: #0031e00d;
+}
+.sidebar-bottom {
+  background-color: #f9fafc;
+  font-size: 14px;
+  color: #1d2129;
+  padding: 10px;
+  border-top: 2px solid #F0F1F5;
+  border-bottom: 2px solid #F0F1F5;
+  .sidebar-bottom__item {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    .left img {
+      vertical-align: middle;
+      margin-right: 8px;
+      width: 35px;
+      height: 35px;
+    }
+    .right {
+      margin-left: auto;
+    }
+    .svg-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--el-color-primary);
+    }
+  }
+  .is-action {
+    background-color: #fff;
+    transition-property: background-color, color;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.1,.7,1,.1);
+  }
 }
 </style>

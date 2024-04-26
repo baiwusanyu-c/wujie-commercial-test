@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, watchEffect } from 'vue'
-import { FormInstance, FormRules } from 'element-plus'
+import { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
@@ -65,14 +65,19 @@ const validateName = (_rule: any, value: any, callback: any) => {
     callback(new Error('请输入正确手机号'))
   else callback()
 }
-const rules = reactive<FormRules<typeof ruleForm>>({
+const rules = reactive({
   phoneNumber: [{ required: true, validator: validateName }],
 })
 watchEffect(() => {
   storeUser.setUserInfo(ruleForm.value)
 })
 const getData = (values: string[]) => {
-  return treeData.map((v) => {
+  const filterData = treeData.filter((v) => {
+    const a = values.includes(v.id)
+    const b = v.children?.some(vv => values.includes(vv.id))
+    return !a && !b ? false : true
+  })
+  return filterData.map((v) => {
     return {
       ...v,
       children: v.children?.filter(vv => values.includes(vv.id))

@@ -1,5 +1,6 @@
 import type { FormItemRule } from 'element-plus'
 import type { Arrayable } from 'element-plus/es/utils'
+import type { Plugin } from 'vue'
 /** 接口响应结果 */
 export interface ResponseResult<T = any> {
   code: number
@@ -19,3 +20,5 @@ export interface MenuListItem {
   meta: { title: string },
   children?: MenuListItem[]
 }
+
+export type SFCWithInstall<T> = T & Plugin

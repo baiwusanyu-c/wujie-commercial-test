@@ -1,21 +1,20 @@
 import { createApp } from 'vue'
 import store from '@/store'
-import ElementPlus from 'element-plus'
 import router from './router'
-import locale from 'element-plus/lib/locale/lang/zh-cn' // 中文语言
-import 'element-plus/dist/index.css'
-import './assets/styles/index.scss'
 import App from './App.vue'
 // import './utils/auto-update'
 import WujieVue from "wujie-vue3";
+// load
+import loadPlugins from '@/plugins'
+// css
+import 'element-plus/dist/index.css'
+import './assets/styles/index.scss'
 
 const app = createApp(App)
-
+/** 加载插件 */
+loadPlugins(app)
 app.use(WujieVue);
-app.use(ElementPlus, {
-  locale,
-  size: 'default', // 支持 large、default、small
-})
-app.use(store)
-app.use(router)
-app.mount('#app')
+app.use(store).use(router)
+router.isReady().then(() => {
+    app.mount('#app')
+  })

@@ -1,0 +1,39 @@
+:root {
+  --el-color-primary: #0A4CDE;
+  --el-text-color-regular: #282F38;
+  --el-border-radius-base: 2px;
+  --el-color-primary-light-3: #0A4CDE;
+  --el-color-primary-light-7: #F0F1F5;
+  --el-color-primary-light-9: #F0F1F5;
+}
+
+// el-table
+.el-table {
+  --el-table-header-text-color: #282F38;
+  --el-table-header-bg-color: #F0F1F5;
+  --el-table-tr-bg-color: #fff;
+  --el-table-border: 1px solid #E5E6EB;
+  --el-table-bg-color: #fff;
+}
+
+.el-button {
+  --el-button-bg-color: #F0F1F5;
+  --el-button-text-color: #4E5969;
+  --el-button-border-color: #F0F1F5;
+}
+.el-button--primary {
+  --el-button-bg-color: #0A4CDE;
+  --el-button-text-color: #fff;
+}
+.el-button--primary.is-plain {
+  --el-button-border-color: #0A4CDE;
+  --el-button-bg-color: initial;
+}
+.el-select .el-input .el-select__caret {
+  color: #4E5969;
+}
+.el-input__wrapper {
+  .el-icon {
+    color: #4E5969;
+  }
+}

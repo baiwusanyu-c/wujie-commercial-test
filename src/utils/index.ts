@@ -1,3 +1,5 @@
+import type { MenuListItem, SFCWithInstall } from './interface'
+
 export function doHandleMonth(month: number) {
   let m = month as any
   if (month.toString().length === 1) m = `0${month}`
@@ -22,4 +24,32 @@ export function getYearMonthDate(day = 0, twoPeople = true) {
     second = doHandleMonth(second)
   }
   return { year, month, date, hour, minute, second }
+}
+
+export function authRouter(treeData: MenuListItem[], path: string) {
+  let res
+   const data = (value: MenuListItem[]) => {
+    value.forEach((v) => {
+      if (v.path === path) {
+        res = v
+      } else {
+        data(v.children || [])
+      }
+    })
+   }
+   data(treeData)
+   return res
+}
+
+export function withInstall<T, E extends Record<string, any>>(main: T, extra?: E) {
+  (main as SFCWithInstall<T>).install = (app): void => {
+    for (const comp of [main, ...Object.values(extra ?? {})])
+      app.component(comp.name, comp)
+  }
+
+  if (extra) {
+    for (const [key, comp] of Object.entries(extra))
+      (main as any)[key] = comp
+  }
+  return main as SFCWithInstall<T> & E
 }

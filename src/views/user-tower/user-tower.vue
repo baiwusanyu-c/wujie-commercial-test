@@ -17,16 +17,16 @@ import { InstanceofPlugin } from "wujie-polyfill"
 import { ref, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
+import { authRouter } from '@/utils'
 
 const router = useRouter()
 const wujieVueRef = ref()
 const storeUser = useStoreUser()
 const { destroyApp, bus } = WujieVue
 // const brand = inject<Ref<'tea' | 'coffee'>>('brand', ref('tea'))
-
 const props = {
   ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/crowd'),
-  authInsight: storeUser.authInsight,
+  authInsight: !!authRouter(storeUser.menuList, '/crowd-insight'),
   // url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
   scrollElement() {
     return document.querySelector('.container')

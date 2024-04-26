@@ -3,8 +3,10 @@ import vue from '@vitejs/plugin-vue'
 import imageLimit from './plugins/image-limit'
 // import versionUpdatePlugin from './plugins/version-update'
 import requireToUrlPlugin from './plugins/requireToUrlPlugin'
+import createSvgIcon from './plugins/svg-icon'
+import setupExtend from 'vite-plugin-vue-setup-extend'
 export default function createVitePlugins(viteEnv: ImportMetaEnv, isBuild = false, version) {
-  const vitePlugins = [vue(), imageLimit(viteEnv), requireToUrlPlugin()]
+  const vitePlugins = [vue(), imageLimit(viteEnv), requireToUrlPlugin(), createSvgIcon(isBuild), setupExtend()]
   if (isBuild) {
     // vitePlugins.push(versionUpdatePlugin({ viteEnv, version}))
     // vitePlugins.push(
