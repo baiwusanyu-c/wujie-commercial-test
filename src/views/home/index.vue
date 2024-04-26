@@ -61,8 +61,7 @@ const ruleForm = ref({ phoneNumber: storeUser.phoneNumber, menuList: [] })
 const validateName = (_rule: any, value: any, callback: any) => {
   const reg = /^1[3-9]\d{9}$/
   if (value === '') callback(new Error('请输入手机号'))
-  else if (!reg.test(value))
-    callback(new Error('请输入正确手机号'))
+  else if (!reg.test(value)) callback(new Error('请输入正确手机号'))
   else callback()
 }
 const rules = reactive({
@@ -80,7 +79,7 @@ const getData = (values: string[]) => {
   return filterData.map((v) => {
     return {
       ...v,
-      children: v.children?.filter(vv => values.includes(vv.id))
+      children: v.children?.filter(vv => values.includes(vv.id)),
     }
   })
 }
@@ -97,27 +96,29 @@ const go = (formEl: FormInstance | undefined) => {
 </script>
 
 <template>
-  <div style="padding: 100px">
-    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
-      <el-form-item prop="phoneNumber" label="用户手机号:">
-        <el-input v-model="ruleForm.phoneNumber" placeholder="请输入手机号" clearable maxlength="20" style="width: 200px" />
-      </el-form-item>
-      <el-form-item prop="menuList" label="菜单权限:">
-        <el-tree
-          ref="treeRef"
-          style="width: 200px"
-          :data="treeData"
-          show-checkbox
-          node-key="id"
-          :props="defaultProps"
-          default-expand-all
-          :default-checked-keys="checkedKeys"
-        />
-      </el-form-item>
-      <el-form-item label=" ">
-        <el-button type="primary" @click="go(ruleFormRef)">跳转至标签智库</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="home-waraper">
+    <div class="form-container">
+      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
+        <el-form-item prop="phoneNumber" label="用户手机号:">
+          <el-input v-model="ruleForm.phoneNumber" placeholder="请输入手机号" clearable maxlength="20" style="width: 200px" />
+        </el-form-item>
+        <el-form-item prop="menuList" label="菜单权限:">
+          <el-tree
+            ref="treeRef"
+            style="width: 200px"
+            :data="treeData"
+            show-checkbox
+            node-key="id"
+            :props="defaultProps"
+            default-expand-all
+            :default-checked-keys="checkedKeys"
+          />
+        </el-form-item>
+        <el-form-item label=" ">
+          <el-button type="primary" @click="go(ruleFormRef)">跳转至标签智库</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
@@ -127,5 +128,12 @@ const go = (formEl: FormInstance | undefined) => {
 }
 .el-form-item__label {
   font-weight: 700;
+}
+.home-waraper {
+  display: flex;
+  height: 100%;
+  .form-container {
+    margin: auto;
+  }
 }
 </style>
