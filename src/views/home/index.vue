@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, watchEffect } from 'vue'
+import { ref, reactive } from 'vue'
 import { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
@@ -49,15 +49,13 @@ const treeData: MenuListItem[] = [
     ],
   },
 ]
-const checkedKeys = ['1', '2']
+
 const treeRef = ref()
 const storeUser = useStoreUser()
 const router = useRouter()
-storeUser.setUserInfo({ phoneNumber: '18228329236', authInsight: true })
-storeUser.setMenuList(treeData)
 
 const ruleFormRef = ref<FormInstance>()
-const ruleForm = ref({ phoneNumber: storeUser.phoneNumber, menuList: [] })
+const ruleForm = ref({ phoneNumber: storeUser.phoneNumber || '18228329236', menuList: [] })
 const validateName = (_rule: any, value: any, callback: any) => {
   const reg = /^1[3-9]\d{9}$/
   if (value === '') callback(new Error('请输入手机号'))
@@ -67,9 +65,7 @@ const validateName = (_rule: any, value: any, callback: any) => {
 const rules = reactive({
   phoneNumber: [{ required: true, validator: validateName }],
 })
-watchEffect(() => {
-  storeUser.setUserInfo(ruleForm.value)
-})
+
 const getData = (values: string[]) => {
   const filterData = treeData.filter((v) => {
     const a = values.includes(v.id)
@@ -83,12 +79,23 @@ const getData = (values: string[]) => {
     }
   })
 }
+const getCheckedKeys = () => {
+  let res: string[] = []
+  const execute = (data: MenuListItem[], is: boolean) => {
+    data.forEach((v) => {
+    is && res.push(v.id)
+    if (v.children) execute(v.children, true)
+  })
+  }
+  execute(storeUser.menuList, false)
+  return res.length ? res : ['1', '2']
+}
 const go = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
       const values = treeRef.value.getCheckedKeys()
-      storeUser.setMenuList(getData(values))
+      storeUser.setUserInfo({ phoneNumber: ruleForm.value.phoneNumber, menuList: getData(values) })
       router.push(`/label-tank`)
     }
   })
@@ -111,7 +118,7 @@ const go = (formEl: FormInstance | undefined) => {
             node-key="id"
             :props="defaultProps"
             default-expand-all
-            :default-checked-keys="checkedKeys"
+            :default-checked-keys="getCheckedKeys()"
           />
         </el-form-item>
         <el-form-item label=" ">

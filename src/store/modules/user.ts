@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
+import { MenuListItem } from '@/utils/interface'
 const useUserStore = defineStore('user', {
   state: () => ({
     token: null,
     brand: '', // 品牌
     phoneNumber: '', // 手机号
-    menuList: [],
+    menuList: [] as MenuListItem[],
   }),
   actions: {
     // 登录
@@ -14,14 +15,12 @@ const useUserStore = defineStore('user', {
     setBrand(value: string) {
       this.brand = value
     },
-    setUserInfo({ phoneNumber }: any) {
+    setUserInfo({ phoneNumber, menuList }: any) {
       this.phoneNumber = phoneNumber
+      this.menuList = menuList
     },
     getUserInfo() {
       return { phoneNumber: this.phoneNumber, authInsight: this.authInsight }
-    },
-    setMenuList(data: any) {
-      this.menuList = data
     },
   },
   persist: true,
