@@ -1,11 +1,30 @@
 <template>
   <div class="userTower-warap">
     <div class="left">
-      <div>
+      <div style="padding: 20px;">
         <el-button type="primary" @click="back" style="margin-bottom: 20px;">返回首页</el-button>
-        <div class="go" :class="route.path.includes('/user-tower') && 'active'" @click="go('/user-tower')">用户群体</div>
-        <div class="go" :class="route.path.includes('/user-label') && 'active'" @click="go('/user-label')">用户标签</div>
-        <div class="go" :class="route.path.includes('/crowd-insight') && 'active'" @click="go('/crowd-insight')">人群洞察</div>
+        <el-menu
+          :default-active="activeMenu"
+          :collapse="false"
+          :router="false"
+          :unique-opened="true"
+          :collapse-transition="false"
+          background-color="#ffffff"
+          active-text-color="#1d86f0"
+        >
+          <template v-for="subItem in menuList" :key="subItem.id">
+            <el-sub-menu v-if="subItem.children && subItem.children?.length > 0" :index="subItem.id">
+              <template #title>
+                <span>{{ subItem.label }}</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item v-for="item in subItem.children" :key="item.id" :index="item.path" @click="go(item.path)">{{ item.label }}</el-menu-item>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-menu-item v-else :index="subItem.path" @click="go(subItem.path)">{{ subItem.label }}</el-menu-item>
+          </template>
+          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">内部菜单</el-menu-item>
+        </el-menu>
       </div>
       <div>
         <div :class="`${brandvalue === 'tea' && 'gao'}`" @click="handleChange('tea')">茶白道</div>
@@ -13,7 +32,6 @@
       </div>
     </div>
     <div class="right">
-      <div style="line-height: 40px;">当前用户手机号：{{ phoneNumber }} <span style="color: red;">( 可在链接上更改手机号 )</span></div>
       <div class="headerr">
         <div class="container"><router-view /></div>
       </div>
@@ -22,27 +40,27 @@
 </template>
 
 <script lang="ts" setup name="UserTower">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import WujieVue from 'wujie-vue3'
 import { useRoute, useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
+import { MenuListItem } from '@/utils/interface'
 
 const route = useRoute()
 const router = useRouter()
-const phoneNumber = ref(route.query.phoneNumber || '18228329236')
 const storeUser = useStoreUser()
-
+const menuList = storeUser.menuList as MenuListItem[]
+const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string)
 const brandvalue = computed(() => {
   return storeUser.brand || 'tea'
 })
-
 const handleChange = (brand: 'tea' | 'coffee') => {
   storeUser.setBrand(brand)
   WujieVue.bus.$emit('__USER_TOWER_OSP_BRANDCHANGE', { brand })
 }
 
 const go = (path: string) => {
-  router.replace(`${path}?phoneNumber=${phoneNumber.value}`)
+  router.replace(`${path}`)
 }
 const back = () => {
   router.replace('/home')
@@ -63,17 +81,17 @@ const back = () => {
   .go {
     cursor: pointer;
   }
+  --navigation-width: 250px;
   .left {
-    width: 300px;
+    width: var(--navigation-width);
     text-align: center;
     line-height: 40px;
-    padding: 50px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .right {
-    width: calc(100% - 300px);
+    width: calc(100% - var(--navigation-width));
     background-color: aliceblue;
     padding: 20px;
   }
@@ -92,9 +110,32 @@ const back = () => {
 }
 .headerr {
   width: 100%;
-  height: calc(100% - 40px);
+  height: 100%;
   background-color: #fff;
   border-radius: 6px;
   padding: 10px;
+}
+
+.el-menu {
+  border-right: none;
+  .el-sub-menu>.el-sub-menu__title, .el-menu-item {
+    &:hover {
+      color: var(--el-color-primary);
+      background-color: rgba(64, 158, 255, 0.1);
+    }
+  }
+  .el-menu-item.is-active {
+    background-color: rgba(64, 158, 255, 0.1);
+  }
+  .el-menu-item-group__title {
+    padding: 0px !important;
+  }
+  .el-menu-item {
+    height: 44px;
+    margin-bottom: 8px
+  }
+}
+.is-active {
+  background-color: #0031e00d;
 }
 </style>

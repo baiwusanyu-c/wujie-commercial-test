@@ -10,3 +10,12 @@ export interface ResponseResult<T = any> {
 
 /** el-form 表单规则校验类型 */
 export type FormRules<T extends string> = Record<T, Arrayable<FormItemRule> | undefined>
+
+export interface MenuListItem {
+  id: string,
+  label: string,
+  path: string,
+  name: string,
+  meta: { title: string },
+  children?: MenuListItem[]
+}

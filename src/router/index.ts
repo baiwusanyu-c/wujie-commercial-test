@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
 // const comView = import.meta.glob('../views/**/.', {
 //   eager: true, // 是否关闭模块动态导入() => import('/src/views/**/page.js')
 //   import: 'default', // 将模块导入default值作为导出值
@@ -14,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/home',
-      component: () => import('../views/test/index.vue'),
+      component: () => import('../views/home/index.vue'),
       name: 'home',
     },
     {
@@ -22,15 +21,21 @@ const router = createRouter({
       component: () => import('../views/board/index.vue'),
       name: 'Board',
     },
+    
     {
-      path: '/user-tower',
+      path: '/label-tank',
       component: () => import('../views/user-tower/index.vue'),
-      name: 'UserTower',
+      name: 'LabelTank',
       redirect: '/user-tower',
       children: [
         {
+          path: '/internal-menu',
+          component: () => import('../views/user-tower/internal-menu.vue'),
+          name: 'internal-menu',
+        },
+        {
           path: '/user-tower',
-          component: () => import('../views/user-tower/wujie-vue.vue'),
+          component: () => import('../views/user-tower/user-tower.vue'),
           name: 'user-tower',
         },
         {
@@ -64,6 +69,5 @@ const router = createRouter({
 
 router.beforeEach(async () => {
   // await versionCheck()
-  localStorage.setItem('username', 'jiangxuelian')
 })
 export default router
