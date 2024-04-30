@@ -24,6 +24,7 @@
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.1.0",
     "snabbdom": "^3.5.1",
+    "vform3-builds": "^3.0.10",
     "vue": "^3.2.47",
     "vue-router": "^4.2.4",
     "wujie-polyfill": "^1.0.11",

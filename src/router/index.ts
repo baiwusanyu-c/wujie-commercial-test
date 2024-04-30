@@ -21,7 +21,6 @@ const router = createRouter({
       component: () => import('../views/board/index.vue'),
       name: 'Board',
     },
-    
     {
       path: '/label-tank',
       component: () => import('../views/user-tower/index.vue'),
@@ -54,6 +53,11 @@ const router = createRouter({
           name: 'crowd-insight',
         },
       ],
+    },
+    {
+      path: '/vform3',
+      component: () => import('../views/vform3/index.vue'),
+      name: 'vform3',
     },
   ],
 })
