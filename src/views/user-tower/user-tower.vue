@@ -23,14 +23,10 @@ const router = useRouter()
 const wujieVueRef = ref()
 const storeUser = useStoreUser()
 const { destroyApp, bus } = WujieVue
-// const brand = inject<Ref<'tea' | 'coffee'>>('brand', ref('tea'))
 const props = {
   ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/crowd'),
   authInsight: !!authRouter(storeUser.menuList, '/crowd-insight'),
   // url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
-  // variableParams() {
-  //   return { brand: storeUser.brand }
-  // },
 }
 console.log('props：', props)
 

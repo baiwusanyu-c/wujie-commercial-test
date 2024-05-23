@@ -1,4 +1,5 @@
 <template>
+  <div style="height: 300px;"></div>
   <WujieVue
     ref="wujieVueRef"
     width="100%"
@@ -22,14 +23,10 @@ const wujieVueRef = ref()
 const { destroyApp } = WujieVue
 const storeUser = useStoreUser()
 const props = {
-  ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/label-manage/user-label' as any),
-  // url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
-  scrollElement() {
-    return document.querySelector('.container')
-  },
+  ...genCrowdParams('DEV_IN', storeUser.phoneNumber, storeUser.brand as any, '/label-manage/user-label' as any),
+  url: 'http://192.168.125.52:3012/user-tower/auth-redirect',
 }
 
-console.log('用户标签props：', props)
 onUnmounted(() => {
   destroyApp('user-label')
 })

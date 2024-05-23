@@ -2,7 +2,7 @@
   <div class="userTower-warap">
     <div class="left-warap">
       <div class="menu-container">
-        <el-button type="primary" @click="back" style="margin-bottom: 20px;">返回首页</el-button>
+        <el-button type="primary" @click="back" style="margin-bottom: 20px">返回首页</el-button>
         <el-menu
           :default-active="activeMenu"
           :collapse="false"
@@ -19,7 +19,9 @@
                 <span>{{ subItem.label }}</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item v-for="item in subItem.children" :key="item.id" :index="item.path" @click="go(item.path)">{{ item.label }}</el-menu-item>
+                <el-menu-item v-for="item in subItem.children" :key="item.id" :index="item.path" @click="go(item.path)">{{
+                  item.label
+                }}</el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
             <el-menu-item v-else :index="subItem.path" @click="go(subItem.path)">{{ subItem.label }}</el-menu-item>
@@ -60,6 +62,7 @@ import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
 import tea from '@/assets/images/tea.png'
 import coffee from '@/assets/images/coffee.png'
+import { scrollTo } from '@/utils/scroll-to'
 interface BrandItem {
   lable: string
   value: string
@@ -81,6 +84,7 @@ const brandvalue = computed(() => {
 const handleChange = (brand: string) => {
   storeUser.setBrand(brand)
   WujieVue.bus.$emit('__USER_TOWER_OSP_BRANDCHANGE', { brand })
+  scrollTo(0, 800, window.parent[0].document.querySelector('.user-tower-iframe'))
 }
 
 const go = (path: string) => {
@@ -89,7 +93,6 @@ const go = (path: string) => {
 const back = () => {
   router.replace('/home')
 }
-
 </script>
 <style lang="scss">
 .userTower-warap {
@@ -148,7 +151,8 @@ const back = () => {
 
 .el-menu {
   border-right: none;
-  .el-sub-menu>.el-sub-menu__title, .el-menu-item {
+  .el-sub-menu > .el-sub-menu__title,
+  .el-menu-item {
     &:hover {
       color: var(--el-color-primary);
       background-color: rgba(64, 158, 255, 0.1);
@@ -162,7 +166,7 @@ const back = () => {
   }
   .el-menu-item {
     height: 44px;
-    margin-bottom: 8px
+    margin-bottom: 8px;
   }
   .el-menu-item.is-active {
     color: var(--el-color-primary);
@@ -176,8 +180,8 @@ const back = () => {
   font-size: 14px;
   color: #1d2129;
   padding: 10px;
-  border-top: 2px solid #F0F1F5;
-  border-bottom: 2px solid #F0F1F5;
+  border-top: 2px solid #f0f1f5;
+  border-bottom: 2px solid #f0f1f5;
   .sidebar-bottom__item {
     height: 75px;
     display: flex;
@@ -204,8 +208,8 @@ const back = () => {
   .is-action {
     background-color: #fff;
     transition-property: background-color, color;
-    transition-duration: .3s;
-    transition-timing-function: cubic-bezier(.1,.7,1,.1);
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
   }
 }
 </style>

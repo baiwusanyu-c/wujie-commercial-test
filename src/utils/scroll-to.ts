@@ -38,9 +38,9 @@ function move(amount: number, element: any) {
     element.scrollTop = amount
   }
 
-  //   const parentNode = element.body.parentNode as HTMLBodyElement
-  //   parentNode && (parentNode.scrollTop = amount)
-  //   element.body.scrollTop = amount
+  const parentNode = document.body.parentNode as HTMLBodyElement
+  parentNode && (parentNode.scrollTop = amount)
+  document.body.scrollTop = amount
 }
 
 function position() {
