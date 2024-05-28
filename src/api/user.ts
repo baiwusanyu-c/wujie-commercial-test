@@ -15,3 +15,19 @@ export const getUserList = (data: User.ReqUserParams) => {
     data,
   })
 }
+
+export const addUser = (data: User.ReqUserParams) => {
+  return request({
+    url: '/user/add',
+    method: 'post',
+    data,
+  })
+}
+
+export const editUser = (data: User.ReqUserParams) => {
+  return request({
+    url: '/user/edit',
+    method: 'post',
+    data,
+  })
+}

@@ -23,4 +23,10 @@ export namespace User {
     status: number // 状态
   }
   export type ResUserList = ResPage<ResUserListItem>
+
+  export interface ReqSaveParams {
+    userName: string
+    email: string
+    status: string
+  }
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup name="internal-menu">
 import { getCurrentInstance, ref } from 'vue'
-import { getUserList } from '@/api/user'
+import { addUser, editUser, getUserList } from '@/api/user'
+import ModelSave from './model-save.vue'
 import type { User } from '@/api/interface'
 import type { IPageParams } from '@/utils/interface'
 
@@ -16,6 +17,10 @@ const pageParams = ref<IPageParams>({
   pageNo: 1,
   total: 0,
 })
+const editData = ref({})
+const dialogVisible = ref(false) // 弹窗可见性
+const modelTitle = ref() // 弹窗标题
+const requestApi = ref() // 新增或者修改接口
 const resetPage = () => {
   pageParams.value = {
     pageSize: 10,
@@ -47,8 +52,25 @@ function resetQuery() {
   getList()
 }
 
-const handleClickView = (code: string, row?: User.ResUserListItem) => {
-  console.log({ code, row })
+const handleClickView = (code: 'add' | 'edit' | 'view', row?: User.ResUserListItem) => {
+  if (code === 'add') {
+    dialogVisible.value = true
+    modelTitle.value = '新增用户'
+    editData.value = {} // 清空编辑回显数据
+    requestApi.value = addUser
+    return
+  }
+  if (code === 'edit' && row) {
+    dialogVisible.value = true
+    modelTitle.value = '修改用户'
+    requestApi.value = editUser
+    editData.value = { ...row }
+    return
+  }
+}
+const modalClose = (val: boolean) => {
+  dialogVisible.value = false
+  if (val) getList()
 }
 </script>
 
@@ -126,6 +148,13 @@ const handleClickView = (code: string, row?: User.ResUserListItem) => {
       v-model:limit="pageParams.pageSize"
       :total="pageParams.total"
       @pagination="getList"
+    />
+    <ModelSave
+      v-if="dialogVisible"
+      :modal-title="modelTitle"
+      :edit-data="editData"
+      :request-api="requestApi"
+      @close="modalClose"
     />
   </div>
 </template>

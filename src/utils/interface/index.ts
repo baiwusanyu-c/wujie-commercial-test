@@ -12,6 +12,8 @@ export interface ResponseResult<T = any> {
 /** el-form 表单规则校验类型 */
 export type FormRules<T extends string> = Record<T, Arrayable<FormItemRule> | undefined>
 
+/** 自定义请求 */
+export type RequestApi<T = null, D = any> = T extends null ? (() => Promise<ResponseResult<D>>) : ((params: T) => Promise<ResponseResult<D>>)
 export interface MenuListItem {
   id: string,
   label: string,
