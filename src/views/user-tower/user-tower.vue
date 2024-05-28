@@ -26,7 +26,7 @@ const { destroyApp, bus } = WujieVue
 const props = {
   ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/crowd'),
   authInsight: !!authRouter(storeUser.menuList, '/crowd-insight'),
-  // url: 'http://192.168.124.130:3012/user-tower/auth-redirect',
+  url: 'http://192.168.125.52:3012/user-tower/auth-redirect',
 }
 console.log('props：', props)
 

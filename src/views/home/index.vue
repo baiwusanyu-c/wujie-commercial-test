@@ -4,56 +4,16 @@ import { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
+import { getUserMenus } from '@/api/menus'
 const defaultProps = {
   children: 'children',
   label: 'label',
 }
-const treeData: MenuListItem[] = [
-  {
-    id: '1',
-    label: '人群智库',
-    path: '',
-    name: '',
-    meta: { title: '人群智库' },
-    children: [
-      {
-        id: '1-1',
-        label: '用户群体',
-        path: '/user-tower',
-        name: 'user-tower',
-        meta: { title: '用户群体' },
-      },
-      {
-        id: '1-2',
-        label: '人群洞察',
-        path: '/crowd-insight',
-        name: 'crowd-insight',
-        meta: { title: '人群洞察' },
-      },
-    ],
-  },
-  {
-    id: '2',
-    label: '标签管理',
-    path: '',
-    name: '',
-    meta: { title: '标签管理' },
-    children: [
-      {
-        id: '2-1',
-        label: '用户标签',
-        path: '/user-label',
-        name: 'user-label',
-        meta: { title: '用户标签' },
-      },
-    ],
-  },
-]
 
 const treeRef = ref()
 const storeUser = useStoreUser()
 const router = useRouter()
-
+const treeData = ref<MenuListItem[]>([])
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = ref({ phoneNumber: storeUser.phoneNumber || '18228329236', menuList: [] })
 const validateName = (_rule: any, value: any, callback: any) => {
@@ -65,9 +25,11 @@ const validateName = (_rule: any, value: any, callback: any) => {
 const rules = reactive({
   phoneNumber: [{ required: true, validator: validateName }],
 })
-
+getUserMenus().then((res) => {
+  treeData.value = res.data
+})
 const getData = (values: string[]) => {
-  const filterData = treeData.filter((v) => {
+  const filterData = treeData.value.filter((v) => {
     const a = values.includes(v.id)
     const b = v.children?.some(vv => values.includes(vv.id))
     return !a && !b ? false : true

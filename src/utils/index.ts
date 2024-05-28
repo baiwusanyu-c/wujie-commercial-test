@@ -53,3 +53,8 @@ export function withInstall<T, E extends Record<string, any>>(main: T, extra?: E
   }
   return main as SFCWithInstall<T> & E
 }
+
+// 表单重置
+export function resetForm(refName: string) {
+  if (this.$refs[refName]) this.$refs[refName].resetFields()
+}

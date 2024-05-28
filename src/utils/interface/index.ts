@@ -22,3 +22,9 @@ export interface MenuListItem {
 }
 
 export type SFCWithInstall<T> = T & Plugin
+
+export interface IPageParams {
+  pageNo: number
+  pageSize: number
+  total: number
+}

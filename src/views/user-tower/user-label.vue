@@ -1,5 +1,4 @@
 <template>
-  <div style="height: 300px;"></div>
   <WujieVue
     ref="wujieVueRef"
     width="100%"

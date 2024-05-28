@@ -84,8 +84,8 @@
       "error",
       {
         "src/**/*.{jsx,tsx}": "CAMEL_CASE",
-        "**/*.{js,ts}": "KEBAB_CASE",
-        "**/components/**/*.vue": "KEBAB_CASE"
+        // "**/*.{js,ts}": "KEBAB_CASE",
+        // "**/components/**/*.vue": "KEBAB_CASE"
       },
       {
         "ignoreMiddleExtensions": true
@@ -97,8 +97,8 @@
     "check-file/folder-naming-convention": [
       "error",
       {
-        "src/**/": "KEBAB_CASE",
-        "mocks/*/": "KEBAB_CASE"
+        // "mocks/*/": "KEBAB_CASE",
+        "src/**/": "KEBAB_CASE"
       }
     ],
     "check-file/filename-blocklist": [
