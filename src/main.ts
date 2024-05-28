@@ -7,6 +7,7 @@ import WujieVue from "wujie-vue3";
 // load
 import loadPlugins from '@/plugins'
 // css
+import 'uno.css'
 import 'element-plus/dist/index.css'
 import './assets/styles/index.scss'
 

@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-28 15:25:32
+ * @LastEditTime: 2024-05-28 17:06:18
  * @LastEditors: liyang
  * @Description: 用户信息
  */
@@ -37,7 +37,7 @@ export default [
         userName: 'liyang',
         phoneNumber: '18228329236'
       }
-      return resultSuccess({res})
+      return resultSuccess(res)
     },
   },
   {

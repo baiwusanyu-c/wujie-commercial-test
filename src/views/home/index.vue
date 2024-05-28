@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
 import { getUserMenus } from '@/api/menus'
+import { getUserInfo } from '@/api/user'
 const defaultProps = {
   children: 'children',
   label: 'label',
@@ -25,9 +26,15 @@ const validateName = (_rule: any, value: any, callback: any) => {
 const rules = reactive({
   phoneNumber: [{ required: true, validator: validateName }],
 })
-getUserMenus().then((res) => {
-  treeData.value = res.data
-})
+const init = () => {
+  getUserMenus().then((res) => {
+    treeData.value = res.data
+  })
+  getUserInfo().then((res) => {
+    storeUser.login(res.data)
+  })
+}
+init()
 const getData = (values: string[]) => {
   const filterData = treeData.value.filter((v) => {
     const a = values.includes(v.id)
@@ -52,13 +59,17 @@ const getCheckedKeys = () => {
   execute(storeUser.menuList, false)
   return res.length ? res : ['1', '2']
 }
-const go = (formEl: FormInstance | undefined) => {
+const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
       const values = treeRef.value.getCheckedKeys()
       storeUser.setUserInfo({ phoneNumber: ruleForm.value.phoneNumber, menuList: getData(values) })
-      router.push(`/label-tank`)
+      if (type === '1') {
+        router.push(`/label-tank`)
+      } else if(type === '2'){
+        router.push(`/system`)
+      }
     }
   })
 }
@@ -84,7 +95,8 @@ const go = (formEl: FormInstance | undefined) => {
           />
         </el-form-item>
         <el-form-item label=" ">
-          <el-button type="primary" @click="go(ruleFormRef)">跳转至标签智库</el-button>
+          <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至标签智库</el-button>
+          <el-button type="primary" @click="go(ruleFormRef, '2')">跳转至内部系统</el-button>
         </el-form-item>
       </el-form>
     </div>

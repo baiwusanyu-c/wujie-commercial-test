@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
  */
 import { viteMockServe } from 'vite-plugin-mock';
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import UnoCSS from 'unocss/vite'
 // import { createHtmlPlugin } from 'vite-plugin-html'
 import imageLimit from './plugins/image-limit'
 // import versionUpdatePlugin from './plugins/version-update'
@@ -17,6 +18,7 @@ export default function createVitePlugins(viteEnv: ImportMetaEnv, isBuild = fals
   const vitePlugins = [
     vue(),
     vueJsx(),
+    UnoCSS(),
     createAutoImport(),
     imageLimit(viteEnv),
     requireToUrlPlugin(),

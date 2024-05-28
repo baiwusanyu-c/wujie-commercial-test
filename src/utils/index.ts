@@ -58,3 +58,17 @@ export function withInstall<T, E extends Record<string, any>>(main: T, extra?: E
 export function resetForm(refName: string) {
   if (this.$refs[refName]) this.$refs[refName].resetFields()
 }
+
+/**
+ * 处理路径
+ * @param {string} p
+ * @returns 返回正确路径
+ */
+export function getNormalPath(p: string) {
+  if (p.length === 0 || !p || p === 'undefined') return p
+
+  const res = p.replace('//', '/')
+  if (res[res.length - 1] === '/') return res.slice(0, res.length - 1)
+
+  return res
+}

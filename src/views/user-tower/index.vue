@@ -12,7 +12,7 @@
           background-color="#ffffff"
           active-text-color="#1d86f0"
         >
-          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">自定义菜单</el-menu-item>
+          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">欢迎页</el-menu-item>
           <template v-for="subItem in menuList" :key="subItem.id">
             <el-sub-menu v-if="subItem.children && subItem.children?.length > 0" :index="subItem.id">
               <template #title>
