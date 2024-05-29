@@ -8,6 +8,7 @@
     :props="props"
     :plugins="[InstanceofPlugin()]"
   />
+  
 </template>
 
 <script lang="ts" setup name="UserLabel">
@@ -22,8 +23,8 @@ const wujieVueRef = ref()
 const { destroyApp } = WujieVue
 const storeUser = useStoreUser()
 const props = {
-  ...genCrowdParams('DEV_IN', storeUser.phoneNumber, storeUser.brand as any, '/label-manage/user-label' as any),
-  url: 'http://192.168.125.52:3012/user-tower/auth-redirect',
+  ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, '/label-manage/user-label' as any),
+  // url: 'http://192.168.125.52:3012/user-tower/auth-redirect',
 }
 
 onUnmounted(() => {

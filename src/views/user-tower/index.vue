@@ -1,57 +1,65 @@
 <template>
-  <div class="userTower-warap">
-    <div class="left-warap">
-      <div class="menu-container">
-        <el-button type="primary" @click="back" style="margin-bottom: 20px">返回首页</el-button>
-        <el-menu
-          :default-active="activeMenu"
-          :collapse="false"
-          :router="false"
-          :unique-opened="true"
-          :collapse-transition="false"
-          background-color="#ffffff"
-          active-text-color="#1d86f0"
-        >
-          <el-menu-item index="/internal-menu" @click="go('/internal-menu')">欢迎页</el-menu-item>
-          <template v-for="subItem in menuList" :key="subItem.id">
-            <el-sub-menu v-if="subItem.children && subItem.children?.length > 0" :index="subItem.id">
-              <template #title>
-                <span>{{ subItem.label }}</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item v-for="item in subItem.children" :key="item.id" :index="item.path" @click="go(item.path)">{{
-                  item.label
-                }}</el-menu-item>
-              </el-menu-item-group>
-            </el-sub-menu>
-            <el-menu-item v-else :index="subItem.path" @click="go(subItem.path)">{{ subItem.label }}</el-menu-item>
-          </template>
-        </el-menu>
-      </div>
-      <div class="sidebar-bottom">
-        <div
-          v-for="item in brandList"
-          :key="item.value"
-          class="sidebar-bottom__item"
-          :class="brandvalue === item.value ? 'is-action' : ''"
-          @click="handleChange(item.value)"
-        >
-          <div class="left">
-            <img :src="item.icon">
-            <span>{{ item.lable }}</span>
-          </div>
-          <div v-if="brandvalue === item.value" class="right">
-            <SvgIcon icon-class="check" />
+  <el-container class="layout">
+    <el-aside>
+      <div class="aside-box" style="width: 200px;">
+        <div class="f-c-c p20px">
+          <el-button type="primary" @click="back">返回首页</el-button>
+        </div>
+        <el-scrollbar>
+          <el-menu
+            :default-active="activeMenu"
+            :collapse="false"
+            :router="false"
+            :unique-opened="true"
+            :collapse-transition="false"
+            background-color="#ffffff"
+            active-text-color="#1d86f0"
+          >
+            <el-menu-item index="/internal-menu" @click="go('/internal-menu')">欢迎页</el-menu-item>
+            <template v-for="subItem in menuList" :key="subItem.id">
+              <el-sub-menu v-if="subItem.children && subItem.children?.length > 0" :index="subItem.id">
+                <template #title>
+                  <span>{{ subItem.label }}</span>
+                </template>
+                <el-menu-item-group>
+                  <el-menu-item v-for="item in subItem.children" :key="item.id" :index="item.path" @click="go(item.path)">{{
+                    item.label
+                  }}</el-menu-item>
+                </el-menu-item-group>
+              </el-sub-menu>
+              <el-menu-item v-else :index="subItem.path" @click="go(subItem.path)">{{ subItem.label }}</el-menu-item>
+            </template>
+          </el-menu>
+        </el-scrollbar>
+        <div class="sidebar-bottom">
+          <div
+            v-for="item in brandList"
+            :key="item.value"
+            class="sidebar-bottom__item"
+            :class="brandvalue === item.value ? 'is-action' : ''"
+            @click="handleChange(item.value)"
+          >
+            <div class="left">
+              <img :src="item.icon" />
+              <span>{{ item.lable }}</span>
+            </div>
+            <div v-if="brandvalue === item.value" class="right">
+              <SvgIcon icon-class="check" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="right-warap">
-      <div class="headerr">
-        <div class="container"><router-view /></div>
-      </div>
-    </div>
-  </div>
+    </el-aside>
+    <el-container>
+      <section class="app-main">
+        <router-view v-slot="{ Component, route }">
+          <transition name="fade-transform" mode="out-in">
+            <div class="rounded-8px h100% of-hidden"><component :is="Component" :key="route.path" /></div>
+          </transition>
+        </router-view>
+      </section>
+    </el-container>
+  </el-container>
 </template>
 
 <script lang="ts" setup name="UserTower">
@@ -94,87 +102,19 @@ const back = () => {
   router.replace('/home')
 }
 </script>
-<style lang="scss">
-.userTower-warap {
-  display: flex;
+<style lang="scss" scoped>
+@import "../system/layout/index.scss";
+
+.app-main {
   height: 100vh;
-  .active {
-    color: var(--el-color-primary);
-  }
-  .container {
-    height: 100%;
-    overflow: auto;
-  }
-  .go {
-    cursor: pointer;
-  }
-  --navigation-width: 250px;
-  .left-warap {
-    width: var(--navigation-width);
-    text-align: center;
-    line-height: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .menu-container {
-      padding: 20px;
-      flex: 1;
-      overflow-y: auto;
-    }
-  }
-  .right-warap {
-    width: calc(100% - var(--navigation-width));
-    background-color: aliceblue;
-    padding: 20px;
-  }
-  .gao {
-    color: var(--el-color-primary);
-  }
-  .el-tabs__content {
-    padding: 0 !important;
-  }
-}
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
-}
-.headerr {
   width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  overflow: hidden;
-  // background-color: #fff;
-  // padding: 10px;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #F0F1F5;
+  overflow: auto;
 }
 
-.el-menu {
-  border-right: none;
-  .el-sub-menu > .el-sub-menu__title,
-  .el-menu-item {
-    &:hover {
-      color: var(--el-color-primary);
-      background-color: rgba(64, 158, 255, 0.1);
-    }
-  }
-  .el-menu-item.is-active {
-    background-color: rgba(64, 158, 255, 0.1);
-  }
-  .el-menu-item-group__title {
-    padding: 0px !important;
-  }
-  .el-menu-item {
-    height: 44px;
-    margin-bottom: 8px;
-  }
-  .el-menu-item.is-active {
-    color: var(--el-color-primary);
-  }
-}
-.is-active {
-  background-color: #0031e00d;
-}
 .sidebar-bottom {
   background-color: #f9fafc;
   font-size: 14px;

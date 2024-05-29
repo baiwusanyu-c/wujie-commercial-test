@@ -23,7 +23,7 @@ const { destroyApp } = WujieVue
 const storeUser = useStoreUser()
 const props = {
   ...genCrowdParams('DEV', storeUser.phoneNumber, storeUser.brand as any, `/crowd-insight` as any),
-  url: ' http://192.168.125.52:3012/user-tower/auth-redirect',
+  // url: ' http://192.168.125.52:3012/user-tower/auth-redirect',
 }
 console.log('人群洞察props：', props)
 onUnmounted(() => {
