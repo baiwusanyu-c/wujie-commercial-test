@@ -77,85 +77,88 @@ const modalClose = (val: boolean) => {
 </script>
 
 <template>
-  <PageWrapper :title="route.meta.title">
-    <template #toolButton>
-      <el-button type="primary" icon="plus" @click="handleClickView('add')">
-        创建用户
-      </el-button>
-    </template>
-    <el-form ref="queryRef" :model="queryParams" :inline="true">
-      <el-form-item prop="userName">
-        <el-input v-model="queryParams.userName" placeholder="用户名称" clearable maxlength="50" />
-      </el-form-item>
-      <el-form-item prop="status">
-        <el-select v-model="queryParams.status" class="select-brand" placeholder="用户状态" clearable @clear="resetPage" style="width: 200px">
-          <el-option label="冻结" :value="1" />
-          <el-option label="正常" :value="2" />
-          <el-option label="锁定" :value="3" />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="Search" :loading="loading" @click="handleQuery()"> 搜索 </el-button>
-        <el-button icon="Refresh" :loading="loading" @click="resetQuery"> 重置 </el-button>
-      </el-form-item>
-    </el-form>
-    <el-table v-loading="loading" :data="tabelData">
-      <el-table-column label="序号" type="index" width="55" align="center" />
-      <el-table-column label="用户名称" prop="userName" />
-      <el-table-column label="用户状态" prop="status" width="80">
-        <template #default="{ row }">
-          <span v-if="row.status === '1'" style="color: #e6a23c; font-weight: bolder">冻结</span>
-          <span v-else-if="row.status === '2'" style="color: #67c23a; font-weight: bolder">正常</span>
-          <span v-else-if="row.status === '3'" style="color: #f56c6c; font-weight: bolder">
-            锁定
-            <el-tooltip v-if="row.failReason != null" :content="row.failReason" placement="top" effect="light">
-              <el-icon style="transform: translateY(2px); cursor: pointer"><InfoFilled /></el-icon>
-            </el-tooltip>
-          </span>
-          <span v-else>--</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="创建人" prop="createUser" align="center" />
-      <el-table-column label="创建时间" prop="createTime" />
-      <el-table-column label="更新时间" prop="updateTime" />
-      <el-table-column label="备注" prop="remark" />
-      <el-table-column label="操作" align="center" width="110" fixed="right">
-        <template #default="{ row }">
-          <el-button
-            :type="row.status === 1 || row.status === 3 ? '' : 'primary'"
-            :disabled="row.status === 1 || row.status === 3"
-            link
-            plain
-            @click="handleClickView('view', row)"
-          >
-            查看
-          </el-button>
-          <el-button
-            :type="row.status === 1 ? '' : 'primary'"
-            :disabled="row.status === 1"
-            link
-            plain
-            @click="handleClickView('edit', row)"
-          >
-            修改
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <pagination
-      v-show="pageParams.total > 0"
-      v-model:page="pageParams.pageNo"
-      v-model:limit="pageParams.pageSize"
-      :total="pageParams.total"
-      @pagination="getList"
-    />
-  </PageWrapper>
+  <div>
+    <PageWrapper :title="route.meta.title">
+      <template #toolButton>
+        <el-button type="primary" icon="plus" @click="handleClickView('add')">
+          创建用户
+        </el-button>
+      </template>
+      <el-form ref="queryRef" :model="queryParams" :inline="true">
+        <el-form-item prop="userName">
+          <el-input v-model="queryParams.userName" placeholder="用户名称" clearable maxlength="50" />
+        </el-form-item>
+        <el-form-item prop="status">
+          <el-select v-model="queryParams.status" class="select-brand" placeholder="用户状态" clearable @clear="resetPage" style="width: 200px">
+            <el-option label="冻结" :value="1" />
+            <el-option label="正常" :value="2" />
+            <el-option label="锁定" :value="3" />
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" icon="Search" :loading="loading" @click="handleQuery()"> 搜索 </el-button>
+          <el-button icon="Refresh" :loading="loading" @click="resetQuery"> 重置 </el-button>
+        </el-form-item>
+      </el-form>
+      <el-table v-loading="loading" :data="tabelData">
+        <el-table-column label="序号" type="index" width="55" align="center" />
+        <el-table-column label="用户名称" prop="userName" />
+        <el-table-column label="用户状态" prop="status" width="80">
+          <template #default="{ row }">
+            <span v-if="row.status === '1'" style="color: #e6a23c; font-weight: bolder">冻结</span>
+            <span v-else-if="row.status === '2'" style="color: #67c23a; font-weight: bolder">正常</span>
+            <span v-else-if="row.status === '3'" style="color: #f56c6c; font-weight: bolder">
+              锁定
+              <el-tooltip v-if="row.failReason != null" :content="row.failReason" placement="top" effect="light">
+                <el-icon style="transform: translateY(2px); cursor: pointer"><InfoFilled /></el-icon>
+              </el-tooltip>
+            </span>
+            <span v-else>--</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="创建人" prop="createUser" align="center" />
+        <el-table-column label="创建时间" prop="createTime" />
+        <el-table-column label="更新时间" prop="updateTime" />
+        <el-table-column label="备注" prop="remark" />
+        <el-table-column label="操作" align="center" width="110" fixed="right">
+          <template #default="{ row }">
+            <el-button
+              :type="row.status === 1 || row.status === 3 ? '' : 'primary'"
+              :disabled="row.status === 1 || row.status === 3"
+              link
+              plain
+              @click="handleClickView('view', row)"
+            >
+              查看
+            </el-button>
+            <el-button
+              :type="row.status === 1 ? '' : 'primary'"
+              :disabled="row.status === 1"
+              link
+              plain
+              @click="handleClickView('edit', row)"
+            >
+              修改
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <pagination
+        v-show="pageParams.total > 0"
+        v-model:page="pageParams.pageNo"
+        v-model:limit="pageParams.pageSize"
+        :total="pageParams.total"
+        @pagination="getList"
+      />
+    </PageWrapper>
     
-  <ModelSave
-    v-if="dialogVisible"
-    :modal-title="modelTitle"
-    :edit-data="editData"
-    :request-api="requestApi"
-    @close="modalClose"
-  />
+    <ModelSave
+      v-if="dialogVisible"
+      :modal-title="modelTitle"
+      :edit-data="editData"
+      :request-api="requestApi"
+      @close="modalClose"
+    />
+  </div>
+  
 </template>
