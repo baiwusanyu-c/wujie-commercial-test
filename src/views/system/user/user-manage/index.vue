@@ -78,6 +78,15 @@ const modalClose = (val: boolean) => {
 
 <template>
   <div>
+    <PageWrapper title="快速开始一个营销策略" class="mb16px">
+      <div class="mask-group f-c-b">
+        <div class="w200px h120px rounded-8px text-center line-height-120px">促销敏感人群复购</div>
+        <div class="w200px h120px rounded-8px text-center line-height-120px">团购场景营销</div>
+        <div class="w200px h120px rounded-8px text-center line-height-120px">节假日精准营销</div>
+        <div class="w200px h120px rounded-8px text-center line-height-120px">新用户复购</div>
+        <div class="w200px h120px rounded-8px text-center line-height-120px">实时天气精准营销</div>
+      </div>
+    </PageWrapper>
     <PageWrapper :title="route.meta.title">
       <template #toolButton>
         <el-button type="primary" icon="plus" @click="handleClickView('add')">
@@ -162,3 +171,24 @@ const modalClose = (val: boolean) => {
   </div>
   
 </template>
+
+<style lang="scss" scoped>
+.mask-group {
+  color: #fff;
+  div:nth-child(1) {
+    background-image: url('../../../../assets/images/mask-group(1).png');
+  }
+  div:nth-child(2) {
+    background-image: url('../../../../assets/images/mask-group.png');
+  }
+  div:nth-child(3) {
+    background-image: url('../../../../assets/images/mask-group(2).png');
+  }
+  div:nth-child(4) {
+    background-image: url('../../../../assets/images/mask-group(3).png');
+  }
+  div:nth-child(5) {
+    background-image: url('../../../../assets/images/mask-group(4).png');
+  }
+}
+</style>
