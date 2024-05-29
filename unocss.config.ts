@@ -38,9 +38,7 @@ export default defineConfig({
       warning: '#f8ac59',
       danger: '#ed5565',
       info: '#1c84c6',
-      main: '#1D86F0',
-      cbd: '#0E53C4',
-      prompt_info_icon: '#2cbcfc',
+      main: '#105CFF',
     },
     spacing: {
       px: '1px',

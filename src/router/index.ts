@@ -71,7 +71,26 @@ export const constantRoutes = [
         component: () => import('../views/system/user/user-manage/index.vue'),
         name: 'user-manage',
         meta: { title: '用户管理', icon: 'user' },
-      }
+      },
+      {
+        path: '',
+        name: 'tools',
+        meta: { title: '工具', icon: 'user' },
+        children: [
+          {
+            path: '/tools/upload',
+            component: () => import('../views/system/tools/upload/index.vue'),
+            name: 'upload',
+            meta: { title: '文件上传', icon: 'user' },
+          },
+          {
+            path: '/tools/warning',
+            component: () => import('../views/system/tools/warning/index.vue'),
+            name: 'warning',
+            meta: { title: '业务预警', icon: 'user' },
+          },
+        ],
+      },
     ],
   },
   {

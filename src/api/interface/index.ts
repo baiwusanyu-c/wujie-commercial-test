@@ -31,3 +31,46 @@ export namespace User {
     status: string
   }
 }
+
+/** 工具 */
+export namespace Tools {
+  export namespace Upload {
+    export interface ReqSaveParams {
+      tableName: string
+      classification: string
+      tableNa: string
+      dataSource: string
+      tableType: string
+      tableCode: string
+    }
+    export interface ReqUploadParams extends ReqPage {
+      classification?: string // 分类名称
+      tableName?: string // 表名称
+      tableNa?: string // 表名
+      tableType?: string // 表类型
+    }
+    export interface ResUploadListItem {
+      id: string
+      classification: string
+      tableName: string
+      tableNa: string
+      tableType: number
+      createTime: string
+      updateTime: string
+    }
+    export type ResUploadList = ResPage<ResUploadListItem>
+  
+    export interface ResUploadFileListItem {
+      id: string
+      fileName: string
+      fileVersion: string
+      fileSize: string
+      fileRow: number
+      status: string
+      operator: string
+      createTime: string
+      updateTime: string
+    }
+    export type ResUploadFileList = ResPage<ResUploadFileListItem>
+  }
+}
