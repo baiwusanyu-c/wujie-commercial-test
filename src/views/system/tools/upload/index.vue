@@ -108,16 +108,16 @@ const modalClose = (val: boolean) => {
   <div>
     <PageWrapper title="查询条件" class="mb16px">
       <el-form ref="queryRef" :model="queryParams" :inline="true">
-        <el-form-item prop="classification" label="分类:">
+        <el-form-item prop="classification">
           <el-input v-model="queryParams.classification" placeholder="请输入分类" clearable maxlength="50" />
         </el-form-item>
-        <el-form-item prop="tableName" label="表名称:">
+        <el-form-item prop="tableName">
           <el-input v-model="queryParams.tableName" placeholder="请输入表名称" clearable maxlength="50" />
         </el-form-item>
-        <el-form-item prop="tableNa" label="表名:">
+        <el-form-item prop="tableNa">
           <el-input v-model="queryParams.tableNa" placeholder="请输入表名" clearable maxlength="50" />
         </el-form-item>
-        <el-form-item prop="tableType" label="表类型:">
+        <el-form-item prop="tableType">
           <el-select
             v-model="queryParams.tableType"
             class="select-brand"
