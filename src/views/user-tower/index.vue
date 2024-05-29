@@ -40,7 +40,7 @@
             @click="handleChange(item.value)"
           >
             <div class="left">
-              <img :src="item.icon" />
+              <img :src="item.icon">
               <span>{{ item.lable }}</span>
             </div>
             <div v-if="brandvalue === item.value" class="right">
