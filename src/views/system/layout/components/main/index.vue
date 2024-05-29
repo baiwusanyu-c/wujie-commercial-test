@@ -2,14 +2,11 @@
   <section class="app-main">
     <router-view v-slot="{ Component, route }">
       <transition name="fade-transform" mode="out-in">
-        <div><component :is="Component" :key="route.path" /></div>
+        <div style="height: 100%;"><component :is="Component" :key="route.path" /></div>
       </transition>
     </router-view>
   </section>
 </template>
-
-<script setup>
-</script>
 
 <style lang="scss" scoped>
 .app-main {
