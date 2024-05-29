@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-aside>
-      <div class="aside-box" style="width: 200px;">
+      <div class="aside-box" style="width: 240px;">
         <div class="f-c-c p20px">
           <el-button type="primary" @click="back">返回首页</el-button>
         </div>

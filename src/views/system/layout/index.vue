@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-aside>
-      <div class="aside-box" :style="{ width: isCollapse ? '65px' : '200px' }">
+      <div class="aside-box" :style="{ width: isCollapse ? '65px' : '240px' }">
         <div class="logo f-c-c" @click="logoClick">
           <img src="@/assets/images/logo2.png">
           <h1 v-if="!isCollapse" class="sidebar-title">

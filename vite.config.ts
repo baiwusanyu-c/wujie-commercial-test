@@ -6,10 +6,9 @@ import { getYearMonthDate } from './src/utils'
 const { month, date, hour, minute } = getYearMonthDate(0, false)
 const assetsDir = `${month}.${date}.${hour}_${minute}`
 
-// https://vitejs.dev/config/
 const ENV_FILE_NAME = 'env'
 // 打包时获取版本信息
-const CurrentTimeVersion = '123456' // Date.now()
+const CurrentTimeVersion = Date.now()
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, `${process.cwd()}/${ENV_FILE_NAME}`) as unknown as ImportMetaEnv
   return {
