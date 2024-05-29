@@ -1,11 +1,13 @@
 <script lang="ts" setup name="internal-menu">
 import { getCurrentInstance, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { addUser, editUser, getUserList } from '@/api/user'
 import ModelSave from './model-save.vue'
 import type { User } from '@/api/interface'
 import type { IPageParams } from '@/utils/interface'
 
 const proxy = getCurrentInstance()?.proxy
+const route = useRoute()
 const queryParams = ref({
   userName: '',
   status: ''
@@ -56,7 +58,7 @@ const handleClickView = (code: 'add' | 'edit' | 'view', row?: User.ResUserListIt
   if (code === 'add') {
     dialogVisible.value = true
     modelTitle.value = '新增用户'
-    editData.value = {} // 清空编辑回显数据
+    editData.value = { status: '1' } // 清空编辑回显数据
     requestApi.value = addUser
     return
   }
@@ -75,16 +77,21 @@ const modalClose = (val: boolean) => {
 </script>
 
 <template>
-  <div class="app-container">
+  <PageWrapper :title="route.meta.title">
+    <template #toolButton>
+      <el-button type="primary" icon="plus" @click="handleClickView('add')">
+        创建用户
+      </el-button>
+    </template>
     <el-form ref="queryRef" :model="queryParams" :inline="true">
       <el-form-item prop="userName">
         <el-input v-model="queryParams.userName" placeholder="用户名称" clearable maxlength="50" />
       </el-form-item>
       <el-form-item prop="status">
         <el-select v-model="queryParams.status" class="select-brand" placeholder="用户状态" clearable @clear="resetPage" style="width: 200px">
-          <el-option label="进行中" :value="1" />
-          <el-option label="已完成" :value="2" />
-          <el-option label="失败" :value="3" />
+          <el-option label="冻结" :value="1" />
+          <el-option label="正常" :value="2" />
+          <el-option label="锁定" :value="3" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -92,22 +99,15 @@ const modalClose = (val: boolean) => {
         <el-button icon="Refresh" :loading="loading" @click="resetQuery"> 重置 </el-button>
       </el-form-item>
     </el-form>
-    <el-row :gutter="10" class="mb8px">
-      <el-col :span="1.5">
-        <el-button type="primary" icon="plus" @click="handleClickView('add')">
-          创建用户
-        </el-button>
-      </el-col>
-    </el-row>
     <el-table v-loading="loading" :data="tabelData">
       <el-table-column label="序号" type="index" width="55" align="center" />
       <el-table-column label="用户名称" prop="userName" />
       <el-table-column label="用户状态" prop="status" width="80">
         <template #default="{ row }">
-          <span v-if="row.status === '1'" style="color: #e6a23c; font-weight: bolder">进行中</span>
-          <span v-else-if="row.status === '2'" style="color: #67c23a; font-weight: bolder">已完成</span>
+          <span v-if="row.status === '1'" style="color: #e6a23c; font-weight: bolder">冻结</span>
+          <span v-else-if="row.status === '2'" style="color: #67c23a; font-weight: bolder">正常</span>
           <span v-else-if="row.status === '3'" style="color: #f56c6c; font-weight: bolder">
-            失败
+            锁定
             <el-tooltip v-if="row.failReason != null" :content="row.failReason" placement="top" effect="light">
               <el-icon style="transform: translateY(2px); cursor: pointer"><InfoFilled /></el-icon>
             </el-tooltip>
@@ -149,12 +149,13 @@ const modalClose = (val: boolean) => {
       :total="pageParams.total"
       @pagination="getList"
     />
-    <ModelSave
-      v-if="dialogVisible"
-      :modal-title="modelTitle"
-      :edit-data="editData"
-      :request-api="requestApi"
-      @close="modalClose"
-    />
-  </div>
+  </PageWrapper>
+    
+  <ModelSave
+    v-if="dialogVisible"
+    :modal-title="modelTitle"
+    :edit-data="editData"
+    :request-api="requestApi"
+    @close="modalClose"
+  />
 </template>

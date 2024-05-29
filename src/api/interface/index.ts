@@ -21,6 +21,7 @@ export namespace User {
     createTime: string // 创建时间
     updateTime: string // 更新时间
     status: number // 状态
+    failReason: string // 失败原因
   }
   export type ResUserList = ResPage<ResUserListItem>
 

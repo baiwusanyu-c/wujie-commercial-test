@@ -2,7 +2,7 @@
   <section class="app-main">
     <router-view v-slot="{ Component, route }">
       <transition name="fade-transform" mode="out-in">
-        <component :is="Component" :key="route.path" />
+        <div><component :is="Component" :key="route.path" /></div>
       </transition>
     </router-view>
   </section>
@@ -18,6 +18,7 @@
   position: relative;
   padding: 20px;
   box-sizing: border-box;
-  background-color: aliceblue;
+  background-color: #F0F1F5;
+  overflow: auto;
 }
 </style>

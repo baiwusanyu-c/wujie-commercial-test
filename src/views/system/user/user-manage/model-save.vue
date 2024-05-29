@@ -19,11 +19,15 @@
       <el-form-item prop="userName" label="用户名称">
         <el-input v-model.trim="ruleForm.userName" placeholder="请输入用户名称" />
       </el-form-item>
-      <el-form-item prop="email" label="邮箱">
-        <el-input v-model.trim="ruleForm.email" placeholder="请输入邮箱" :disabled="isEdit" />
+      <el-form-item prop="email" label="用户邮箱">
+        <el-input v-model.trim="ruleForm.email" placeholder="请输入用户邮箱" :disabled="isEdit" />
       </el-form-item>
-      <el-form-item prop="status" label="状态">
-        <el-input v-model.trim="ruleForm.status" />
+      <el-form-item prop="status" label="用户状态">
+        <el-radio-group v-model="ruleForm.status">
+          <el-radio value="1">冻结</el-radio>
+          <el-radio value="2">正常</el-radio>
+          <el-radio value="3">锁定</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -51,8 +55,8 @@ const proxy = getCurrentInstance()?.proxy
 const loading = ref(false)
 const isEdit = props.modalTitle === '修改模型'
 const ruleFormRef = ref<FormInstance>()
-const ruleForm = reactive<User.ResUserListItem>(props.editData)
-const rules: FormRules<User.ReqSaveParams> = {
+const ruleForm = reactive<any>(props.editData)
+const rules: FormRules<User.ReqSaveParams, 'id'> = {
   userName: [{ required: true, message: '请输入模型名称' }],
   email: [{ required: true, message: '请输入模型编码' }],
   status: [{ required: true, message: '请输入模型所在数据库表' }],
