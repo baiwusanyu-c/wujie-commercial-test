@@ -1,14 +1,13 @@
 <script lang="ts" setup name="internal-menu">
 import { getCurrentInstance, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { addUpload, editUpload, getUploadList } from '@/api/tools/upload'
+import { type Action } from 'element-plus'
+import { addUpload, editUpload, uploadDelete, getUploadList } from '@/api/tools/upload'
 import ModelSave from './upload-save.vue'
 import UploadFile from './upload-file.vue'
 import type { Tools } from '@/api/interface'
 import type { IPageParams } from '@/utils/interface'
 
 const proxy = getCurrentInstance()?.proxy
-const route = useRoute()
 const queryParams = ref({
   classification: '',
   tableName: '',
@@ -81,6 +80,21 @@ const handleClickView = (code: string, row?: Tools.Upload.ResUploadListItem) => 
     modelTitle.value = '上传文件'
     editData.value = { ...row }
     return
+  }
+  if (code === 'delete' && row) {
+    proxy?.$messageBox.confirm('是否确定删除', '删除', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+      callback(action: Action) {
+        if (action === 'confirm') {
+          uploadDelete(row).then(({ msg }) => {
+            getList()
+            proxy?.$message.success(msg ?? '删除成功')
+          })
+        }
+      },
+    })
   }
 }
 const modalClose = (val: boolean) => {

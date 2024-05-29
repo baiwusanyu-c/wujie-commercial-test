@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-29 17:11:34
+ * @LastEditTime: 2024-05-29 18:03:56
  * @LastEditors: liyang
  * @Description: 上传文件
  */
@@ -71,7 +71,7 @@ export default [
   },
   {
     url: '/upload/delete',
-    timeout: 1000,
+    timeout: 100,
     method: 'post',
     response: () => {
       return resultSuccess(null, { msg: '删除成功' })
