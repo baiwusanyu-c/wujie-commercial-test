@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import createVitePlugins from './vite-plugin'
-import { getYearMonthDate } from './src/utils'
+import { getYearMonthDate } from './src/utils/vite'
 
 const { month, date, hour, minute } = getYearMonthDate(0, false)
 const assetsDir = `${month}.${date}.${hour}_${minute}`

@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-29 18:03:56
+ * @LastEditTime: 2024-05-30 11:28:38
  * @LastEditors: liyang
  * @Description: 上传文件
  */
@@ -11,7 +11,7 @@ import type { Response } from '../../_interface'
 
 const uploadList = (() => {
   const result: any[] = []
-  for (let index = 0; index < 20; index++) {
+  for (let index = 0; index < 10; index++) {
     result.push({
       id: `${index}`,
       classification: '@first',
@@ -28,7 +28,7 @@ const uploadList = (() => {
 })()
 const recordList = (() => {
   const result: any[] = []
-  for (let index = 0; index < 20; index++) {
+  for (let index = 0; index < 10; index++) {
     result.push({
       id: `${index}`,
       fileName: '@first',
@@ -87,7 +87,7 @@ export default [
   },
   {
     url: '/upload/record',
-    timeout: 1000,
+    timeout: 100,
     method: 'post',
     response: ({ body }: Response) => {
       const { pageNo = 1, pageSize = 10 } = body

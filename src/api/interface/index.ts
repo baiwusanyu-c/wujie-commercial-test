@@ -7,6 +7,35 @@ export interface ReqPage {
   pageSize: number
 }
 
+/** 上传 */
+export namespace CUpload {
+  export interface FileItem {
+    fileName: string
+    ossPath?: string
+    token?: string
+    userName?: string
+  }
+  export type UploadFileType = FileItem[]
+  /** 下载模板名称 */
+  export type templateName = 'crowd_package_template'
+  /** oss上传签名响应结果 */
+  export interface OssRespData {
+    accessKeyId: string
+    dir: string // oss路径
+    host: string // 域名
+    policy: string
+    signature: string
+  }
+  /** oss上传接口参数 */
+  export interface OssUploadParams {
+    OSSAccessKeyId: string
+    policy: string
+    signature: string
+    key: string
+    file: File
+  }
+}
+
 /** 用户 */
 export namespace User {
   export interface ReqUserParams extends ReqPage {
@@ -72,5 +101,8 @@ export namespace Tools {
       updateTime: string
     }
     export type ResUploadFileList = ResPage<ResUploadFileListItem>
+
+    /** 上传文件 */
+    export type UploadFile = (CUpload.FileItem & { id: string })[]
   }
 }

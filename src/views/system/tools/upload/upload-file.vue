@@ -1,37 +1,39 @@
   
 <script lang="ts" setup>
 import { getCurrentInstance, ref } from 'vue'
-import { FormInstance } from 'element-plus'
 import { uploadFile } from '@/api/tools/upload'
+import Upload from '@/components/upload/src/upload.vue';
+import { templateDownloadApi } from '@/api/oss'
+import { downloadFile } from '@/utils'
 
-defineProps<{
+const props = defineProps<{
   modalTitle: string
   editData: any
 }>()
 const emit = defineEmits(['close'])
 const proxy = getCurrentInstance()?.proxy
 const loading = ref(false)
+const fileList = ref<any[]>([])
 // 关闭弹窗
 const close = (val = false) => {
   emit('close', val)
 }
 // 表单提交
-const submit = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      loading.value = true
-      const prames = {}
-      uploadFile(prames).then(({ msg }) => {
-        proxy?.$message.success(msg ?? '操作成功')
-        close(true)
-      }).finally(() => {
-        loading.value = false
-      })
-    }
+const submit = () => {
+  if (fileList.value.length === 0) return proxy?.$message.warning('请选择上传文件！')
+  loading.value = true
+  const params = fileList.value.map(v => ({ ...v, id: props.editData.id }))
+  uploadFile(params).then(({ msg }) => {
+    proxy?.$message.success(msg ?? '操作成功')
+    close(true)
+  }).finally(() => {
+    loading.value = false
   })
 }
-const download = () => {}
+const download = async() => {
+  const res = await templateDownloadApi('crowd_package_template')
+  if (res.data) downloadFile(`${import.meta.env.VITE_APP_OSS_API}/${res.data}`)
+}
 </script>
 
 <template>
@@ -42,10 +44,14 @@ const download = () => {}
     :close-on-click-modal="false"
     :before-close="() => close()"
   >
-    <div class="h150px mb20px rounded-4px border border-dashed border-#105CFF80 flex flex-col items-center justify-center">
-      <svg-icon class="w40px! h40px! mb16px" icon-class="upload" />
-      <span>将文件拖拽至此区域 或 <span class="color-main cursor-pointer">选择文件</span></span>
-    </div>
+    <Upload drag v-model="fileList">
+      <template #trigger>
+        <div class="flex flex-col items-center justify-center">
+          <svg-icon class="w40px! h40px! mb16px" icon-class="upload" />
+          <span class="color-#1D2129">将文件拖拽至此区域 或 <span class="color-main">选择文件</span></span>
+        </div>
+      </template>
+    </Upload>
     <div class="line-height-22px mb8px">导入文件须知：</div>
     <div class="color-#86909C text-14px line-height-24px">1.文件类型:Excel格式</div>
     <div class="color-#86909C text-14px line-height-24px">2.文件大小限制:不得超过100w行</div>
@@ -56,7 +62,7 @@ const download = () => {}
       <span class="flex items-center">
         <el-button type="primary" plain @click="download">下载模板</el-button>
         <el-button class="mlauto!" :loading="loading" @click="close()">取消</el-button>
-        <el-button :loading="loading" type="primary" @click="submit(ruleFormRef)"> 保存 </el-button>
+        <el-button :loading="loading" type="primary" @click="submit"> 保存 </el-button>
       </span>
     </template>
   </el-dialog>

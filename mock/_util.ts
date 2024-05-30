@@ -1,4 +1,4 @@
-export function resultSuccess<T = any>(data: T, { msg = '操作成功' } = {}) {
+export function resultSuccess<T = any>(data: T, { msg = '请求成功' } = {}) {
   return {
     code: 200,
     data,
@@ -10,7 +10,7 @@ export function resultUserSuccess<T = any, K = any, E = any>(
   permissions: T,
   roles: K,
   user: E,
-  { msg = '操作成功' } = {},
+  { msg = '请求成功' } = {},
 ) {
   return {
     code: 200,

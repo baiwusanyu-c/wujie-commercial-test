@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-29 11:18:02
+ * @LastEditTime: 2024-05-30 11:28:49
  * @LastEditors: liyang
  * @Description: 用户信息
  */
@@ -11,7 +11,7 @@ import type { Response } from '../_interface'
 
 const userList = (() => {
   const result: any[] = [];
-  for (let index = 0; index < 20; index++) {
+  for (let index = 0; index < 10; index++) {
     result.push({
       id: `${index}`,
       userName: '@first',

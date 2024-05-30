@@ -4,6 +4,7 @@ declare module 'vue' {
     SvgIcon: typeof import('@/components')['SvgIcon']
     Pagination: typeof import('@/components')['Pagination']
     PageWrapper: typeof import('@/components')['PageWrapper']
+    Upload: typeof import('@/components')['Upload']
   }
   interface ComponentCustomProperties {
     $resetForm: typeof import('@/utils')['resetForm']

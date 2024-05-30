@@ -84,6 +84,13 @@ export const constantRoutes = [
             meta: { title: '文件上传', icon: 'user' },
           },
           {
+            path: '/tools/upload-record',
+            component: () => import('../views/system/tools/upload/upload-record.vue'),
+            name: 'upload-record',
+            hidden: true,
+            meta: { title: '上传记录' },
+          },
+          {
             path: '/tools/warning',
             component: () => import('../views/system/tools/warning/index.vue'),
             name: 'warning',

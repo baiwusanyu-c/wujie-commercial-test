@@ -1,5 +1,6 @@
 <script lang="ts" setup name="internal-menu">
 import { getCurrentInstance, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { type Action } from 'element-plus'
 import { addUpload, editUpload, uploadDelete, getUploadList } from '@/api/tools/upload'
 import ModelSave from './upload-save.vue'
@@ -8,6 +9,7 @@ import type { Tools } from '@/api/interface'
 import type { IPageParams } from '@/utils/interface'
 
 const proxy = getCurrentInstance()?.proxy
+const router = useRouter()
 const queryParams = ref({
   classification: '',
   tableName: '',
@@ -94,6 +96,13 @@ const handleClickView = (code: string, row?: Tools.Upload.ResUploadListItem) => 
           })
         }
       },
+    })
+    return
+  }
+  if (code === 'record' && row) {
+    router.push({
+      path: '/tools/upload-record',
+      query: { id: row.id },
     })
   }
 }

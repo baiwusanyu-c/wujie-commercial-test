@@ -16,9 +16,15 @@
   --el-table-tr-bg-color: #fff;
   --el-table-border: 1px solid #E5E6EB;
   --el-table-bg-color: #fff;
+  .cell {
+    line-height: 20px;
+  }
 }
 .el-table thead {
   color: #1D2129;
+}
+.el-table--default .el-table__cell {
+  padding: 10px 0;
 }
 
 .el-button {

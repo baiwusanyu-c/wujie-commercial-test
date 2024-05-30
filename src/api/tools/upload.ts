@@ -33,7 +33,7 @@ export const uploadDelete = (data: { id: string }) => {
   })
 }
 
-export const uploadFile = (data: any) => {
+export const uploadFile = (data: Tools.Upload.UploadFile) => {
   return request({
     url: '/upload/file',
     method: 'post',
@@ -41,7 +41,7 @@ export const uploadFile = (data: any) => {
   })
 }
 
-export const uploadRecord = (data: { id: string }) => {
+export const uploadRecord = (data: { id: string, type: string }) => {
   return request<Tools.Upload.ResUploadFileList>({
     url: '/upload/record',
     method: 'post',

@@ -8,7 +8,7 @@
     "types": ["./typings/env"]
   },
   "include": [
-    "src/utils/*.ts",
+    "src/utils/vite.ts",
     "vite.config.ts",
     "vitest.config.ts",
     "vite-plugin/**/*.ts"
