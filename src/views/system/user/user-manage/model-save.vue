@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :model-value="true"
-    width="53%"
+    width="35%"
     :close-on-click-modal="false"
     :before-close="() => close()"
   >
@@ -33,7 +33,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button :loading="loading" @click="close()">取消</el-button>
-        <el-button :loading="loading" type="primary" @click="submit(ruleFormRef)"> 保存 </el-button>
+        <el-button :loading="loading" type="primary" @click="submit(ruleFormRef)"> 提交 </el-button>
       </span>
     </template>
   </el-dialog>
