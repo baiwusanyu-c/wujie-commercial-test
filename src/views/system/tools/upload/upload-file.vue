@@ -2,7 +2,6 @@
 <script lang="ts" setup>
 import { getCurrentInstance, ref } from 'vue'
 import { uploadFile } from '@/api/tools/upload'
-import Upload from '@/components/upload/src/upload.vue';
 import { templateDownloadApi } from '@/api/oss'
 import { downloadFile } from '@/utils'
 
@@ -62,7 +61,7 @@ const download = async() => {
       <span class="flex items-center">
         <el-button type="primary" plain @click="download">下载模板</el-button>
         <el-button class="mlauto!" :loading="loading" @click="close()">取消</el-button>
-        <el-button :loading="loading" type="primary" @click="submit"> 保存 </el-button>
+        <el-button :loading="loading" type="primary" @click="submit"> 提交 </el-button>
       </span>
     </template>
   </el-dialog>

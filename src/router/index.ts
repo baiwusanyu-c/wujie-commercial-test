@@ -75,13 +75,13 @@ export const constantRoutes = [
       {
         path: '/',
         name: 'tools',
-        meta: { title: '工具', icon: 'user' },
+        meta: { title: '工具', icon: 'tool' },
         children: [
           {
             path: 'tools/upload',
             component: () => import('../views/system/tools/upload/index.vue'),
             name: 'upload',
-            meta: { title: '文件上传', icon: 'user' },
+            meta: { title: '文件上传', icon: 'upload' },
           },
           {
             path: 'tools/upload-record',
@@ -94,7 +94,7 @@ export const constantRoutes = [
             path: 'tools/warning',
             component: () => import('../views/system/tools/warning/index.vue'),
             name: 'warning',
-            meta: { title: '业务预警', icon: 'user' },
+            meta: { title: '业务预警', icon: 'warning' },
           },
         ],
       },

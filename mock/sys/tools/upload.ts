@@ -1,11 +1,11 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-30 14:38:58
+ * @LastEditTime: 2024-05-30 15:53:38
  * @LastEditors: liyang
  * @Description: 上传文件
  */
-import { resultSuccess } from '../../_util'
+import { getRandomInt, resultSuccess } from '../../_util'
 import type { MockMethod } from 'vite-plugin-mock'
 import type { Response } from '../../_interface'
 
@@ -40,7 +40,7 @@ const recordList = (() => {
       fileVersion: 'v1.0.0',
       fileSize: '128KB',
       fileRow: '305',
-      'status|1': ['1', '2', '3'],
+      status: getRandomInt(1, 5).toString(),
       operator: '@cname()',
       createTime: '@datetime',
       updateTime: '@datetime',
@@ -95,8 +95,14 @@ export default [
     timeout: 100,
     method: 'post',
     response: ({ body }: Response) => {
-      const { pageNo = 1, pageSize = 10 } = body
-      return resultSuccess({ totalNumber: 30, pageNo, pageSize, list: recordList })
+      const { pageNo = 1, pageSize = 10, type } = body
+      let resData = recordList
+      if (type === '1') {
+        resData = resData.filter(v => ['1', '2', '3'].includes(v.status))
+      } else if (type === '2') {
+        resData = resData.filter(v => ['4', '5'].includes(v.status))
+      }
+      return resultSuccess({ totalNumber: 30, pageNo, pageSize, list: resData })
     },
   },
   {
