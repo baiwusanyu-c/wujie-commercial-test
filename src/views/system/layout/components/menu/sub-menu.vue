@@ -3,15 +3,15 @@
     <el-sub-menu v-if="subItem.children && subItem.children?.length > 1 || subItem.alwaysShow" :index="getIndex(subItem)">
       <template #title>
         <el-icon v-if="subItem?.meta?.icon">
-          <svg-icon :icon-class="subItem.meta.icon" />
+          <ly-svg-icon :icon-class="subItem.meta.icon" />
         </el-icon>
         <span class="truncate" :title="hasTitle(subItem.meta?.title || '')">{{ subItem.meta?.title }}</span>
       </template>
-      <SubMenu :menu-list="subItem.children || []" :base-path="subItem.path" />
+      <SubMenu :menu-list="filterMenuList(subItem.children || [])" :base-path="subItem.path" />
     </el-sub-menu>
     <el-menu-item v-else :index="getIndex(getSubItem(subItem))" @click="handleClickMenu(getSubItem(subItem))">
       <el-icon v-if="getSubItem(subItem).meta?.icon">
-        <svg-icon :icon-class="getSubItem(subItem).meta?.icon || ''" />
+        <ly-svg-icon :icon-class="getSubItem(subItem).meta?.icon || ''" />
       </el-icon>
       <template #title>
         <span class="truncate" :title="hasTitle(getSubItem(subItem).meta?.title || '')">{{ getSubItem(subItem).meta?.title }}</span>
@@ -63,5 +63,9 @@ const getIndex = (subItem: RouteItem) => {
 const handleClickMenu = (subItem: RouteItem) => {
   if (subItem?.meta?.link) return window.open(subItem.meta.link, '_blank')
   router.push(resolvePath(subItem))
+}
+
+const filterMenuList = (data: RouteItem[]) => {
+  return data.filter(v => !v.hidden)
 }
 </script>

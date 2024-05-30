@@ -6,12 +6,12 @@
  * @Description: 自定义全局组件
  */
 import { type App } from 'vue'
-import { SvgIcon, Pagination, PageWrapper, Upload } from '@/components'
+import { LySvgIcon, LyPagination, LyPageWrapper, LyUpload } from '@/components'
 import 'virtual:svg-icons-register'
 
 export function loadUI(app: App) {
-  app.use(SvgIcon)
-  app.use(Pagination)
-  app.use(PageWrapper)
-  app.use(Upload)
+  app.use(LySvgIcon)
+  app.use(LyPagination)
+  app.use(LyPageWrapper)
+  app.use(LyUpload)
 }

@@ -42,7 +42,7 @@ const back = () => {
 
 <template>
   <div>
-    <PageWrapper title="上传记录">
+    <LyPageWrapper title="上传记录">
       <template #toolButton>
         <el-button type="primary" plain @click="back"> 返回 </el-button>
       </template>
@@ -84,13 +84,13 @@ const back = () => {
           </template>
         </el-table-column>
       </el-table>
-      <pagination
+      <ly-pagination
         v-show="pageParams.total > 0"
         v-model:page="pageParams.pageNo"
         v-model:limit="pageParams.pageSize"
         :total="pageParams.total"
         @pagination="getList"
       />
-    </PageWrapper>
+    </LyPageWrapper>
   </div>
 </template>

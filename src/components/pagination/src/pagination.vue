@@ -1,50 +1,29 @@
-<script lang="ts" setup name="Pagination">
+<script lang="ts" setup name="LyPagination">
+import { computed,  } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 
-const props = defineProps({
-  total: {
-    required: true,
-    type: Number,
-  },
-  page: {
-    type: Number,
-    default: 1,
-  },
-  limit: {
-    type: Number,
-    default: 20,
-  },
-  pageSizes: {
-    type: Array,
-    default() {
-      return [10, 20, 30, 50]
-    },
-  },
-  // 移动端页码按钮的数量端默认值5
-  pagerCount: {
-    type: Number,
-    default: document.body.clientWidth < 992 ? 5 : 7,
-  },
-  layout: {
-    type: String,
-    default: 'total, sizes, prev, pager, next, jumper',
-  },
-  background: {
-    type: Boolean,
-    default: true,
-  },
-  autoScroll: {
-    type: Boolean,
-    default: true,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  hidden: {
-    type: Boolean,
-    default: false,
-  },
+interface PaginationProps {
+  total: number
+  page?: number
+  limit?: number
+  pageSizes?: number[]
+  pagerCount?: number
+  layout?: string
+  background?: boolean
+  autoScroll?: boolean
+  disabled?: boolean
+  hidden?: boolean
+}
+const props = withDefaults(defineProps<PaginationProps>(), {
+  page: 1,
+  limit: 20,
+  pageSizes: () => [10, 20, 30, 50],
+  pagerCount: document.body.clientWidth < 992 ? 5 : 7,
+  layout: 'total, sizes, prev, pager, next, jumper',
+  background: true,
+  autoScroll: true,
+  disabled: false,
+  hidden: false,
 })
 
 const emit = defineEmits(['update:page', 'update:limit', 'pagination'])
@@ -64,13 +43,13 @@ const pageSize = computed({
     emit('update:limit', val)
   },
 })
-function handleSizeChange(val) {
+function handleSizeChange(val: number) {
   if (currentPage.value * val > props.total) currentPage.value = 1
 
   emit('pagination', { page: currentPage.value, limit: val })
   if (props.autoScroll) scrollTo(0, 800)
 }
-function handleCurrentChange(val) {
+function handleCurrentChange(val: number) {
   emit('pagination', { page: val, limit: pageSize.value })
   if (props.autoScroll) scrollTo(0, 800)
 }

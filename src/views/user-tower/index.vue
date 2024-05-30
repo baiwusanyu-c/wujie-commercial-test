@@ -44,7 +44,7 @@
               <span>{{ item.lable }}</span>
             </div>
             <div v-if="brandvalue === item.value" class="right">
-              <SvgIcon icon-class="check" />
+              <LySvgIcon icon-class="check" />
             </div>
           </div>
         </div>

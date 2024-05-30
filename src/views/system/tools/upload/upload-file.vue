@@ -44,14 +44,14 @@ const download = async() => {
     :close-on-click-modal="false"
     :before-close="() => close()"
   >
-    <Upload drag v-model="fileList">
+    <LyUpload drag v-model="fileList">
       <template #trigger>
         <div class="flex flex-col items-center justify-center">
-          <svg-icon class="w40px! h40px! mb16px" icon-class="upload" />
+          <ly-svg-icon class="w40px! h40px! mb16px" icon-class="upload" />
           <span class="color-#1D2129">将文件拖拽至此区域 或 <span class="color-main">选择文件</span></span>
         </div>
       </template>
-    </Upload>
+    </LyUpload>
     <div class="line-height-22px mb8px">导入文件须知：</div>
     <div class="color-#86909C text-14px line-height-24px">1.文件类型:Excel格式</div>
     <div class="color-#86909C text-14px line-height-24px">2.文件大小限制:不得超过100w行</div>

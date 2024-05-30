@@ -48,3 +48,11 @@ export const uploadRecord = (data: { id: string, type: string }) => {
     data,
   })
 }
+
+export const uploadDataSource = () => {
+  return request<{ label: string, value: string }[]>({
+    url: '/upload/datasource',
+    method: 'post',
+  })
+}
+

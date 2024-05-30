@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-30 11:28:38
+ * @LastEditTime: 2024-05-30 14:04:16
  * @LastEditors: liyang
  * @Description: 上传文件
  */
@@ -92,6 +92,19 @@ export default [
     response: ({ body }: Response) => {
       const { pageNo = 1, pageSize = 10 } = body
       return resultSuccess({ totalNumber: 30, pageNo, pageSize, list: recordList })
+    },
+  },
+  {
+    url: '/upload/datasource',
+    timeout: 100,
+    method: 'post',
+    response: () => {
+      return resultSuccess([
+        { label: '文件上传数据源【统一源】', value: '1' },
+        { label: '文件上传数据源【1】', value: '2' },
+        { label: '文件上传数据源【2】', value: '3' },
+        { label: '文件上传数据源【3】', value: '4' },
+      ])
     },
   },
 ] as MockMethod[]

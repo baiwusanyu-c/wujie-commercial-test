@@ -31,7 +31,7 @@
   </el-upload>
 </template>
 
-<script setup lang="ts" name="Upload">
+<script setup lang="ts" name="LyUpload">
 import { ref, useAttrs } from 'vue'
 import {
   ElMessage,

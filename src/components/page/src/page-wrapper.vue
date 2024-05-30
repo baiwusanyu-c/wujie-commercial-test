@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="PageWrapper">
+<script setup lang="ts" name="LyPageWrapper">
 import { computed, ref } from 'vue'
 defineProps<{ title: string }>()
 const prefixCls = 'page-wrapper'

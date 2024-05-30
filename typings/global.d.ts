@@ -1,10 +1,10 @@
 /// <reference types="element-plus/global" />
 declare module 'vue' {
   export interface GlobalComponents {
-    SvgIcon: typeof import('@/components')['SvgIcon']
-    Pagination: typeof import('@/components')['Pagination']
-    PageWrapper: typeof import('@/components')['PageWrapper']
-    Upload: typeof import('@/components')['Upload']
+    LySvgIcon: typeof import('@/components')['LySvgIcon']
+    LyPagination: typeof import('@/components')['LyPagination']
+    LyPageWrapper: typeof import('@/components')['LyPageWrapper']
+    LyUpload: typeof import('@/components')['LyUpload']
   }
   interface ComponentCustomProperties {
     $resetForm: typeof import('@/utils')['resetForm']

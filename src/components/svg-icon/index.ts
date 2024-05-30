@@ -1,7 +1,7 @@
 import { withInstall } from '@/utils'
 import svgIcon from './src/SvgIcon.vue'
 
-export const SvgIcon = withInstall(svgIcon)
-export default SvgIcon
+export const LySvgIcon = withInstall(svgIcon)
+export default LySvgIcon
 
 export type SvgIconInstance = InstanceType<typeof svgIcon>

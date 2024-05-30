@@ -115,7 +115,7 @@ const modalClose = (val: boolean) => {
 
 <template>
   <div>
-    <PageWrapper title="查询条件" class="mb16px">
+    <LyPageWrapper title="查询条件" class="mb16px">
       <el-form ref="queryRef" :model="queryParams" :inline="true">
         <el-form-item prop="classification">
           <el-input v-model="queryParams.classification" placeholder="请输入分类" clearable maxlength="50" />
@@ -144,8 +144,8 @@ const modalClose = (val: boolean) => {
           <el-button icon="Refresh" :loading="loading" @click="resetQuery"> 重置 </el-button>
         </el-form-item>
       </el-form>
-    </PageWrapper>
-    <PageWrapper title="手工表">
+    </LyPageWrapper>
+    <LyPageWrapper title="手工表">
       <template #toolButton>
         <el-button type="primary" icon="plus" @click="handleClickView('add')"> 新建表 </el-button>
       </template>
@@ -170,14 +170,14 @@ const modalClose = (val: boolean) => {
           </template>
         </el-table-column>
       </el-table>
-      <pagination
+      <ly-pagination
         v-show="pageParams.total > 0"
         v-model:page="pageParams.pageNo"
         v-model:limit="pageParams.pageSize"
         :total="pageParams.total"
         @pagination="getList"
       />
-    </PageWrapper>
+    </LyPageWrapper>
 
     <ModelSave
       v-if="dialogVisible"

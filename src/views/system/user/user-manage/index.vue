@@ -78,7 +78,7 @@ const modalClose = (val: boolean) => {
 
 <template>
   <div>
-    <PageWrapper title="快速开始一个营销策略" class="mb16px">
+    <LyPageWrapper title="快速开始一个营销策略" class="mb16px">
       <div class="mask-group f-c-b">
         <div class="w200px h120px rounded-8px text-center line-height-120px">促销敏感人群复购</div>
         <div class="w200px h120px rounded-8px text-center line-height-120px">团购场景营销</div>
@@ -86,8 +86,8 @@ const modalClose = (val: boolean) => {
         <div class="w200px h120px rounded-8px text-center line-height-120px">新用户复购</div>
         <div class="w200px h120px rounded-8px text-center line-height-120px">实时天气精准营销</div>
       </div>
-    </PageWrapper>
-    <PageWrapper :title="route.meta.title">
+    </LyPageWrapper>
+    <LyPageWrapper :title="route.meta.title">
       <template #toolButton>
         <el-button type="primary" icon="plus" @click="handleClickView('add')">
           创建用户
@@ -152,14 +152,14 @@ const modalClose = (val: boolean) => {
           </template>
         </el-table-column>
       </el-table>
-      <pagination
+      <ly-pagination
         v-show="pageParams.total > 0"
         v-model:page="pageParams.pageNo"
         v-model:limit="pageParams.pageSize"
         :total="pageParams.total"
         @pagination="getList"
       />
-    </PageWrapper>
+    </LyPageWrapper>
     
     <ModelSave
       v-if="dialogVisible"

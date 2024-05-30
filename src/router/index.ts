@@ -73,25 +73,25 @@ export const constantRoutes = [
         meta: { title: '用户管理', icon: 'user' },
       },
       {
-        path: '',
+        path: '/',
         name: 'tools',
         meta: { title: '工具', icon: 'user' },
         children: [
           {
-            path: '/tools/upload',
+            path: 'tools/upload',
             component: () => import('../views/system/tools/upload/index.vue'),
             name: 'upload',
             meta: { title: '文件上传', icon: 'user' },
           },
           {
-            path: '/tools/upload-record',
+            path: 'tools/upload-record',
             component: () => import('../views/system/tools/upload/upload-record.vue'),
             name: 'upload-record',
             hidden: true,
             meta: { title: '上传记录' },
           },
           {
-            path: '/tools/warning',
+            path: 'tools/warning',
             component: () => import('../views/system/tools/warning/index.vue'),
             name: 'warning',
             meta: { title: '业务预警', icon: 'user' },
@@ -104,6 +104,11 @@ export const constantRoutes = [
     path: '/vform3',
     component: () => import('../views/vform3/index.vue'),
     name: 'vform3',
+  },
+  {
+    path: '/test',
+    component: () => import('../views/test/index.vue'),
+    name: 'test',
   },
 ]
 const router = createRouter({

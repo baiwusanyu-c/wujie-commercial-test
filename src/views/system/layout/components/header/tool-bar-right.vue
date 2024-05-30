@@ -1,7 +1,7 @@
 <template>
   <div class="tool-bar-ri">
     <div class="header-icon">
-      <svg-icon :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" @click="toggle" />
+      <ly-svg-icon :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" @click="toggle" />
     </div>
 
     <el-dropdown class="right-menu-item" @command="handleCommand">
