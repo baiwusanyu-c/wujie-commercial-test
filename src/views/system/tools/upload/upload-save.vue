@@ -80,11 +80,11 @@
       <el-form-item prop="tableType" label="表类型">
         <el-select v-model="ruleForm.tableType" placeholder="请选择表类型" clearable>
           <el-option label="全量表" value="1" />
-          <el-option label="半量表" value="2" />
+          <el-option label="增量表" value="2" />
         </el-select>
       </el-form-item>
       <el-form-item prop="tableCode" label="业务建表语句">
-        <el-input v-model.trim="ruleForm.tableCode" type="textarea" :rows="4" placeholder="请输入业务建表语句" />
+        <el-input v-model.trim="ruleForm.tableCode" type="textarea" :rows="6" placeholder="请输入业务建表语句" />
         <span class="color-#F53F3F text-12px">注息:"业务建表语句“中包建的表名称需与表名”中所站写表名称保持一致</span>
       </el-form-item>
     </el-form>

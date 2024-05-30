@@ -66,7 +66,14 @@ const handleClickView = (code: string, row?: Tools.Upload.ResUploadListItem) => 
   if (code === 'add') {
     dialogVisible.value = true
     modelTitle.value = '新建表'
-    editData.value = { } // 清空编辑回显数据
+    editData.value = {
+      tableCode: `CREATE TABLE data_example (
+        data_example_name varchar(32) DEFAULT NULL COMMENT '样例字段名称',
+        data_example_type varchar(32) DEFAULT NULL COMMENT '样例类型',
+        create_person varchar(32) DEFAULT NULL COMMENT '创建人',
+        update_person varchar(32) DEFAULT NULL COMMENT '更新人'
+      ) ENGINE=InnoDB COMMENT='样例表';`
+    } // 清空编辑回显数据
     requestApi.value = addUpload
     return
   }
@@ -136,7 +143,7 @@ const modalClose = (val: boolean) => {
             @clear="resetPage"
           >
             <el-option label="全量表" value="1" />
-            <el-option label="半量表" value="2" />
+            <el-option label="增量表" value="2" />
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -155,7 +162,7 @@ const modalClose = (val: boolean) => {
         <el-table-column label="表类型" prop="tableType">
           <template #default="{ row }">
             <span v-if="row.tableType === '1'">全量表</span>
-            <span v-else-if="row.tableType === '2'">半量表</span>
+            <span v-else-if="row.tableType === '2'">增量表</span>
           </template>
         </el-table-column>
         <el-table-column label="创建时间" prop="createTime" />

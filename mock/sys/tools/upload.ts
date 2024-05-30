@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-30 14:04:16
+ * @LastEditTime: 2024-05-30 14:38:58
  * @LastEditors: liyang
  * @Description: 上传文件
  */
@@ -21,7 +21,12 @@ const uploadList = (() => {
       createTime: '@datetime',
       updateTime: '@datetime',
       'dataSource|1': ['1', '2', '3', '4'],
-      tableCode: '@cword(10,20)',
+      tableCode: `CREATE TABLE data_example (
+      data_example_name varchar(32) DEFAULT NULL COMMENT '样例字段名称',
+      data_example_type varchar(32) DEFAULT NULL COMMENT '样例类型',
+      create_person varchar(32) DEFAULT NULL COMMENT '创建人',
+      update_person varchar(32) DEFAULT NULL COMMENT '更新人'
+    ) ENGINE=InnoDB COMMENT='样例表';`,
     })
   }
   return result
