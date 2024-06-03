@@ -56,3 +56,36 @@ export function downloadFile(url: string) {
   aLink.href = url
   aLink.click()
 }
+
+/**
+ * 将参数处理成字符串
+ * @param {any} params 参数
+ * @returns {string} 处理后的字符串
+ * @example
+ * stringifyParams({name: 'chacha', age: 1}) // name=chacha&age=1
+ */
+export function stringifyParams(params: any) {
+  let result = ''
+  if (typeof params !== 'object' || params === null) {
+    if (typeof params === 'string') return params
+    return ''
+  }
+  for (const propName of Object.keys(params)) {
+    const value = params[propName]
+    const part = `${encodeURIComponent(propName)}=`
+    if (typeof value !== 'undefined') {
+      if (typeof value === 'object' && value !== null) {
+        for (const key of Object.keys(value)) {
+          if (value[key] !== null && value[key] !== '' && typeof value[key] !== 'undefined') {
+            const params = `${propName}[${key}]`
+            const subPart = `${encodeURIComponent(params)}=`
+            result += `${subPart + encodeURIComponent(value[key])}&`
+          }
+        }
+      } else {
+        result += `${part + encodeURIComponent(value)}&`
+      }
+    }
+  }
+  return result.slice(0, result.length - 1)
+}
