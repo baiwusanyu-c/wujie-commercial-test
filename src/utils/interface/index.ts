@@ -13,13 +13,13 @@ export interface ResponseResult<T = any> {
 export type FormRules<T, K extends string> = Record<keyof Omit<T, K>, Arrayable<FormItemRule> | undefined>
 
 /** 自定义请求 */
-export type RequestApi<T = null, D = any> = T extends null ? (() => Promise<ResponseResult<D>>) : ((params: T) => Promise<ResponseResult<D>>)
+export type RequestApi<T = null, D = any> = T extends null ? () => Promise<ResponseResult<D>> : (params: T) => Promise<ResponseResult<D>>
 export interface MenuListItem {
-  id: string,
-  label: string,
-  path: string,
-  name: string,
-  meta: { title: string },
+  id: string
+  label: string
+  path: string
+  name: string
+  meta: { title: string }
   children?: MenuListItem[]
 }
 

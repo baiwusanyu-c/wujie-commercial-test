@@ -1,4 +1,3 @@
-
 import type { RouterOptions } from 'vue-router'
 import type { constantRoutes } from '..'
 export interface routerArray extends RouterOptions {
@@ -55,7 +54,7 @@ export interface RouteItem {
    * 只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
    * 若你想不管路由下面的 children 声明的个数都显示你的根路由
    * 你可以设置 alwaysShow: true，这样它就会忽略之前定义的规则，一直显示根路由
-  */
+   */
   alwaysShow?: boolean
   /** 当设置 noRedirect 的时候该路由在面包屑导航中不可被点击 */
   redirect?: string

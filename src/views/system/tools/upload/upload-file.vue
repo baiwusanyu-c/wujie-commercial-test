@@ -1,4 +1,3 @@
-  
 <script lang="ts" setup>
 import { getCurrentInstance, ref } from 'vue'
 import { uploadFile } from '@/api/tools/upload'
@@ -22,27 +21,23 @@ const submit = () => {
   if (fileList.value.length === 0) return proxy?.$message.warning('请选择上传文件！')
   loading.value = true
   const params = fileList.value.map(v => ({ ...v, id: props.editData.id }))
-  uploadFile(params).then(({ msg }) => {
-    proxy?.$message.success(msg ?? '操作成功')
-    close(true)
-  }).finally(() => {
-    loading.value = false
-  })
+  uploadFile(params)
+    .then(({ msg }) => {
+      proxy?.$message.success(msg ?? '操作成功')
+      close(true)
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
-const download = async() => {
+const download = async () => {
   const res = await templateDownloadApi('crowd_package_template')
   if (res.data) downloadFile(`${import.meta.env.VITE_APP_OSS_API}/${res.data}`)
 }
 </script>
 
 <template>
-  <el-dialog
-    :title="modalTitle"
-    :model-value="true"
-    width="50%"
-    :close-on-click-modal="false"
-    :before-close="() => close()"
-  >
+  <el-dialog :title="modalTitle" :model-value="true" width="50%" :close-on-click-modal="false" :before-close="() => close()">
     <LyUpload drag v-model="fileList">
       <template #trigger>
         <div class="flex flex-col items-center justify-center">

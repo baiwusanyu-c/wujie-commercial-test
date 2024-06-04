@@ -26,7 +26,8 @@ export default [
         accessKeyId: 'LTAI5tNyTE2xiYncW4SxUztX',
         dir: 'user-portrait-service-qa/user-group/upload/20240528/',
         host: 'https://cbd-bigdata.oss-cn-hangzhou.aliyuncs.com',
-        policy: 'eyJleHBpcmF0aW9uIjoiMjAyNC0wNS0zMFQwMjowMTo1Mi40OTdaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsNTI0Mjg4MDBdLFsic3RhcnRzLXdpdGgiLCIka2V5IiwidXNlci1wb3J0cmFpdC1zZXJ2aWNlLXFhL3VzZXItZ3JvdXAvdXBsb2FkLzIwMjQwNTI4LyJdXX0=',
+        policy:
+          'eyJleHBpcmF0aW9uIjoiMjAyNC0wNS0zMFQwMjowMTo1Mi40OTdaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsNTI0Mjg4MDBdLFsic3RhcnRzLXdpdGgiLCIka2V5IiwidXNlci1wb3J0cmFpdC1zZXJ2aWNlLXFhL3VzZXItZ3JvdXAvdXBsb2FkLzIwMjQwNTI4LyJdXX0=',
         signature: 'B73oZuMXE+NNTxHynCMhFtxSVAk=',
       }
       return resultSuccess(res, { msg: '签名成功' })

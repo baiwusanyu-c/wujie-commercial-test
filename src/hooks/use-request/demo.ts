@@ -1,10 +1,7 @@
 import { reactive, toRefs, watch } from 'vue'
 import { IRequestResult, Options, Service, ErrorData } from './types'
 const defaultQuerise = Symbol('default')
-export function useRequest<T, P extends any[]>(
-  service: Service<T, P>,
-  options: Options<T, P> = {}
-) {
+export function useRequest<T, P extends any[]>(service: Service<T, P>, options: Options<T, P> = {}) {
   const {
     manual = false,
     defaultParams = [] as unknown as P,
@@ -60,7 +57,7 @@ export function useRequest<T, P extends any[]>(
       () => {
         run(...(refreshDepsParams?.value || ([] as unknown as P)))
       },
-      { deep: true }
+      { deep: true },
     )
   }
 

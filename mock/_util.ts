@@ -9,7 +9,15 @@ export function resultSuccess<T = any>(data: T, { msg = '请求成功' } = {}): 
   }
 }
 
-export function responseResult<T = unknown>({ code = 200, data, msg = '请求成功' }: { code?: number; data?: T; msg?: string }): ResponseResult {
+export function responseResult<T = unknown>({
+  code = 200,
+  data,
+  msg = '请求成功',
+}: {
+  code?: number
+  data?: T
+  msg?: string
+}): ResponseResult {
   return {
     code,
     data,

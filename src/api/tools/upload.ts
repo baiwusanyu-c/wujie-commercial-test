@@ -41,7 +41,7 @@ export const uploadFile = (data: Tools.Upload.UploadFile) => {
   })
 }
 
-export const uploadRecord = (data: { id: string, type: string }) => {
+export const uploadRecord = (data: { id: string; type: string }) => {
   return request<Tools.Upload.ResUploadFileList>({
     url: '/upload/record',
     method: 'post',
@@ -50,9 +50,8 @@ export const uploadRecord = (data: { id: string, type: string }) => {
 }
 
 export const uploadDataSource = () => {
-  return request<{ label: string, value: string }[]>({
+  return request<{ label: string; value: string }[]>({
     url: '/upload/datasource',
     method: 'post',
   })
 }
-

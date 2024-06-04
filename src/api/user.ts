@@ -4,7 +4,7 @@ import type { User } from './interface'
 export const getUserInfo = () => {
   return request({
     url: '/user/login',
-    method: 'get'
+    method: 'get',
   })
 }
 

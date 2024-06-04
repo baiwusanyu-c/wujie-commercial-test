@@ -12,15 +12,12 @@ const useAppStore = defineStore('app', {
   }),
   actions: {
     toggleSideBar(withoutAnimation?: { withoutAnimation: boolean }) {
-      if (this.sidebar.hide)
-        return false
+      if (this.sidebar.hide) return false
 
       this.sidebar.opened = !this.sidebar.opened
       this.sidebar.withoutAnimation = withoutAnimation
-      if (this.sidebar.opened)
-        Cookies.set('sidebarStatus', `${1}`)
-      else
-        Cookies.set('sidebarStatus', `${0}`)
+      if (this.sidebar.opened) Cookies.set('sidebarStatus', `${1}`)
+      else Cookies.set('sidebarStatus', `${0}`)
     },
     closeSideBar(withoutAnimation: { withoutAnimation: boolean }) {
       Cookies.set('sidebarStatus', `${0}`)

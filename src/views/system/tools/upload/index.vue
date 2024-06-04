@@ -72,7 +72,7 @@ const handleClickView = (code: string, row?: Tools.Upload.ResUploadListItem) => 
         data_example_type varchar(32) DEFAULT NULL COMMENT '样例类型',
         create_person varchar(32) DEFAULT NULL COMMENT '创建人',
         update_person varchar(32) DEFAULT NULL COMMENT '更新人'
-      ) ENGINE=InnoDB COMMENT='样例表';`
+      ) ENGINE=InnoDB COMMENT='样例表';`,
     } // 清空编辑回显数据
     requestApi.value = addUpload
     return
@@ -186,13 +186,7 @@ const modalClose = (val: boolean) => {
       />
     </LyPageWrapper>
 
-    <ModelSave
-      v-if="dialogVisible"
-      :modal-title="modelTitle"
-      :edit-data="editData"
-      :request-api="requestApi"
-      @close="modalClose"
-    />
+    <ModelSave v-if="dialogVisible" :modal-title="modelTitle" :edit-data="editData" :request-api="requestApi" @close="modalClose" />
     <UploadFile v-if="fileVisibe" :modal-title="modelTitle" :edit-data="editData" @close="modalClose" />
   </div>
 </template>

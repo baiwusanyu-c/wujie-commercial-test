@@ -14,12 +14,12 @@ export interface Route {
   redirect?: string
   children?: Route[]
 }
-declare type Recordable<T = any> = Record<string, T>;
-export interface Response{
-  url: Recordable;
-  body: Recordable;
-  query: Recordable;
-  headers: Recordable;
+declare type Recordable<T = any> = Record<string, T>
+export interface Response {
+  url: Recordable
+  body: Recordable
+  query: Recordable
+  headers: Recordable
 }
 
 /** 接口响应结果 */

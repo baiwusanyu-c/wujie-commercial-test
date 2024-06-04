@@ -1,65 +1,54 @@
-  
 <script lang="ts" setup>
-  import { getCurrentInstance, reactive, ref } from 'vue'
-  import { FormInstance } from 'element-plus'
-  import type { FormRules, RequestApi } from '@/utils/interface'
-  import type { Tools } from '@/api/interface'
-  
-  const props = defineProps<{
-    modalTitle: string
-    editData: any
-    requestApi: RequestApi<Tools.Upload.ReqSaveParams>
-  }>()
-  const emit = defineEmits(['close'])
-  const proxy = getCurrentInstance()?.proxy
-  const loading = ref(false)
-  const ruleFormRef = ref<FormInstance>()
-  const ruleForm = reactive<any>(props.editData)
-  const rules: FormRules<Tools.Upload.ReqSaveParams, 'id'> = {
-    tableName: [{ required: true, message: '请输入表名称' }],
-    classification: [{ required: true, message: '请输入分类' }],
-    tableNa: [{ required: true, message: '请输入表名' }],
-    dataSource: [{ required: true, message: '请选择数据源' }],
-    tableType: [{ required: true, message: '请选择表类型' }],
-    tableCode: [{ required: true, message: '请输入业务建表语句' }],
-  }
-  // 关闭弹窗
-  const close = (val = false) => {
-    emit('close', val)
-  }
-  // 表单提交
-  const submit = (formEl: FormInstance | undefined) => {
-    if (!formEl) return
-    formEl.validate((valid) => {
-      if (valid) {
-        loading.value = true
-        props.requestApi(ruleForm).then(({ msg }) => {
+import { getCurrentInstance, reactive, ref } from 'vue'
+import { FormInstance } from 'element-plus'
+import type { FormRules, RequestApi } from '@/utils/interface'
+import type { Tools } from '@/api/interface'
+
+const props = defineProps<{
+  modalTitle: string
+  editData: any
+  requestApi: RequestApi<Tools.Upload.ReqSaveParams>
+}>()
+const emit = defineEmits(['close'])
+const proxy = getCurrentInstance()?.proxy
+const loading = ref(false)
+const ruleFormRef = ref<FormInstance>()
+const ruleForm = reactive<any>(props.editData)
+const rules: FormRules<Tools.Upload.ReqSaveParams, 'id'> = {
+  tableName: [{ required: true, message: '请输入表名称' }],
+  classification: [{ required: true, message: '请输入分类' }],
+  tableNa: [{ required: true, message: '请输入表名' }],
+  dataSource: [{ required: true, message: '请选择数据源' }],
+  tableType: [{ required: true, message: '请选择表类型' }],
+  tableCode: [{ required: true, message: '请输入业务建表语句' }],
+}
+// 关闭弹窗
+const close = (val = false) => {
+  emit('close', val)
+}
+// 表单提交
+const submit = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      loading.value = true
+      props
+        .requestApi(ruleForm)
+        .then(({ msg }) => {
           proxy?.$message.success(msg ?? '操作成功')
           close(true)
-        }).finally(() => {
+        })
+        .finally(() => {
           loading.value = false
         })
-      }
-    })
-  }
+    }
+  })
+}
 </script>
 
 <template>
-  <el-dialog
-    :title="modalTitle"
-    :model-value="true"
-    width="45%"
-    :close-on-click-modal="false"
-    :before-close="() => close()"
-  >
-    <el-form
-      ref="ruleFormRef"
-      v-loading="loading"
-      :model="ruleForm"
-      :rules="rules"
-      label-width="auto"
-      label-position="right"
-    >
+  <el-dialog :title="modalTitle" :model-value="true" width="45%" :close-on-click-modal="false" :before-close="() => close()">
+    <el-form ref="ruleFormRef" v-loading="loading" :model="ruleForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item prop="tableName" label="表名称">
         <el-input v-model.trim="ruleForm.tableName" placeholder="请输入表名称" />
       </el-form-item>

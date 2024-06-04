@@ -1,55 +1,56 @@
 :root {
-  --el-color-primary: #105CFF;
-  --el-text-color-regular: #282F38;
-  --el-color-primary-light-3: #105CFF;
-  --el-color-primary-light-7: #F0F1F5;
-  --el-color-primary-light-9: #F0F1F5;
+  --el-color-primary: #105cff;
+  --el-text-color-regular: #282f38;
+  --el-color-primary-light-3: #105cff;
+  --el-color-primary-light-7: #f0f1f5;
+  --el-color-primary-light-9: #f0f1f5;
   --el-menu-item-height: 44px;
-  --el-menu-text-color: #4E5969;
+  --el-menu-text-color: #4e5969;
   --el-menu-base-level-padding: 16px;
 }
 
 // el-table
 .el-table {
-  --el-table-header-text-color: #282F38;
-  --el-table-header-bg-color: #F0F1F5;
+  --el-table-header-text-color: #282f38;
+  --el-table-header-bg-color: #f0f1f5;
   --el-table-tr-bg-color: #fff;
-  --el-table-border: 1px solid #E5E6EB;
+  --el-table-border: 1px solid #e5e6eb;
   --el-table-bg-color: #fff;
   .cell {
     line-height: 20px;
   }
 }
 .el-table thead {
-  color: #1D2129;
+  color: #1d2129;
 }
 .el-table--default .el-table__cell {
   padding: 10px 0;
 }
 
 .el-button {
-  --el-button-bg-color: #F0F1F5;
-  --el-button-text-color: #4E5969;
-  --el-button-border-color: #F0F1F5;
+  --el-button-bg-color: #f0f1f5;
+  --el-button-text-color: #4e5969;
+  --el-button-border-color: #f0f1f5;
 }
 .el-button--primary {
-  --el-button-bg-color: #105CFF;
+  --el-button-bg-color: #105cff;
   --el-button-text-color: #fff;
 }
 .el-button--primary.is-plain {
-  --el-button-border-color: #105CFF;
+  --el-button-border-color: #105cff;
   --el-button-bg-color: initial;
 }
 .el-select .el-input .el-select__caret {
-  color: #4E5969;
+  color: #4e5969;
 }
 .el-input__wrapper {
   .el-icon {
-    color: #4E5969;
+    color: #4e5969;
   }
 }
 .el-menu {
-  .el-sub-menu>.el-sub-menu__title, .el-menu-item {
+  .el-sub-menu > .el-sub-menu__title,
+  .el-menu-item {
     &:hover {
       color: var(--el-color-primary);
       background-color: rgba(64, 158, 255, 0.1) !important;
@@ -67,7 +68,8 @@
 }
 .el-menu--collapse {
   .is-active {
-    > .el-sub-menu__title, .el-menu-tooltip__trigger {
+    > .el-sub-menu__title,
+    .el-menu-tooltip__trigger {
       color: #fff;
       background-color: var(--el-color-primary) !important;
       &:hover {

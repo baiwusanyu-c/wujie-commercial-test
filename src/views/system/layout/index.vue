@@ -33,7 +33,7 @@
     </el-container>
   </el-container>
 </template>
-  
+
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -42,22 +42,21 @@ import useAppStore from '@/store/modules/app'
 import SubMenu from './components/menu/sub-menu.vue'
 import ToolBarLeft from './components/header/tool-bar-left.vue'
 import ToolBarRight from './components/header/tool-bar-right.vue'
-  import AppMain from './components/main/index.vue'
-  
-  const router = useRouter()
-  const menuList = getSystemRoutes()?.children || []
-  const title = getSystemRoutes()?.meta?.title
-  const route = useRoute()
-  const appStore = useAppStore()
-  const isCollapse = computed(() => appStore.sidebar.opened)
-  const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string)
-  const menuRef = ref()
-  const logoClick = () => {
-    router.push('/system')
-  }
-  </script>
-  
-  <style scoped lang="scss">
-  @import "./index.scss";
-  </style>
-  
+import AppMain from './components/main/index.vue'
+
+const router = useRouter()
+const menuList = getSystemRoutes()?.children || []
+const title = getSystemRoutes()?.meta?.title
+const route = useRoute()
+const appStore = useAppStore()
+const isCollapse = computed(() => appStore.sidebar.opened)
+const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string)
+const menuRef = ref()
+const logoClick = () => {
+  router.push('/system')
+}
+</script>
+
+<style scoped lang="scss">
+@import './index.scss';
+</style>

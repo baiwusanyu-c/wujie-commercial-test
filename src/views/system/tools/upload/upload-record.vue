@@ -15,10 +15,10 @@ const pageParams = ref<IPageParams>({
   total: 0,
 })
 const handleClickView = (code: string, row: Tools.Upload.ResUploadFileListItem) => {
-    console.log(code, row)
+  console.log(code, row)
 }
 const handleClickView2 = (code: string, row: Tools.Upload.ResUploadFileListItem) => {
-    console.log(code, row)
+  console.log(code, row)
 }
 const selectTab = ref('1')
 const tabChange = (type: string) => {
@@ -39,7 +39,7 @@ watchEffect(() => {
   getList()
 })
 const back = () => {
-    router.replace('/tools/upload')
+  router.replace('/tools/upload')
 }
 </script>
 
@@ -73,9 +73,19 @@ const back = () => {
           <el-table-column label="文件行数" prop="fileRow" />
           <el-table-column label="状态" prop="status">
             <template #default="{ row }">
-              <span v-if="row.status === '1'" class="w72px h24px line-height-24px text-center bg-#52C41A rounded-2px inline-block color-#fff">上传成功</span>
-              <span v-else-if="row.status === '2'" class="w72px h24px line-height-24px text-center bg-#F0F1F5 rounded-2px inline-block">上传中...</span>
-              <span v-else-if="row.status === '3'" class="w72px h24px line-height-24px text-center bg-#F53F3F rounded-2px inline-block color-#fff">上传失败</span>
+              <span
+                v-if="row.status === '1'"
+                class="w72px h24px line-height-24px text-center bg-#52C41A rounded-2px inline-block color-#fff"
+              >上传成功</span
+              >
+              <span v-else-if="row.status === '2'" class="w72px h24px line-height-24px text-center bg-#F0F1F5 rounded-2px inline-block"
+              >上传中...</span
+              >
+              <span
+                v-else-if="row.status === '3'"
+                class="w72px h24px line-height-24px text-center bg-#F53F3F rounded-2px inline-block color-#fff"
+              >上传失败</span
+              >
             </template>
           </el-table-column>
           <el-table-column label="操作人" prop="operator" />
@@ -102,8 +112,14 @@ const back = () => {
           <el-table-column label="文件大小" prop="fileSize" />
           <el-table-column label="状态" prop="status">
             <template #default="{ row }">
-              <span v-if="row.status === '4'" class="w72px h24px line-height-24px text-center bg-#FF9900 rounded-2px inline-block color-#fff">待上传</span>
-              <span v-else-if="row.status === '5'" class="w72px h24px line-height-24px text-center bg-#C9CDD4 rounded-2px inline-block">已取消</span>
+              <span
+                v-if="row.status === '4'"
+                class="w72px h24px line-height-24px text-center bg-#FF9900 rounded-2px inline-block color-#fff"
+              >待上传</span
+              >
+              <span v-else-if="row.status === '5'" class="w72px h24px line-height-24px text-center bg-#C9CDD4 rounded-2px inline-block"
+              >已取消</span
+              >
             </template>
           </el-table-column>
           <el-table-column label="操作人" prop="operator" />

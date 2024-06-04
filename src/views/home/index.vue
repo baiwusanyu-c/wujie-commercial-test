@@ -52,9 +52,9 @@ const getCheckedKeys = () => {
   let res: string[] = []
   const execute = (data: MenuListItem[], is: boolean) => {
     data.forEach((v) => {
-    is && res.push(v.id)
-    if (v.children) execute(v.children, true)
-  })
+      is && res.push(v.id)
+      if (v.children) execute(v.children, true)
+    })
   }
   execute(storeUser.menuList, false)
   return res.length ? res : ['1', '2']
@@ -67,7 +67,7 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
       storeUser.setUserInfo({ phoneNumber: ruleForm.value.phoneNumber, menuList: getData(values) })
       if (type === '1') {
         router.push(`/label-tank`)
-      } else if(type === '2'){
+      } else if (type === '2') {
         router.push(`/system`)
       }
     }

@@ -1,8 +1,8 @@
 {
   "name": "vite-vue3.3",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "type": "esnext",
   "scripts": {
     "init": "pnpm i",
     "serve:dev": "vite --host --mode development",
@@ -13,7 +13,9 @@
     "build:dev": "vite build --mode development",
     "build:qa": "vite build --mode staging",
     "preview": "vite preview",
-    "lint:ts-fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json,.md"
+    "lint:ts-fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json,.md",
+    "lint:prettier": "prettier --write ./src",
+    "prepare": "npx simple-git-hooks"
   },
   "dependencies": {
     "@cbd-wujie-components/osp-query": "1.0.5-beta.0",
@@ -40,13 +42,16 @@
     "@typescript-eslint/parser": "^5.59.8",
     "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "@vben/ts-config": "workspace:*",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-check-file": "^2.3.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.14.1",
+    "lint-staged": "^15.2.5",
     "prettier": "^2.8.8",
     "sass": "^1.63.4",
+    "simple-git-hooks": "^2.11.1",
     "typescript": "^5.0.2",
     "unocss": "^0.60.3",
     "unplugin-auto-import": "^0.17.6",
@@ -57,5 +62,25 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^1.4.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node vertify-commit.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write ./src",
+      "eslint --fix ./src"
+    ],
+    "*.vue": [
+      "prettier --write ./src",
+      "eslint --fix ./src"
+    ],
+    "*.{scss,less,styl,html}": [
+      "prettier --write ./src"
+    ],
+    "*.md": [
+      "prettier --write ./src"
+    ]
   }
 }

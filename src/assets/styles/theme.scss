@@ -1,8 +1,8 @@
 // 使用变量 $color-primary
-@forward "element-plus/theme-chalk/src/common/var.scss" with (
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
       'base': rgb(29, 134, 240),
     ),
-  ),
+  )
 );

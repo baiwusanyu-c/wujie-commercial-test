@@ -46,10 +46,10 @@ service.interceptors.request.use(
         const sTime = reqTimestamp.time // 请求时间
         const interval = 1000 // 间隔时间(ms)，小于此时间视为重复提交
         if (
-          !(config.params && config.params.complicating)
-          && sData === requestObj.data
-          && requestObj.time - sTime < interval
-          && sUrl === requestObj.url
+          !(config.params && config.params.complicating) &&
+          sData === requestObj.data &&
+          requestObj.time - sTime < interval &&
+          sUrl === requestObj.url
         ) {
           const message = '数据正在处理，请勿重复提交'
           console.warn(`[${sUrl}]: ${message}`)
@@ -74,8 +74,7 @@ service.interceptors.response.use(
     // 获取错误信息
     const msg = errorCode[code as keyof typeof errorCode] || res.data.msg || errorCode.default
     // 二进制数据则直接返回
-    if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer')
-      return res.data
+    if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') return res.data
 
     if (code === 401) {
       if (!isRelogin.show) {
@@ -114,15 +113,11 @@ service.interceptors.response.use(
   },
   (error) => {
     let { message } = error
-    if (error.code === 'ERR_CANCELED' && (message === 'canceled' || !message))
-      return Promise.reject(error)
+    if (error.code === 'ERR_CANCELED' && (message === 'canceled' || !message)) return Promise.reject(error)
 
-    if (message === 'Network Error')
-      message = '后端接口连接异常'
-    else if (message.includes('timeout'))
-      message = '系统接口请求超时'
-    else if (message.includes('Request failed with status code'))
-      message = `系统接口${message.substr(message.length - 3)}异常`
+    if (message === 'Network Error') message = '后端接口连接异常'
+    else if (message.includes('timeout')) message = '系统接口请求超时'
+    else if (message.includes('Request failed with status code')) message = `系统接口${message.substr(message.length - 3)}异常`
 
     ElMessage({
       message,

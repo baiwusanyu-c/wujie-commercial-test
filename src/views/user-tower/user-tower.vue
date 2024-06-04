@@ -1,19 +1,19 @@
 <template>
   <WujieVue
-    ref="wujieVueRef" 
+    ref="wujieVueRef"
     width="100%"
     height="100%"
     name="user-tower"
     :url="props.url"
     :props="props"
     :plugins="[InstanceofPlugin()]"
-  />  
+  />
 </template>
 
 <script lang="ts" setup name="UserTower">
 import { genCrowdParams } from '@cbd-wujie-components/osp-query'
 import WujieVue from 'wujie-vue3'
-import { InstanceofPlugin } from "wujie-polyfill"
+import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'

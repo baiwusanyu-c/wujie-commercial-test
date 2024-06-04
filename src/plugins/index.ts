@@ -3,9 +3,7 @@ import { loadElementPlus } from './element-plus'
 import { loadUI } from './ui'
 import { loadVForm3 } from './vform3-builds'
 import { loadElementPlusIcon } from './element-plus-icon'
-import {
-  resetForm,
-} from '@/utils/index'
+import { resetForm } from '@/utils/index'
 
 export default function loadPlugins(app: App) {
   loadElementPlus(app)

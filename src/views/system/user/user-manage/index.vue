@@ -10,7 +10,7 @@ const proxy = getCurrentInstance()?.proxy
 const route = useRoute()
 const queryParams = ref({
   userName: '',
-  status: ''
+  status: '',
 })
 const loading = ref(false)
 const tabelData = ref<User.ResUserListItem[]>([])
@@ -35,10 +35,14 @@ const getList = () => {
   getUserList({
     ...queryParams.value,
     ...pageParams.value,
-  }).then((res) => {
-    pageParams.value.total = res.data.totalNumber
-    tabelData.value = res.data.list
-  }).finally(() => { loading.value = false })
+  })
+    .then((res) => {
+      pageParams.value.total = res.data.totalNumber
+      tabelData.value = res.data.list
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 getList()
 // 搜索
@@ -89,16 +93,21 @@ const modalClose = (val: boolean) => {
     </LyPageWrapper>
     <LyPageWrapper :title="route.meta.title">
       <template #toolButton>
-        <el-button type="primary" icon="plus" @click="handleClickView('add')">
-          创建用户
-        </el-button>
+        <el-button type="primary" icon="plus" @click="handleClickView('add')"> 创建用户 </el-button>
       </template>
       <el-form ref="queryRef" :model="queryParams" :inline="true">
         <el-form-item prop="userName">
           <el-input v-model="queryParams.userName" placeholder="用户名称" clearable maxlength="50" />
         </el-form-item>
         <el-form-item prop="status">
-          <el-select v-model="queryParams.status" class="select-brand" placeholder="用户状态" clearable @clear="resetPage" style="width: 200px">
+          <el-select
+            v-model="queryParams.status"
+            class="select-brand"
+            placeholder="用户状态"
+            clearable
+            @clear="resetPage"
+            style="width: 200px"
+          >
             <el-option label="冻结" :value="1" />
             <el-option label="正常" :value="2" />
             <el-option label="锁定" :value="3" />
@@ -160,16 +169,9 @@ const modalClose = (val: boolean) => {
         @pagination="getList"
       />
     </LyPageWrapper>
-    
-    <ModelSave
-      v-if="dialogVisible"
-      :modal-title="modelTitle"
-      :edit-data="editData"
-      :request-api="requestApi"
-      @close="modalClose"
-    />
+
+    <ModelSave v-if="dialogVisible" :modal-title="modelTitle" :edit-data="editData" :request-api="requestApi" @close="modalClose" />
   </div>
-  
 </template>
 
 <style lang="scss" scoped>

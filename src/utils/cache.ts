@@ -2,29 +2,23 @@ import Cookies from 'js-cookie'
 
 const sessionCache = {
   set(key: string, value: string) {
-    if (!sessionStorage)
-      return
+    if (!sessionStorage) return
 
-    if (key != null && value != null)
-      sessionStorage.setItem(key, value)
+    if (key != null && value != null) sessionStorage.setItem(key, value)
   },
   get(key: string) {
-    if (!sessionStorage)
-      return null
+    if (!sessionStorage) return null
 
-    if (key == null)
-      return null
+    if (key == null) return null
 
     return sessionStorage.getItem(key)
   },
   setJSON(key: string, jsonValue: any) {
-    if (jsonValue != null)
-      this.set(key, JSON.stringify(jsonValue))
+    if (jsonValue != null) this.set(key, JSON.stringify(jsonValue))
   },
   getJSON(key: string) {
     const value = this.get(key)
-    if (value != null)
-      return JSON.parse(value)
+    if (value != null) return JSON.parse(value)
   },
   remove(key: string) {
     sessionStorage.removeItem(key)
@@ -36,29 +30,23 @@ const sessionCache = {
 type LocalCacheName = '__SMART_REPLENISHMENT_TOKEN' | 'SSO_ID_TOKEN'
 const localCache = {
   set(key: LocalCacheName, value: string) {
-    if (!localStorage)
-      return
+    if (!localStorage) return
 
-    if (key != null && value != null)
-      localStorage.setItem(key, value)
+    if (key != null && value != null) localStorage.setItem(key, value)
   },
   get(key: LocalCacheName) {
-    if (!localStorage)
-      return null
+    if (!localStorage) return null
 
-    if (key == null)
-      return null
+    if (key == null) return null
 
     return localStorage.getItem(key)
   },
   setJSON(key: LocalCacheName, jsonValue: any) {
-    if (jsonValue != null)
-      this.set(key, JSON.stringify(jsonValue))
+    if (jsonValue != null) this.set(key, JSON.stringify(jsonValue))
   },
   getJSON(key: LocalCacheName) {
     const value = this.get(key)
-    if (value != null)
-      return JSON.parse(value)
+    if (value != null) return JSON.parse(value)
   },
   remove(key: LocalCacheName) {
     localStorage.removeItem(key)

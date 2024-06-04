@@ -47,7 +47,7 @@ function logout() {
     cancelButtonText: '取消',
     type: 'warning',
   })
-    .then(async() => {
+    .then(async () => {
       router.replace('/home')
     })
     .catch((err) => {
@@ -76,9 +76,9 @@ function logout() {
     display: flex;
     align-items: center;
     .svg-icon {
-        font-size: 15px;
+      font-size: 15px;
     }
-    > *{
+    > * {
       margin-left: 15px;
     }
     > *:hover {

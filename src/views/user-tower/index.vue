@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-aside>
-      <div class="aside-box" style="width: 240px;">
+      <div class="aside-box" style="width: 240px">
         <div class="f-c-c p20px">
           <el-button type="primary" @click="back">返回首页</el-button>
         </div>
@@ -52,6 +52,7 @@
     </el-aside>
     <el-container>
       <section class="app-main">
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
         <router-view v-slot="{ Component, route }">
           <transition name="fade-transform" mode="out-in">
             <div class="rounded-8px h100% of-hidden"><component :is="Component" :key="route.path" /></div>
@@ -92,7 +93,7 @@ const brandvalue = computed(() => {
 const handleChange = (brand: string) => {
   storeUser.setBrand(brand)
   WujieVue.bus.$emit('__USER_TOWER_OSP_BRANDCHANGE', { brand })
-  scrollTo(0, 800, window.parent[0].document.querySelector('.user-tower-iframe'))
+  scrollTo(0, 800)
 }
 
 const go = (path: string) => {
@@ -103,7 +104,7 @@ const back = () => {
 }
 </script>
 <style lang="scss" scoped>
-@import "../system/layout/index.scss";
+@import '../system/layout/index.scss';
 
 .app-main {
   height: 100vh;
@@ -111,7 +112,7 @@ const back = () => {
   position: relative;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #F0F1F5;
+  background-color: #f0f1f5;
   overflow: auto;
 }
 

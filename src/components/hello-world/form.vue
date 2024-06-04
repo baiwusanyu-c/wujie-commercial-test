@@ -15,27 +15,25 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 .label {
-    width: 100px;
-    margin-top: 15px;
+  width: 100px;
+  margin-top: 15px;
 }
 .txt:focus {
-    border-color: #1f185c;
+  border-color: #1f185c;
 }
 .form-block {
-    transition: 0.5s;
+  transition: 0.5s;
 }
 .form-block:focus-within {
-    background-color: #363636;
+  background-color: #363636;
 }
 
-.label span:has(+input[data-required])::before {
-    content: '*';
-    color: #f40;
+.label span:has(+ input[data-required])::before {
+  content: '*';
+  color: #f40;
 }
 </style>

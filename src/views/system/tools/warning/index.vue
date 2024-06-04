@@ -5,10 +5,14 @@ const loading = ref(false)
 
 const init = () => {
   loading.value = true
-  getWarningList({ name: 'l12' }).then((res) => {
-    console.log('ress>>>>>>>>', res)
-    loading.value = false 
-  }).finally(() => { loading.value = false })
+  getWarningList({ name: 'l12' })
+    .then((res) => {
+      console.log('ress>>>>>>>>', res)
+      loading.value = false
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 init()
 </script>

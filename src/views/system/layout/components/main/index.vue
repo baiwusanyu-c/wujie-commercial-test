@@ -15,7 +15,7 @@
   position: relative;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #F0F1F5;
+  background-color: #f0f1f5;
   overflow: auto;
 }
 </style>

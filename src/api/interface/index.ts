@@ -88,7 +88,7 @@ export namespace Tools {
       updateTime: string
     }
     export type ResUploadList = ResPage<ResUploadListItem>
-  
+
     export interface ResUploadFileListItem {
       id: string
       fileName: string

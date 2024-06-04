@@ -56,7 +56,7 @@ export default [
     url: '/user/add',
     timeout: 1000,
     method: 'post',
-    async rawResponse (req: IncomingMessage, res: ServerResponse) {
+    async rawResponse(req: IncomingMessage, res: ServerResponse) {
       try {
         await new Promise((resolve, reject) => {
           req.on('data', (chunk) => {
@@ -80,7 +80,7 @@ export default [
     url: '/user/edit',
     timeout: 1000,
     method: 'post',
-    async rawResponse (req: IncomingMessage, res: ServerResponse) {
+    async rawResponse(req: IncomingMessage, res: ServerResponse) {
       try {
         await new Promise((resolve, reject) => {
           req.on('data', (chunk) => {

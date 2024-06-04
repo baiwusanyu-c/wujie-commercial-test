@@ -2,7 +2,7 @@ import type { MenuListItem, SFCWithInstall } from './interface'
 
 export function authRouter(treeData: MenuListItem[], path: string) {
   let res
-   const data = (value: MenuListItem[]) => {
+  const data = (value: MenuListItem[]) => {
     value.forEach((v) => {
       if (v.path === path) {
         res = v
@@ -10,20 +10,18 @@ export function authRouter(treeData: MenuListItem[], path: string) {
         data(v.children || [])
       }
     })
-   }
-   data(treeData)
-   return res
+  }
+  data(treeData)
+  return res
 }
 
 export function withInstall<T, E extends Record<string, any>>(main: T, extra?: E) {
   (main as SFCWithInstall<T>).install = (app): void => {
-    for (const comp of [main, ...Object.values(extra ?? {})])
-      app.component(comp.name, comp)
+    for (const comp of [main, ...Object.values(extra ?? {})]) app.component(comp.name, comp)
   }
 
   if (extra) {
-    for (const [key, comp] of Object.entries(extra))
-      (main as any)[key] = comp
+    for (const [key, comp] of Object.entries(extra)) (main as any)[key] = comp
   }
   return main as SFCWithInstall<T> & E
 }

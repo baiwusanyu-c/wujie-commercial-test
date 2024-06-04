@@ -7,7 +7,7 @@ interface customMath extends Math {
 }
 const myMath = Math as customMath
 
-myMath.easeInOutQuad = function(t: number, b: number, c: number, d: number) {
+myMath.easeInOutQuad = function (t: number, b: number, c: number, d: number) {
   t /= d / 2
   if (t < 1) return (c / 2) * t * t + b
 
@@ -16,12 +16,12 @@ myMath.easeInOutQuad = function(t: number, b: number, c: number, d: number) {
 }
 
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-const requestAnimFrame = (function() {
+const requestAnimFrame = (function () {
   return (
-    window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || function(callback) {
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function (callback) {
       window.setTimeout(callback, 1000 / 60)
     }
   )
@@ -40,11 +40,7 @@ function move(amount: number) {
 
 function position() {
   const parentNode = document.body.parentNode as HTMLBodyElement
-  return (
-    document.documentElement.scrollTop
-    || parentNode.scrollTop
-    || document.body.scrollTop
-  )
+  return document.documentElement.scrollTop || parentNode.scrollTop || document.body.scrollTop
 }
 
 /**
@@ -58,7 +54,7 @@ export function scrollTo(to: number, duration: number, callback?: Function) {
   const increment = 20
   let currentTime = 0
   duration = typeof duration === 'undefined' ? 500 : duration
-  const animateScroll = function() {
+  const animateScroll = function () {
     // increment the time
     currentTime += increment
     // find the value with the quadratic in-out easing function

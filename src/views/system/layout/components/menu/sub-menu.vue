@@ -1,6 +1,6 @@
 <template>
   <template v-for="subItem in menuList" :key="subItem.path">
-    <el-sub-menu v-if="subItem.children && subItem.children?.length > 1 || subItem.alwaysShow" :index="getIndex(subItem)">
+    <el-sub-menu v-if="(subItem.children && subItem.children?.length > 1) || subItem.alwaysShow" :index="getIndex(subItem)">
       <template #title>
         <el-icon v-if="subItem?.meta?.icon">
           <ly-svg-icon :icon-class="subItem.meta.icon" />
@@ -26,7 +26,10 @@ import { isExternal } from '@/utils/validate'
 import { getNormalPath } from '@/utils'
 import type { RouteItem, RoutesType } from '@/router/interface'
 
-interface SubMenuProps { menuList: RoutesType, basePath?: string }
+interface SubMenuProps {
+  menuList: RoutesType
+  basePath?: string
+}
 const props = withDefaults(defineProps<SubMenuProps>(), {
   basePath: '',
 })
@@ -44,10 +47,8 @@ const hasTitle = (title: string) => {
 const resolvePath = (subItem: RouteItem): RouteLocationRaw => {
   const routePath = subItem.path
   const routeQuery = subItem.query as any
-  if (isExternal(routePath))
-    return routePath
-  if (isExternal(props.basePath))
-    return props.basePath
+  if (isExternal(routePath)) return routePath
+  if (isExternal(props.basePath)) return props.basePath
   if (routeQuery) {
     const query = JSON.parse(routeQuery)
     return { path: getNormalPath(`${props.basePath}/${routePath}`), query }

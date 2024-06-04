@@ -6,11 +6,10 @@ import Comp from '@/components/slot-component/comp1.vue'
 // import Comp from '@/components/slot-component/comp2.vue'
 
 const { loading, data } = useRequest(getCupShapeds(), [])
-
 </script>
 
 <template>
- <HelloWorld v-loading="loading" msg="Vite@4.3.5 + Vue@3.3" :list="data">
+  <HelloWorld v-loading="loading" msg="Vite@4.3.5 + Vue@3.3" :list="data">
     <template #content="scope">
       <span :style="{ color: scope.item.color }">{{ scope.item.value }}</span>
     </template>

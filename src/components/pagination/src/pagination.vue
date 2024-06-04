@@ -1,5 +1,5 @@
 <script lang="ts" setup name="LyPagination">
-import { computed,  } from 'vue'
+import { computed } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 
 interface PaginationProps {

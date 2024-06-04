@@ -1,21 +1,10 @@
 <template>
-  <el-dialog
-    :model-value="true"
-    width="35%"
-    :close-on-click-modal="false"
-    :before-close="() => close()"
-  >
+  <el-dialog :model-value="true" width="35%" :close-on-click-modal="false" :before-close="() => close()">
     <template #header>
-      <span class="el-dialog__title">{{ modalTitle }}</span><span v-if="isEdit" class="color-danger m-l-5 text-3.5">提示：修改后可能导致物料设置的失效</span>
+      <span class="el-dialog__title">{{ modalTitle }}</span
+      ><span v-if="isEdit" class="color-danger m-l-5 text-3.5">提示：修改后可能导致物料设置的失效</span>
     </template>
-    <el-form
-      ref="ruleFormRef"
-      v-loading="loading"
-      :model="ruleForm"
-      :rules="rules"
-      label-width="auto"
-      label-position="right"
-    >
+    <el-form ref="ruleFormRef" v-loading="loading" :model="ruleForm" :rules="rules" label-width="auto" label-position="right">
       <el-form-item prop="userName" label="用户名称">
         <el-input v-model.trim="ruleForm.userName" placeholder="请输入用户名称" />
       </el-form-item>
@@ -71,12 +60,15 @@ const submit = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       loading.value = true
-      props.requestApi(ruleForm).then(({ msg }) => {
-        proxy?.$message.success(msg ?? '操作成功')
-        close(true)
-      }).finally(() => {
-        loading.value = false
-      })
+      props
+        .requestApi(ruleForm)
+        .then(({ msg }) => {
+          proxy?.$message.success(msg ?? '操作成功')
+          close(true)
+        })
+        .finally(() => {
+          loading.value = false
+        })
     }
   })
 }
