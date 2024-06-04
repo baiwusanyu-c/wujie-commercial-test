@@ -2,7 +2,7 @@
   "name": "vite-vue3.3",
   "private": true,
   "version": "1.0.0",
-  "type": "esnext",
+  "type": "module",
   "scripts": {
     "init": "pnpm i",
     "serve:dev": "vite --host --mode development",
@@ -64,23 +64,22 @@
     "vue-tsc": "^1.4.2"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "commit-msg": "node vertify-commit.js"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "prettier --write ./src",
-      "eslint --fix ./src"
+      "prettier --write",
+      "eslint --fix"
     ],
     "*.vue": [
-      "prettier --write ./src",
-      "eslint --fix ./src"
+      "prettier --write",
+      "eslint --fix"
     ],
     "*.{scss,less,styl,html}": [
-      "prettier --write ./src"
+      "prettier --write"
     ],
     "*.md": [
-      "prettier --write ./src"
+      "prettier --write"
     ]
   }
 }
