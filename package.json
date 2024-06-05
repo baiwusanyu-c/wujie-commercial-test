@@ -40,9 +40,9 @@
     "@types/node": "^20.3.3",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
+    "@vben/ts-config": "workspace:*",
     "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "@vben/ts-config": "workspace:*",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-check-file": "^2.3.0",
@@ -82,5 +82,9 @@
     "*.md": [
       "prettier --write"
     ]
+  },
+  "engines": {
+    "node": ">=18.12.0",
+    "pnpm": ">=9.0.2"
   }
 }

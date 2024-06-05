@@ -1,10 +1,10 @@
 import * as path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import createVitePlugins from './vite-plugin'
-import { getYearMonthDate } from './src/utils/vite'
+// import { getYearMonthDate } from './src/utils/vite'
 
-const { month, date, hour, minute } = getYearMonthDate(0, false)
-const assetsDir = `${month}.${date}.${hour}_${minute}`
+// const { month, date, hour, minute } = getYearMonthDate(0, false)
+// const assetsDir = `${month}.${date}.${hour}_${minute}`
 
 const ENV_FILE_NAME = 'env'
 // 打包时获取版本信息
@@ -41,18 +41,24 @@ export default defineConfig(({ mode, command }) => {
           },
         ],
       },
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+          additionalData: `@use '@/assets/styles/var.scss' as *;`,
+        },
+      },
     },
     build: {
       sourcemap: !(env.VITE_APP_ENV === 'production'),
       minify: true,
-      assetsDir,
+      // assetsDir,
       // rollupOptions: {
       //   output: {
       //     chunkFileNames: `js/[name]-[hash]-20240105.js`, // 引入文件名的名称
       //     entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
       //     assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
       //     manualChunks(id) {
-            
+
       //       if (id.includes('.html')) {
       //         console.log('9999', id)
       //         return `${CurrentTimeVersion}`
