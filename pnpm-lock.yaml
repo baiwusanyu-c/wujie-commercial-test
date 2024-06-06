@@ -69,6 +69,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^5.59.8
         version: 5.59.8(eslint@8.41.0)(typescript@5.0.4)
+      '@vben/stylelint-config':
+        specifier: workspace:*
+        version: link:internal/stylelint-config
       '@vben/ts-config':
         specifier: workspace:*
         version: link:internal/ts-config
@@ -102,9 +105,6 @@ importers:
       sass:
         specifier: ^1.63.4
         version: 1.63.4
-      sass-loader:
-        specifier: ^14.2.1
-        version: 14.2.1(sass@1.63.4)
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
@@ -141,9 +141,6 @@ importers:
 
   internal/stylelint-config:
     devDependencies:
-      '@vben/ts-config':
-        specifier: workspace:*
-        version: link:../ts-config
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -164,25 +161,25 @@ importers:
         version: 16.4.0(typescript@5.0.4)
       stylelint-config-property-sort-order-smacss:
         specifier: ^10.0.0
-        version: 10.0.0(stylelint@16.4.0)
+        version: 10.0.0(stylelint@16.4.0(typescript@5.0.4))
       stylelint-config-recommended-scss:
         specifier: ^14.0.0
-        version: 14.0.0(postcss@8.4.38)(stylelint@16.4.0)
+        version: 14.0.0(postcss@8.4.38)(stylelint@16.4.0(typescript@5.0.4))
       stylelint-config-recommended-vue:
         specifier: ^1.5.0
-        version: 1.5.0(postcss-html@1.6.0)(stylelint@16.4.0)
+        version: 1.5.0(postcss-html@1.6.0)(stylelint@16.4.0(typescript@5.0.4))
       stylelint-config-standard:
         specifier: ^36.0.0
-        version: 36.0.0(stylelint@16.4.0)
+        version: 36.0.0(stylelint@16.4.0(typescript@5.0.4))
       stylelint-config-standard-scss:
         specifier: ^13.1.0
-        version: 13.1.0(postcss@8.4.38)(stylelint@16.4.0)
+        version: 13.1.0(postcss@8.4.38)(stylelint@16.4.0(typescript@5.0.4))
       stylelint-order:
         specifier: ^6.0.4
-        version: 6.0.4(stylelint@16.4.0)
+        version: 6.0.4(stylelint@16.4.0(typescript@5.0.4))
       stylelint-prettier:
         specifier: ^5.0.0
-        version: 5.0.0(prettier@3.2.5)(stylelint@16.4.0)
+        version: 5.0.0(prettier@3.2.5)(stylelint@16.4.0(typescript@5.0.4))
 
   internal/ts-config:
     dependencies:
@@ -2681,9 +2678,6 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  neo-async@2.6.2:
-    resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
-
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
@@ -3090,27 +3084,6 @@ packages:
 
   safe-regex@1.1.0:
     resolution: {integrity: sha512-aJXcif4xnaNUzvUuC5gcb46oTS7zvg4jpMTnuqtrEPlR3vFr4pxtdTwaF1Qs3Enjn9HK+ZlwQui+a7z0SywIzg==}
-
-  sass-loader@14.2.1:
-    resolution: {integrity: sha512-G0VcnMYU18a4N7VoNDegg2OuMjYtxnqzQWARVWCIVSZwJeiL9kg8QMsuIZOplsJgTzZLF6jGxI3AClj8I9nRdQ==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      '@rspack/core': 0.x || 1.x
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
-      sass: ^1.3.0
-      sass-embedded: '*'
-      webpack: ^5.0.0
-    peerDependenciesMeta:
-      '@rspack/core':
-        optional: true
-      node-sass:
-        optional: true
-      sass:
-        optional: true
-      sass-embedded:
-        optional: true
-      webpack:
-        optional: true
 
   sass@1.63.4:
     resolution: {integrity: sha512-Sx/+weUmK+oiIlI+9sdD0wZHsqpbgQg8wSwSnGBjwb5GwqFhYNwwnI+UWZtLjKvKyFlKkatRK235qQ3mokyPoQ==}
@@ -4037,7 +4010,7 @@ snapshots:
 
   '@csstools/css-tokenizer@2.3.1': {}
 
-  '@csstools/media-query-list-parser@2.1.11(@csstools/css-parser-algorithms@2.6.3)(@csstools/css-tokenizer@2.3.1)':
+  '@csstools/media-query-list-parser@2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)':
     dependencies:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
@@ -5185,6 +5158,7 @@ snapshots:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
       typescript: 5.0.4
 
   cross-spawn@7.0.3:
@@ -6467,8 +6441,6 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  neo-async@2.6.2: {}
-
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
@@ -6864,12 +6836,6 @@ snapshots:
     dependencies:
       ret: 0.1.15
 
-  sass-loader@14.2.1(sass@1.63.4):
-    dependencies:
-      neo-async: 2.6.2
-    optionalDependencies:
-      sass: 1.63.4
-
   sass@1.63.4:
     dependencies:
       chokidar: 3.5.3
@@ -7074,62 +7040,64 @@ snapshots:
     dependencies:
       js-tokens: 9.0.0
 
-  stylelint-config-html@1.1.0(postcss-html@1.6.0)(stylelint@16.4.0):
+  stylelint-config-html@1.1.0(postcss-html@1.6.0)(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       postcss-html: 1.6.0
       stylelint: 16.4.0(typescript@5.0.4)
 
-  stylelint-config-property-sort-order-smacss@10.0.0(stylelint@16.4.0):
+  stylelint-config-property-sort-order-smacss@10.0.0(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       css-property-sort-order-smacss: 2.2.0
       stylelint: 16.4.0(typescript@5.0.4)
-      stylelint-order: 6.0.4(stylelint@16.4.0)
+      stylelint-order: 6.0.4(stylelint@16.4.0(typescript@5.0.4))
 
-  stylelint-config-recommended-scss@14.0.0(postcss@8.4.38)(stylelint@16.4.0):
+  stylelint-config-recommended-scss@14.0.0(postcss@8.4.38)(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
-      postcss: 8.4.38
       postcss-scss: 4.0.9(postcss@8.4.38)
       stylelint: 16.4.0(typescript@5.0.4)
-      stylelint-config-recommended: 14.0.0(stylelint@16.4.0)
-      stylelint-scss: 6.3.0(stylelint@16.4.0)
+      stylelint-config-recommended: 14.0.0(stylelint@16.4.0(typescript@5.0.4))
+      stylelint-scss: 6.3.0(stylelint@16.4.0(typescript@5.0.4))
+    optionalDependencies:
+      postcss: 8.4.38
 
-  stylelint-config-recommended-vue@1.5.0(postcss-html@1.6.0)(stylelint@16.4.0):
+  stylelint-config-recommended-vue@1.5.0(postcss-html@1.6.0)(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       postcss-html: 1.6.0
       semver: 7.5.1
       stylelint: 16.4.0(typescript@5.0.4)
-      stylelint-config-html: 1.1.0(postcss-html@1.6.0)(stylelint@16.4.0)
-      stylelint-config-recommended: 14.0.0(stylelint@16.4.0)
+      stylelint-config-html: 1.1.0(postcss-html@1.6.0)(stylelint@16.4.0(typescript@5.0.4))
+      stylelint-config-recommended: 14.0.0(stylelint@16.4.0(typescript@5.0.4))
 
-  stylelint-config-recommended@14.0.0(stylelint@16.4.0):
+  stylelint-config-recommended@14.0.0(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       stylelint: 16.4.0(typescript@5.0.4)
 
-  stylelint-config-standard-scss@13.1.0(postcss@8.4.38)(stylelint@16.4.0):
+  stylelint-config-standard-scss@13.1.0(postcss@8.4.38)(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
+      stylelint: 16.4.0(typescript@5.0.4)
+      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.38)(stylelint@16.4.0(typescript@5.0.4))
+      stylelint-config-standard: 36.0.0(stylelint@16.4.0(typescript@5.0.4))
+    optionalDependencies:
       postcss: 8.4.38
-      stylelint: 16.4.0(typescript@5.0.4)
-      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.38)(stylelint@16.4.0)
-      stylelint-config-standard: 36.0.0(stylelint@16.4.0)
 
-  stylelint-config-standard@36.0.0(stylelint@16.4.0):
+  stylelint-config-standard@36.0.0(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       stylelint: 16.4.0(typescript@5.0.4)
-      stylelint-config-recommended: 14.0.0(stylelint@16.4.0)
+      stylelint-config-recommended: 14.0.0(stylelint@16.4.0(typescript@5.0.4))
 
-  stylelint-order@6.0.4(stylelint@16.4.0):
+  stylelint-order@6.0.4(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       postcss: 8.4.38
       postcss-sorting: 8.0.2(postcss@8.4.38)
       stylelint: 16.4.0(typescript@5.0.4)
 
-  stylelint-prettier@5.0.0(prettier@3.2.5)(stylelint@16.4.0):
+  stylelint-prettier@5.0.0(prettier@3.2.5)(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       prettier: 3.2.5
       prettier-linter-helpers: 1.0.0
       stylelint: 16.4.0(typescript@5.0.4)
 
-  stylelint-scss@6.3.0(stylelint@16.4.0):
+  stylelint-scss@6.3.0(stylelint@16.4.0(typescript@5.0.4)):
     dependencies:
       known-css-properties: 0.30.0
       postcss-media-query-parser: 0.2.3
@@ -7142,7 +7110,7 @@ snapshots:
     dependencies:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
-      '@csstools/media-query-list-parser': 2.1.11(@csstools/css-parser-algorithms@2.6.3)(@csstools/css-tokenizer@2.3.1)
+      '@csstools/media-query-list-parser': 2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)
       '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
       '@dual-bundle/import-meta-resolve': 4.1.0
       balanced-match: 2.0.0
