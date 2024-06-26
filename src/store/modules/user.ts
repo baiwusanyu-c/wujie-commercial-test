@@ -3,7 +3,7 @@ import { MenuListItem } from '@/utils/interface'
 import userSvg from '@/assets/svg/user.svg'
 const useUserStore = defineStore('user', {
   state: () => ({
-    token: null,
+    token: '9d0bffe84d0b4f03a654169495fcc2f2',
     brand: '', // 品牌
     phoneNumber: '', // 手机号
     menuList: [] as MenuListItem[],
