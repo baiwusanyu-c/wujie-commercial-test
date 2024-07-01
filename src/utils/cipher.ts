@@ -1,7 +1,8 @@
 import { decrypt as aesDecrypt, encrypt as aesEncrypt } from 'crypto-js/aes'
 import UTF8, { parse } from 'crypto-js/enc-utf8'
 import pkcs7 from 'crypto-js/pad-pkcs7'
-import CTR from 'crypto-js/mode-ctr'
+// import CTR from 'crypto-js/mode-ctr'
+import ECB from 'crypto-js/mode-ecb'
 import Base64 from 'crypto-js/enc-base64'
 import MD5 from 'crypto-js/md5'
 import SHA256 from 'crypto-js/sha256'
@@ -35,7 +36,7 @@ class AesEncryption implements Encryption {
 
   get getOptions() {
     return {
-      mode: CTR,
+      mode: ECB,
       padding: pkcs7,
       iv: this.iv,
     }

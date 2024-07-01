@@ -10,9 +10,17 @@ import useUserStore from '@/store/modules/user'
 
 const userStore = useUserStore()
 const { loading, data } = useRequest(getCupShapeds(), [])
-
-const persistEncryption = EncryptionFactory.createAesEncryption({ key: userStore.token, iv: 'PKCS5Padding' })
-const plaintext = (Date.now() + 10000).toString()
+function getSignToken(token: string) {
+  let secretKey = (token ?? '').slice(-32)
+  let zero = ''
+  const length = secretKey.length
+  for (let i = 0; i < 32 - length; i++) {
+    zero += '0'
+  }
+  return zero + secretKey
+}
+const persistEncryption = EncryptionFactory.createAesEncryption({ key: getSignToken(userStore.token), iv: 'PKCS5Padding' })
+const plaintext = '1719552002679' || (Date.now() + 10000).toString()
 // 签名
 const autograph = ref()
 // 加密
@@ -22,9 +30,10 @@ const encrypt = () => {
 }
 // 解密
 const decrypt = () => {
-  const res = persistEncryption.decrypt(autograph.value)
+  const res = persistEncryption.decrypt('auf4w4mROiM8WwiivxQXsA==')
   autograph.value = res
 }
+console.log('sss', window.CryptoJS)
 </script>
 
 <template>
@@ -47,10 +56,10 @@ const decrypt = () => {
     1. 加密方式：AES对称加密<br>
     2. 加密模式：ECB<br>
     3. 填充：PKCS5Padding<br>
-    4. 秘钥：token的后32位（不足32位时，字符串首部补充0至32位）<br>
+    4. 秘钥：token的后32位（不足32位时，字符串首部补充0(0 ~ 32)）<br>
     5. 加密内容：当前时间戳（毫秒）+10000<br>
     加密内容：{{ plaintext }}
-    <el-button type="primary" @click="encrypt">加密</el-button>
+    <el-button class="qqqqqqqqqqqqqqqq" type="primary" @click="encrypt">加密</el-button>
     <el-button type="primary" @click="decrypt">解密</el-button>
     {{ autograph }}
   </div>

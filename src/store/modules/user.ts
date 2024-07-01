@@ -3,7 +3,8 @@ import { MenuListItem } from '@/utils/interface'
 import userSvg from '@/assets/svg/user.svg'
 const useUserStore = defineStore('user', {
   state: () => ({
-    token: '9d0bffe84d0b4f03a654169495fcc2f2',
+    token:
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqc29uIjoie1wiYWNjb3VudE5tXCI6XCJsaXlhbmdcIixcImpvYk51bWJlclwiOlwiMTAwMDAwNDIzNVwiLFwibmFtZVwiOlwi5p2O5rSLXCJ9IiwiZXhwIjoxNzE5NTk3OTc4fQ.2Mv-rAB_mHK4kzFgdPrsWO5tLszF2thv7DWlVpAkyFU',
     brand: '', // 品牌
     phoneNumber: '', // 手机号
     menuList: [] as MenuListItem[],
