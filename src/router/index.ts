@@ -96,6 +96,12 @@ export const constantRoutes = [
             name: 'warning',
             meta: { title: '业务预警', icon: 'warning' },
           },
+          {
+            path: 'tools/echarts',
+            component: () => import('../views/system/tools/echarts/index.vue'),
+            name: 'echarts',
+            meta: { title: '图表', icon: 'warning' },
+          },
         ],
       },
     ],

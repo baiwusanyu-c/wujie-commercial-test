@@ -1,5 +1,47 @@
 import type { MenuListItem, SFCWithInstall } from './interface'
 
+/**
+ * 数据是否为空
+ * @param {any} value
+ * @returns Boolean
+ */
+export function isEmpty(value: any) {
+  if (value == null) return true
+  switch (toString.call(value)) {
+    case '[object Array]':
+    case '[object Arguments]':
+    case '[object String]':
+      return !value.length
+    case '[object Object]':
+      return !Reflect.ownKeys(value).length
+    case '[object Map]':
+    case '[object Set]':
+      return !value.size
+  }
+  return false
+}
+
+/**
+ * 根据 object对象的path路径获取值
+ * @param {Object} object 对象
+ * @param {Array<any> | string} path 输入的路径
+ * @param {any} defaultValue 默认值
+ * @param {string} suffixValue 后缀
+ * @returns {*} 返回解析的值
+ */
+export function get(object: Object, path: Array<any> | string, defaultValue?: any, suffixValue?: string) {
+  let result
+  if (typeof object === 'object' && object !== null) {
+    const newPath = Array.isArray(path) ? path : path.replace(/\[/g, '.').replace(/\]/g, '').split('.')
+    result = newPath.reduce((o: any, k) => {
+      return (o || {})[k]
+    }, object)
+  } else {
+    result = object
+  }
+  return result === undefined || result === null ? defaultValue : suffixValue ? result + suffixValue : result
+}
+
 export function authRouter(treeData: MenuListItem[], path: string) {
   let res
   const data = (value: MenuListItem[]) => {

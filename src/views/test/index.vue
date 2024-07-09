@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRequest } from '@/hooks/use-request'
 import { getCupShapeds } from '@/api/test'
 import HelloWorld from '@/components/hello-world/index.vue'
@@ -20,9 +20,9 @@ function getSignToken(token: string) {
   return zero + secretKey
 }
 const persistEncryption = EncryptionFactory.createAesEncryption({ key: getSignToken(userStore.token), iv: 'PKCS5Padding' })
-const plaintext = '1719552002679' || (Date.now() + 10000).toString()
+const plaintext = '171955200267912' || (Date.now() + 10000).toString()
 // 签名
-const autograph = ref()
+const autograph = ref() as any
 // 加密
 const encrypt = () => {
   const res = persistEncryption.encrypt(plaintext)
@@ -33,7 +33,8 @@ const decrypt = () => {
   const res = persistEncryption.decrypt('auf4w4mROiM8WwiivxQXsA==')
   autograph.value = res
 }
-console.log('sss', window.CryptoJS)
+const user = reactive<any>({ name: 'liyang' })
+console.log('sss', user['__v_isReactive'], autograph['__v_isReadonly'])
 </script>
 
 <template>

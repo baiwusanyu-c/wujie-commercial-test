@@ -43,6 +43,7 @@ class AesEncryption implements Encryption {
   }
 
   encrypt(plainText: string) {
+    console.log('==', aesEncrypt, parse)
     return aesEncrypt(plainText, this.key, this.getOptions).toString()
   }
 
