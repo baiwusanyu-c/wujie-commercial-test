@@ -57,7 +57,7 @@ const getCheckedKeys = () => {
     })
   }
   execute(storeUser.menuList, false)
-  return res.length ? res : ['1', '2']
+  return res.length ? res : ['1', '2', '3']
 }
 const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
   if (!formEl) return

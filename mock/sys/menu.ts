@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-05-28 15:26:11
+ * @LastEditTime: 2024-07-17 16:34:23
  * @LastEditors: liyang
  * @Description: 菜单路由配置
  */
@@ -46,6 +46,22 @@ const menus = [
         path: '/user-label',
         name: 'user-label',
         meta: { title: '用户标签' },
+      },
+    ],
+  },
+  {
+    id: '3',
+    label: 'PC数据看板',
+    path: '',
+    name: '',
+    meta: { title: 'PC数据看板' },
+    children: [
+      {
+        id: '3-1',
+        label: '区域日报',
+        path: '/regional-daily',
+        name: 'regional-daily',
+        meta: { title: '区域日报' },
       },
     ],
   },

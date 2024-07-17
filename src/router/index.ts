@@ -51,6 +51,11 @@ export const constantRoutes = [
         component: () => import('../views/user-tower/crowd-insight.vue'),
         name: 'crowd-insight',
       },
+      {
+        path: '/regional-daily',
+        component: () => import('../views/user-tower/regional-daily.vue'),
+        name: 'regional-daily',
+      },
     ],
   },
   {
