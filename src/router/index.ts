@@ -121,6 +121,11 @@ export const constantRoutes = [
     component: () => import('../views/test/index.vue'),
     name: 'test',
   },
+  {
+    path: '/test/swiper',
+    component: () => import('../views/test/swiper.vue'),
+    name: 'swiper',
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
