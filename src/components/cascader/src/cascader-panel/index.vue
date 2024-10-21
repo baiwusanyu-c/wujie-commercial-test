@@ -95,7 +95,7 @@ export default defineComponent({
       menus.value = [store.getNodes()]
       const levelData1 = menus.value[0]
       // 默认展开第一层级数据
-      if (levelData1 && levelData1.length) {
+      if (levelData1 && levelData1.length && checkedNodes.value.length < 1) {
         const levelData2 = levelData1[0]?.children
         const levelData3 = levelData2 && levelData2[0]?.children
         if (levelData2 && levelData2.length) {
