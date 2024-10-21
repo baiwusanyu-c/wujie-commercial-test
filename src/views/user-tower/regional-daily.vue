@@ -12,8 +12,8 @@ const wujieVueRef = ref()
 const { destroyApp } = WujieVue
 const props = {
   // url: 'http://192.168.125.241:3013/data-dashboard-web/regional-daily',
-  url: 'http://192.168.125.241:3013/data-dashboard-web/commodity',
-  // url: 'https://datadashboard-uat.shuxinyc.com/data-dashboard-web/commodity',
+  // url: 'http://192.168.125.241:3013/data-dashboard-web/commodity',
+  url: 'https://datadashboard-uat.shuxinyc.com/data-dashboard-web/commodity',
   // url: 'https://datadashboard-dev.shuxinyc.com/data-dashboard-web/regional-daily',
   parentName: 'dpw',
   userInfo: {

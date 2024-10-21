@@ -126,6 +126,11 @@ export const constantRoutes = [
     component: () => import('../views/test/swiper.vue'),
     name: 'swiper',
   },
+  {
+    path: '/test/cascader',
+    component: () => import('../views/test/cascader.vue'),
+    name: 'cascader',
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
