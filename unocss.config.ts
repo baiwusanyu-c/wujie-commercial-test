@@ -15,16 +15,13 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
       extraProperties: {
-        'display': 'inline-block',
+        display: 'inline-block',
         'vertical-align': 'middle',
       },
     }),
     presetTypography(),
   ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
+  transformers: [transformerDirectives(), transformerVariantGroup()],
   safelist: 'prose prose-sm m-auto text-left'.split(' '),
   theme: {
     fontFamily: {
@@ -38,7 +35,7 @@ export default defineConfig({
       warning: '#f8ac59',
       danger: '#ed5565',
       info: '#1c84c6',
-      main: '#105CFF',
+      main: '#0A4CDE',
     },
     spacing: {
       px: '1px',

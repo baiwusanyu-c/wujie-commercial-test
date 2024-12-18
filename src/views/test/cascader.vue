@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Cascader, { type CascaderInstance } from '@/components/cascader'
+import CustomCascader from '@/components/custom-cascader'
 import type { CascaderOption } from 'element-plus'
 
 const cascaderRef = ref<CascaderInstance>()
@@ -21,6 +22,7 @@ const visibleChange = () => {
   // }
 }
 const operCenter2 = ref()
+const operCenter3 = ref()
 const init = () => {
   setTimeout(() => {
     options.value = [
@@ -294,6 +296,8 @@ const init = () => {
   }, 100)
 }
 init()
+
+sessionStorage.setItem('user', 'liyang')
 </script>
 
 <template>
@@ -316,6 +320,22 @@ init()
         style="width: 100%"
         @change="handleOperChange"
         @visible-change="visibleChange"
+      />
+      <CustomCascader
+        ref="cascaderRef3"
+        v-model="operCenter3"
+        :titles="titles"
+        placeholder="请选择"
+        :options="options"
+        :props="{ multiple: true }"
+        filterable
+        clearable
+        collapse-tags
+        collapse-tags-tooltip
+        :max-collapse-tags="1"
+        separator="-"
+        style="width: 100%"
+        @change="handleOperChange"
       />
       el-cascader：
       <el-cascader

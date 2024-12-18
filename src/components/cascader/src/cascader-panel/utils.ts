@@ -1,4 +1,5 @@
 import { isLeaf } from 'element-plus/es/utils/index.mjs'
+import type { CascaderOption } from 'element-plus'
 import type { default as CascaderNode } from './node'
 
 export const getMenuIndex = (el: HTMLElement) => {
@@ -34,4 +35,40 @@ export const sortByOriginalOrder = (oldNodes: CascaderNode[], newNodes: Cascader
   res.push(...newNodesCopy)
 
   return res
+}
+
+export function filterTree(val: string, tree: CascaderOption[], newArr: CascaderOption[] = []) {
+  if (!(tree.length && val)) {
+    return tree
+  }
+  for (let item of tree) {
+    if (item.label && item.label.indexOf(val) > -1) {
+      newArr.push(item)
+      continue
+    }
+
+    if (item.children && item.children.length) {
+      let subArr = filterTree(val, item.children)
+      if (subArr && subArr.length) {
+        let node = { ...item, children: subArr }
+        newArr.push(node)
+      }
+    }
+  }
+  return newArr
+}
+export function flattenTree(tree: CascaderNode[]) {
+  const result: CascaderNode[] = []
+
+  function recurse(nodes: CascaderNode[]) {
+    nodes.forEach((node) => {
+      result.push(node)
+      if (node.children && node.children.length) {
+        recurse(node.children)
+      }
+    })
+  }
+
+  recurse(tree)
+  return result
 }

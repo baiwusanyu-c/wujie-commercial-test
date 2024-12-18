@@ -65,7 +65,7 @@ export default defineComponent({
     },
   },
 
-  emits: [UPDATE_MODEL_EVENT, CHANGE_EVENT, 'close', 'expand-change'],
+  emits: [UPDATE_MODEL_EVENT, CHANGE_EVENT, 'close', 'expand-change', 'check-change'],
 
   setup(props, { emit, slots }) {
     const searchInputValue = ref('')
@@ -94,8 +94,8 @@ export default defineComponent({
       store = new Store(options, cfg)
       menus.value = [store.getNodes()]
       const levelData1 = menus.value[0]
-      // 默认展开第一层级数据
-      if (levelData1 && levelData1.length && checkedNodes.value.length < 1) {
+      // 默认展开第一层级数据(checkedValue.value || []).length < 1
+      if (levelData1 && levelData1.length && (checkedValue.value || []).length < 1) {
         const levelData2 = levelData1[0]?.children
         const levelData3 = levelData2 && levelData2[0]?.children
         if (levelData2 && levelData2.length) {
@@ -160,7 +160,8 @@ export default defineComponent({
       }
     }
 
-    const handleCheckChange: ElCascaderPanelContext['handleCheckChange'] = (node, checked, emitClose = true) => {
+    const handleCheckChange: ElCascaderPanelContext['handleCheckChange'] = (node, checked, emitClose = true, emitCheckChange = false) => {
+      if (emitCheckChange) emit('check-change', node)
       const { checkStrictly, multiple } = config.value
       const oldNode = checkedNodes.value[0]
       manualChecked = true

@@ -52,14 +52,14 @@ const back = () => {
       <div class="mb20px flex">
         <div
           class="py5px px16px bg-#F4F5F7 rounded-100px mr14px cursor-pointer"
-          :class="selectTab === '1' ? 'bg-#105CFF! color-#fff' : ''"
+          :class="selectTab === '1' ? 'bg-#0A4CDE! color-#fff' : ''"
           @click="tabChange('1')"
         >
           已上传
         </div>
         <div
           class="py5px px16px bg-#F4F5F7 rounded-100px cursor-pointer"
-          :class="selectTab === '2' ? 'bg-#105CFF! color-#fff' : ''"
+          :class="selectTab === '2' ? 'bg-#0A4CDE! color-#fff' : ''"
           @click="tabChange('2')"
         >
           待上传

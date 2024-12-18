@@ -119,7 +119,7 @@ export default defineComponent({
     const doCheck = (checked: boolean) => {
       const { node } = props
       if (checked === node.checked) return
-      panel.handleCheckChange(node, checked)
+      panel.handleCheckChange(node, checked, true, true)
     }
 
     const doLoad = () => {

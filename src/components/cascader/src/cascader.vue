@@ -123,7 +123,7 @@
         v-show="!filtering"
         ref="cascaderPanelRef"
         v-model="checkedValue"
-        :options="optionsData"
+        :options="options"
         :props="props.props"
         :border="false"
         :render-label="$slots.default"
@@ -135,7 +135,7 @@
           <slot name="empty" />
         </template>
       </cascader-panel>
-      <!-- <el-scrollbar
+      <el-scrollbar
         v-if="filterable"
         v-show="filtering"
         ref="suggestionPanel"
@@ -144,7 +144,7 @@
         :view-class="nsCascader.e('suggestion-list')"
         @keydown="handleSuggestionKeyDown"
       >
-        <template v-if="suggestions.length">
+        <!-- <template v-if="suggestions.length">
           <li
             v-for="item in suggestions"
             :key="item.uid"
@@ -160,13 +160,30 @@
               <check />
             </el-icon>
           </li>
+        </template> -->
+        <template v-if="optionsData.length">
+          <cascader-panel
+            ref="cascaderPanelRef2"
+            v-model="checkedValue2"
+            :options="optionsData"
+            :props="props.props"
+            :border="false"
+            :render-label="$slots.default"
+            :titles="titles"
+            suggestions
+            @check-change="handleCheckChange"
+          >
+            <template #empty>
+              <slot name="empty" />
+            </template>
+          </cascader-panel>
         </template>
         <slot v-else name="empty">
           <li :class="nsCascader.e('empty-text')">
             {{ t('el.cascader.noMatch') }}
           </li>
         </slot>
-      </el-scrollbar> -->
+      </el-scrollbar>
     </template>
   </el-tooltip>
 </template>
@@ -176,18 +193,14 @@ import { computed, nextTick, onMounted, ref, useAttrs, watch, watchEffect } from
 import { cloneDeep, debounce } from 'lodash-unified'
 import { isClient, useCssVar, useResizeObserver } from '@vueuse/core'
 import { ClickOutside as vClickoutside, useLocale, useNamespace, EVENT_CODE, useFormItem, useFormSize } from 'element-plus'
-import {
-  isPromise,
-  debugWarn,
-  // focusNode,
-  // getSibling,
-} from 'element-plus/es/utils/index.mjs'
+import { isPromise, debugWarn, focusNode, getSibling } from 'element-plus/es/utils/index.mjs'
 import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from 'element-plus/es/constants/index.mjs'
 import { useComposition } from '../hooks'
 import { useEmptyValues } from 'element-plus/es/hooks/index.mjs'
 import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
 import { cascaderEmits, cascaderProps } from './cascader'
 import CascaderPanel from './cascader-panel/index.vue'
+import { filterTree, flattenTree } from './cascader-panel/utils'
 import type { ComputedRef, Ref, StyleValue } from 'vue'
 import type {
   CascaderNode,
@@ -405,30 +418,28 @@ const calculatePresentTags = () => {
   presentTags.value = tags
 }
 
-function filterTree(val: string, tree: CascaderOption[], newArr: CascaderOption[] = []) {
-  if (!(tree.length && val)) {
-    return tree
-  }
-  for (let item of tree) {
-    if (item.label && item.label.indexOf(val) > -1) {
-      newArr.push(item)
-      continue
-    }
-
-    if (item.children && item.children.length) {
-      let subArr = filterTree(val, item.children)
-      if (subArr && subArr.length) {
-        let node = { ...item, children: subArr }
-        newArr.push(node)
-      }
-    }
-  }
-  return newArr
+const cascaderPanelRef2: Ref<CascaderPanelInstance | null> = ref(null)
+const checkedValue2 = ref<CascaderValue>([])
+const handleCheckChange = (node: CascaderNode) => {
+  const { filterMethod, showAllLevels, separator } = props
+  const nodeList = cascaderPanelRef.value?.getFlattedNodes(!props.props.checkStrictly)?.filter((node) => {
+    if (node.isDisabled) return false
+    node.calcText(showAllLevels, separator)
+    return filterMethod(node, searchKeyword.value)
+  })
+  const _nodeList = flattenTree(node.children && node.children.length ? node.children : [node]).map(v => v.value)
+  const newNodeList = nodeList?.filter(v => _nodeList.includes(v.value))
+  newNodeList?.forEach((v) => {
+    v && handleSuggestionClick(v)
+  })
+  // console.log('=========0000000000000000000', { nodeList, node, _nodeList })
 }
 const calculateSuggestions = () => {
   const { value } = searchKeyword
   const result = filterTree(value, props.options)
+  filtering.value = true
   optionsData.value = result
+  // updatePopperPosition()
   // const { filterMethod, showAllLevels, separator } = props
   // const res = cascaderPanelRef.value?.getFlattedNodes(!props.props.checkStrictly)?.filter((node) => {
   //   if (node.isDisabled) return false
@@ -534,39 +545,33 @@ const syncPresentTextValue = () => {
   searchInputValue.value = value
 }
 
-// const handleSuggestionClick = (node: CascaderNode) => {
-//   const { checked } = node
+const handleSuggestionClick = (node: CascaderNode) => {
+  const { checked } = node
 
-//   if (multiple.value) {
-//     cascaderPanelRef.value?.handleCheckChange(node, !checked, false)
-//   } else {
-//     !checked && cascaderPanelRef.value?.handleCheckChange(node, true, false)
-//     togglePopperVisible(false)
-//   }
-// }
+  if (multiple.value) {
+    cascaderPanelRef.value?.handleCheckChange(node, !checked, false)
+  } else {
+    !checked && cascaderPanelRef.value?.handleCheckChange(node, true, false)
+    togglePopperVisible(false)
+  }
+}
 
-// const handleSuggestionKeyDown = (e: KeyboardEvent) => {
-//   const target = e.target as HTMLElement
-//   const { code } = e
+const handleSuggestionKeyDown = (e: KeyboardEvent) => {
+  const target = e.target as HTMLElement
+  const { code } = e
 
-//   switch (code) {
-//     case EVENT_CODE.up:
-//     case EVENT_CODE.down: {
-//       const distance = code === EVENT_CODE.up ? -1 : 1
-//       focusNode(
-//         getSibling(
-//           target,
-//           distance,
-//           `.${nsCascader.e('suggestion-item')}[tabindex="-1"]`
-//         ) as HTMLElement
-//       )
-//       break
-//     }
-//     case EVENT_CODE.enter:
-//       target.click()
-//       break
-//   }
-// }
+  switch (code) {
+    case EVENT_CODE.up:
+    case EVENT_CODE.down: {
+      const distance = code === EVENT_CODE.up ? -1 : 1
+      focusNode(getSibling(target, distance, `.${nsCascader.e('suggestion-item')}[tabindex="-1"]`) as HTMLElement)
+      break
+    }
+    case EVENT_CODE.enter:
+      target.click()
+      break
+  }
+}
 
 const handleDelete = () => {
   const tags = presentTags.value

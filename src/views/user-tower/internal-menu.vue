@@ -7,9 +7,9 @@ import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { authRouter } from '@/utils'
 const showDialog = ref(false)
-const cilck = () => {
-  showDialog.value = true
-}
+// const cilck = () => {
+//   showDialog.value = true
+// }
 const router = useRouter()
 const wujieVueRef = ref()
 const storeUser = useStoreUser()
@@ -32,10 +32,11 @@ onUnmounted(() => {
 
 <template>
   <div class="h100% f-c-c bg-#fff">
-    不欢迎您，哈哈哈哈哈！
-    <div>
+    <!-- 不欢迎您，哈哈哈哈哈！ -->
+    欢迎来到商业化平台模拟系统！
+    <!-- <div>
       <el-button type="primary" @click="cilck">创建</el-button>
-    </div>
+    </div> -->
     <el-dialog title="新增条件" v-model="showDialog" width="850px" append-to-body @close="showDialog = false">
       <WujieVue
         ref="wujieVueRef"

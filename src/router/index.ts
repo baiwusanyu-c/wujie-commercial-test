@@ -32,6 +32,16 @@ export const constantRoutes = [
         name: 'internal-menu',
       },
       {
+        path: '/user-manages',
+        component: () => import('../views/user-tower/user-manage.vue'),
+        name: 'user-manages',
+      },
+      {
+        path: '/user-groups',
+        component: () => import('../views/user-tower/user-group.vue'),
+        name: 'user-groups',
+      },
+      {
         path: '/user-tower',
         component: () => import('../views/user-tower/user-tower.vue'),
         name: 'user-tower',
