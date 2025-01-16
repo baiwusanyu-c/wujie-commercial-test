@@ -160,6 +160,36 @@ const menus = [
       // },
     ],
   },
+  {
+    id: '6',
+    label: 'ABTest',
+    path: '',
+    name: '',
+    meta: { title: 'ABTest' },
+    children: [
+      {
+        id: '6-1',
+        label: '应用管理',
+        path: '/app-manage',
+        name: '/app-manage',
+        meta: { title: '应用管理' },
+      },
+      {
+        id: '6-2',
+        label: '实验层',
+        path: '/experiment-manage-list',
+        name: 'experiment-manage-list',
+        meta: { title: '实验层' },
+      },
+      {
+        id: '6-3',
+        label: '实验列表',
+        path: '/experiment-manage-layer',
+        name: 'experiment-manage-layer',
+        meta: { title: '实验列表' },
+      },
+    ],
+  },
 ]
 export default [
   {

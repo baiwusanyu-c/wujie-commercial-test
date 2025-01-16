@@ -11,7 +11,7 @@ const useUserStore = defineStore('user', {
     groupId: '', // 集团id
     brandId: '', // 品牌id
     brandName: '', // 品牌名称
-    env: {} as { label: string; value: string; dataPortalUrl: string; commRedirectUrl: string },
+    env: {} as { label: string; value: string; dataPortalUrl: string; commRedirectUrl: string; abTestUrl: string },
   }),
   actions: {
     // 登录

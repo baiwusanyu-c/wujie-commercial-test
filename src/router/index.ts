@@ -66,6 +66,21 @@ export const constantRoutes = [
         component: () => import('../views/user-tower/regional-daily.vue'),
         name: 'regional-daily',
       },
+      {
+        path: '/experiment-manage-list',
+        component: () => import('../views/ab-test/list.vue'),
+        name: 'experiment-manage-list',
+      },
+      {
+        path: '/experiment-manage-layer',
+        component: () => import('../views/ab-test/layer.vue'),
+        name: 'experiment-manage-layer',
+      },
+      {
+        path: '/app-manage',
+        component: () => import('../views/ab-test/app-manage.vue'),
+        name: 'app-manage',
+      },
     ],
   },
   {
