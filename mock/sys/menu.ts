@@ -1,7 +1,7 @@
 /*
  * @Author: liyang1
  * @Date: 2023-04-07 10:45:51
- * @LastEditTime: 2024-12-18 17:23:38
+ * @LastEditTime: 2024-12-19 16:19:31
  * @LastEditors: liyang
  * @Description: 菜单路由配置
  */
@@ -91,66 +91,73 @@ const menus = [
   {
     id: '5',
     label: '报表中心',
-    path: '',
-    name: '',
-    meta: { title: '报表中心' },
+    path: '/report-center',
+    name: 'report-center',
+    meta: { title: '报表中心', link: '/home/index' },
     children: [
-      {
-        id: '5-1',
-        label: '订单明细',
-        path: '/order-detail',
-        name: 'order-detail',
-        meta: { title: '订单明细', link: '/home/order-detail' },
-      },
-      {
-        id: '5-2',
-        label: '收银明细',
-        path: '/cashier-detail',
-        name: 'cashier-detail',
-        meta: { title: '收银明细', link: '/home/cashier-detail' },
-      },
-      {
-        id: '5-3',
-        label: '营业汇总分析',
-        path: '/business-summary',
-        name: 'business-summary',
-        meta: { title: '营业汇总分析', link: '/home/business-summary' },
-      },
-      {
-        id: '5-4',
-        label: '菜品销售总汇',
-        path: '/dishes-summary',
-        name: 'dishes-summary',
-        meta: { title: '菜品销售总汇', link: '/home/dishes-summary' },
-      },
-      {
-        id: '5-5',
-        label: '储值卡明细',
-        path: '/debit-card-detail',
-        name: 'debit-card-detail',
-        meta: { title: '储值卡明细', link: '/home/debit-card-detail' },
-      },
-      {
-        id: '5-6',
-        label: '储值卡汇总',
-        path: '/debit-card-summary',
-        name: 'debit-card-summary',
-        meta: { title: '储值卡汇总', link: '/home/debit-card-summary' },
-      },
-      {
-        id: '5-7',
-        label: '门店订货明细',
-        path: '/store-ordering-detail',
-        name: 'store-ordering-detail',
-        meta: { title: '门店订货明细', link: '/home/store-ordering-detail' },
-      },
-      {
-        id: '5-8',
-        label: '门店订货汇总',
-        path: '/store-summary',
-        name: 'store-summary',
-        meta: { title: '门店订货汇总', link: '/home/store-summary' },
-      },
+      // {
+      //   id: '5-1-1',
+      //   label: '首页',
+      //   path: '/index',
+      //   name: 'index',
+      //   meta: { title: '订单明细', link: '/home/index' },
+      // },
+      // {
+      //   id: '5-1',
+      //   label: '订单明细',
+      //   path: '/order-detail',
+      //   name: 'order-detail',
+      //   meta: { title: '订单明细', link: '/home/order-detail' },
+      // },
+      // {
+      //   id: '5-2',
+      //   label: '收银明细',
+      //   path: '/cashier-detail',
+      //   name: 'cashier-detail',
+      //   meta: { title: '收银明细', link: '/home/cashier-detail' },
+      // },
+      // {
+      //   id: '5-3',
+      //   label: '营业汇总分析',
+      //   path: '/business-summary',
+      //   name: 'business-summary',
+      //   meta: { title: '营业汇总分析', link: '/home/business-summary' },
+      // },
+      // {
+      //   id: '5-4',
+      //   label: '菜品销售总汇',
+      //   path: '/dishes-summary',
+      //   name: 'dishes-summary',
+      //   meta: { title: '菜品销售总汇', link: '/home/dishes-summary' },
+      // },
+      // {
+      //   id: '5-5',
+      //   label: '储值卡明细',
+      //   path: '/debit-card-detail',
+      //   name: 'debit-card-detail',
+      //   meta: { title: '储值卡明细', link: '/home/debit-card-detail' },
+      // },
+      // {
+      //   id: '5-6',
+      //   label: '储值卡汇总',
+      //   path: '/debit-card-summary',
+      //   name: 'debit-card-summary',
+      //   meta: { title: '储值卡汇总', link: '/home/debit-card-summary' },
+      // },
+      // {
+      //   id: '5-7',
+      //   label: '门店订货明细',
+      //   path: '/store-ordering-detail',
+      //   name: 'store-ordering-detail',
+      //   meta: { title: '门店订货明细', link: '/home/store-ordering-detail' },
+      // },
+      // {
+      //   id: '5-8',
+      //   label: '门店订货汇总',
+      //   path: '/store-summary',
+      //   name: 'store-summary',
+      //   meta: { title: '门店订货汇总', link: '/home/store-summary' },
+      // },
     ],
   },
 ]

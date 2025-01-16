@@ -22,5 +22,6 @@ export const ENV_CONFIG = [
     value: 'https://cdp.shuxinyc.shop/user-tower/auth-redirect',
     dataPortalUrl: 'https://data-portal.shuxinyc.shop/transfer.html#',
     commRedirectUrl: 'https://web.shuxinyc.shop/#/',
+    disabled: true,
   },
 ]

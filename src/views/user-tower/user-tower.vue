@@ -14,7 +14,7 @@
 // import { genCrowdParams } from '@cbd-wujie-components/osp-query'
 import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
-import { ref, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 // import useStoreUser from '@/store/modules/user'
 // import { authRouter } from '@/utils'
@@ -40,11 +40,13 @@ const props = {
 }
 console.log('props：', props)
 
-bus.$on('__USER_TOWER_OSP_INSIGHT', () => {
-  router.push(`/crowd-insight`)
-})
-bus.$on('__USER_TOWER_CLICK_INSIGHT', () => {
-  router.push(`/crowd-insight`)
+onMounted(() => {
+  bus.$on('__USER_TOWER_OSP_INSIGHT', () => {
+    router.push(`/crowd-insight`)
+  })
+  bus.$on('__USER_TOWER_CLICK_INSIGHT', () => {
+    router.push(`/crowd-insight`)
+  })
 })
 onUnmounted(() => {
   bus.$clear()

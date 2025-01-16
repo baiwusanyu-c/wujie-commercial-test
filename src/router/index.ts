@@ -117,6 +117,12 @@ export const constantRoutes = [
             name: 'echarts',
             meta: { title: '图表', icon: 'warning' },
           },
+          {
+            path: 'tools/pdf',
+            component: () => import('../views/system/tools/pdf/index.vue'),
+            name: 'pdf',
+            meta: { title: 'pdf预览', icon: 'warning' },
+          },
         ],
       },
     ],

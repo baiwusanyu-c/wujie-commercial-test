@@ -21,6 +21,7 @@
   "dependencies": {
     "@cbd-wujie-components/osp-query": "1.0.5-beta.0",
     "@element-plus/icons-vue": "^2.1.0",
+    "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7",
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
     "crypto-js": "^4.2.0",
@@ -36,9 +37,9 @@
     "vform3-builds": "^3.0.10",
     "vue": "^3.2.47",
     "vue-awesome-swiper": "^5.0.1",
+    "vue-pdf-embed": "^2.1.1",
     "vue-router": "^4.2.4",
     "wujie-polyfill": "^1.0.11",
-    "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7",
     "wujie-react": "^1.0.22",
     "wujie-vue3": "^1.0.22"
   },
