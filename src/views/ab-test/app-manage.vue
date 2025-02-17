@@ -16,10 +16,11 @@ import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onUnmounted } from 'vue'
 import useUserStore from '@/store/modules/user'
+import { useRouter } from 'vue-router'
 
 const wujieVueRef = ref()
 
-const { destroyApp } = WujieVue
+const { destroyApp, bus } = WujieVue
 const userStore = useUserStore()
 const props = {
   groupId: userStore.groupId,
@@ -31,7 +32,12 @@ const props = {
   url: userStore.env.abTestUrl,
   redirectUrl: '/app-manage',
 }
-console.log('人群洞察props：', props)
+console.log('AB实验props：', props)
+const router = useRouter()
+bus.$on('__AB_TEST_ENTER_EXP', (data: { appId: string | number }) => {
+  console.log(data.appId)
+  router.push(`/experiment-manage-layer`)
+})
 onUnmounted(() => {
   destroyApp('app-manage')
 })
