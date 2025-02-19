@@ -4,7 +4,6 @@ import { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
-import { getUserMenus } from '@/api/menus'
 import { getUserInfo } from '@/api/user'
 import { ENV_CONFIG } from '@/utils/constant'
 const defaultProps = {
@@ -15,7 +14,188 @@ const defaultProps = {
 const treeRef = ref()
 const storeUser = useStoreUser()
 const router = useRouter()
-const treeData = ref<MenuListItem[]>([])
+const treeData = ref<any[]>([
+  {
+    id: '1',
+    label: '人群智库',
+    path: '',
+    name: '',
+    meta: { title: '人群智库' },
+    children: [
+      {
+        id: '1-1',
+        label: '用户群体',
+        path: '/user-tower',
+        name: 'user-tower',
+        meta: { title: '用户群体' },
+      },
+      {
+        id: '1-2',
+        label: '人群洞察',
+        path: '/crowd-insight',
+        name: 'crowd-insight',
+        meta: { title: '人群洞察' },
+      },
+    ],
+  },
+  {
+    id: '2',
+    label: '标签管理',
+    path: '',
+    name: '',
+    meta: { title: '标签管理' },
+    children: [
+      {
+        id: '2-1',
+        label: '用户标签',
+        path: '/user-label',
+        name: 'user-label',
+        meta: { title: '用户标签' },
+      },
+    ],
+  },
+  // {
+  //   id: '3',
+  //   label: 'PC数据看板',
+  //   path: '',
+  //   name: '',
+  //   meta: { title: 'PC数据看板' },
+  //   children: [
+  //     {
+  //       id: '3-1',
+  //       label: '区域日报',
+  //       path: '/regional-daily',
+  //       name: 'regional-daily',
+  //       meta: { title: '区域日报' },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: '4',
+  //   label: '用户',
+  //   path: '',
+  //   name: '',
+  //   meta: { title: '用户' },
+  //   children: [
+  //     {
+  //       id: '4-1',
+  //       label: '用户管理',
+  //       path: '/user-manages',
+  //       name: 'user-manages',
+  //       meta: { title: '用户管理' },
+  //     },
+  //     {
+  //       id: '4-2',
+  //       label: '分组管理',
+  //       path: '/user-groups',
+  //       name: 'user-groups',
+  //       meta: { title: '分组管理' },
+  //     },
+  //   ],
+  // },
+  {
+    id: '5',
+    label: '报表中心',
+    path: '/report-center',
+    name: 'report-center',
+    meta: { title: '报表中心', link: '/home/index' },
+    children: [
+      // {
+      //   id: '5-1-1',
+      //   label: '首页',
+      //   path: '/index',
+      //   name: 'index',
+      //   meta: { title: '订单明细', link: '/home/index' },
+      // },
+      // {
+      //   id: '5-1',
+      //   label: '订单明细',
+      //   path: '/order-detail',
+      //   name: 'order-detail',
+      //   meta: { title: '订单明细', link: '/home/order-detail' },
+      // },
+      // {
+      //   id: '5-2',
+      //   label: '收银明细',
+      //   path: '/cashier-detail',
+      //   name: 'cashier-detail',
+      //   meta: { title: '收银明细', link: '/home/cashier-detail' },
+      // },
+      // {
+      //   id: '5-3',
+      //   label: '营业汇总分析',
+      //   path: '/business-summary',
+      //   name: 'business-summary',
+      //   meta: { title: '营业汇总分析', link: '/home/business-summary' },
+      // },
+      // {
+      //   id: '5-4',
+      //   label: '菜品销售总汇',
+      //   path: '/dishes-summary',
+      //   name: 'dishes-summary',
+      //   meta: { title: '菜品销售总汇', link: '/home/dishes-summary' },
+      // },
+      // {
+      //   id: '5-5',
+      //   label: '储值卡明细',
+      //   path: '/debit-card-detail',
+      //   name: 'debit-card-detail',
+      //   meta: { title: '储值卡明细', link: '/home/debit-card-detail' },
+      // },
+      // {
+      //   id: '5-6',
+      //   label: '储值卡汇总',
+      //   path: '/debit-card-summary',
+      //   name: 'debit-card-summary',
+      //   meta: { title: '储值卡汇总', link: '/home/debit-card-summary' },
+      // },
+      // {
+      //   id: '5-7',
+      //   label: '门店订货明细',
+      //   path: '/store-ordering-detail',
+      //   name: 'store-ordering-detail',
+      //   meta: { title: '门店订货明细', link: '/home/store-ordering-detail' },
+      // },
+      // {
+      //   id: '5-8',
+      //   label: '门店订货汇总',
+      //   path: '/store-summary',
+      //   name: 'store-summary',
+      //   meta: { title: '门店订货汇总', link: '/home/store-summary' },
+      // },
+    ],
+  },
+  {
+    id: '6',
+    label: 'ABTest',
+    path: '',
+    name: '',
+    meta: { title: 'ABTest' },
+    children: [
+      {
+        id: '6-1',
+        label: '应用管理',
+        path: '/app-manage',
+        name: '/app-manage',
+        meta: { title: '应用管理' },
+      },
+      {
+        id: '6-2',
+        label: '实验层',
+        path: '/experiment-manage-list',
+        name: 'experiment-manage-list',
+        meta: { title: '实验层' },
+      },
+      {
+        id: '6-3',
+        label: '实验列表',
+        path: '/experiment-manage-layer',
+        name: 'experiment-manage-layer',
+        meta: { title: '实验列表' },
+      },
+    ],
+  },
+]);
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = ref({
   env: storeUser.env?.label ? storeUser.env : ENV_CONFIG[0],
@@ -37,9 +217,9 @@ const rules = reactive({
   groupId: [{ required: true, message: '请输入集团id' }],
 })
 const init = () => {
-  getUserMenus().then((res) => {
-    treeData.value = res.data
-  })
+  // getUserMenus().then((res) => {
+  //   treeData.value = res.data
+  // })
   getUserInfo().then((res) => {
     storeUser.login(res.data)
   })
