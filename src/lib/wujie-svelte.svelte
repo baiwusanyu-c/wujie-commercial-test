@@ -64,7 +64,7 @@
         activated: activated,
         deactivated: deactivated,
         loadError: loadError,
-        mainHostPath: 'https://baiwusanyu-c.github.io/wujie-commercial-test',
+        mainHostPath: 'https://baiwusanyu-c.github.io/wujie-commercial-test/#/',
       });
     } catch (error) {
       console.log(error);
@@ -89,6 +89,7 @@
       destroyApp
     }
   }
+  console.log('6666666666')
 </script>
 
 <div bind:this={wujie} style:width={width} style:height={height}>
