@@ -29637,7 +29637,7 @@ function instance$5($$self, $$props, $$invalidate) {
         activated,
         deactivated,
         loadError,
-        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test"
+        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test/#/"
       });
     } catch (error2) {
       console.log(error2);
@@ -29654,6 +29654,7 @@ function instance$5($$self, $$props, $$invalidate) {
   function getWujie() {
     return { setupApp, preloadApp, bus, destroyApp };
   }
+  console.log("6666666666");
   function div_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       wujie = $$value;
@@ -31253,7 +31254,6 @@ function instance$3($$self) {
     parentName: "comm",
     redirectUrl: "/experiment-manage/list"
   };
-  console.log("5555555555555");
   return [props];
 }
 class Layer extends SvelteComponent {
