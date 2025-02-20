@@ -37,7 +37,7 @@
         </KMenu>
     </div>
 
-    <Router {url}>
+    <Router {url} basepath="/wujie-commercial-test">
         <div class="h-full w-full">
             <Route path="/home" component={Home} />
             <Route path="/ab-test/app-manage" component={ABTestAppManage} />
