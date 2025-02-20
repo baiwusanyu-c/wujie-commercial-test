@@ -5,4 +5,7 @@ import Unocss from 'unocss/vite';
 export default defineConfig({
   base: '/wujie-commercial-test',
   plugins: [ svelte(), Unocss()],
+  build: {
+    minify: false,
+  }
 })
