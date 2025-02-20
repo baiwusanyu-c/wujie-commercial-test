@@ -28,6 +28,7 @@
         height="100%"
         name="app-experiment"
         url="{props.url}"
+        alive={true}
         props="{props}"
         plugins="{[InstanceofPlugin()]}">
 </WujieSvelte>

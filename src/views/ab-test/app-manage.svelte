@@ -28,6 +28,7 @@
         height="100%"
         name="app-manage"
         url="{props.url}"
+        alive={true}
         props="{props}"
         plugins="{[InstanceofPlugin()]}">
 </WujieSvelte>

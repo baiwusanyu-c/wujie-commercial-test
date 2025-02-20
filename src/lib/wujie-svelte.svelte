@@ -32,7 +32,7 @@
 
   const dispatch = createEventDispatcher()
   function handleEmit(event: string, ...args: any[]) {
-    dispatch('input', ...args);
+    dispatch(event, ...args);
   }
 
   $: {
