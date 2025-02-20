@@ -29654,7 +29654,7 @@ function instance$5($$self, $$props, $$invalidate) {
   function getWujie() {
     return { setupApp, preloadApp, bus, destroyApp };
   }
-  console.log("8888888888");
+  console.log("9999999999");
   function div_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       wujie = $$value;
@@ -31347,7 +31347,7 @@ function instance$2($$self) {
     brandId: params2.env.brandId,
     brandName: params2.env.brandName,
     token: params2.token,
-    url: params2.env.abTestUrl,
+    url: params2.env.commRedirectUrl,
     parentName: "comm",
     redirectUrl: "/crowd"
   };
