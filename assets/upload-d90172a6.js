@@ -1,2 +1,0 @@
-import{D as o}from"./index-3e61b4b7.js";const d=t=>o({url:"/upload/list",method:"post",data:t}),r=t=>o({url:"/upload/add",method:"post",data:t}),l=t=>o({url:"/upload/edit",method:"post",data:t}),u=t=>o({url:"/upload/delete",method:"post",data:t}),a=t=>o({url:"/upload/file",method:"post",data:t}),s=t=>o({url:"/upload/record",method:"post",data:t});export{r as a,u as b,s as c,l as e,d as g,a as u};
-//# sourceMappingURL=upload-d90172a6.js.map
