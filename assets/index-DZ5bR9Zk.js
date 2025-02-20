@@ -31125,6 +31125,7 @@ function create_fragment$6(ctx) {
       width: "100%",
       height: "100%",
       name: "app-manage",
+      alive: false,
       url: (
         /*props*/
         ctx[0].url
@@ -31195,6 +31196,7 @@ function create_fragment$5(ctx) {
       width: "100%",
       height: "100%",
       name: "app-experiment",
+      alive: false,
       url: (
         /*props*/
         ctx[0].url
