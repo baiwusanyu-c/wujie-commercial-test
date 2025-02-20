@@ -1,3 +1,4 @@
+<!--
 <script lang="ts">
   import { KMenu, KMenuItem, KButton, KDrawer } from "@ikun-ui/core";
   import { menuItems } from './utils/menu'
@@ -37,3 +38,8 @@
 <KDrawer value={show} on:close={close} cls='!w-[350px] !min-w-[300px]'>
     <Config/>
 </KDrawer>
+-->
+<script>
+    import ABTestAppManage from './views/ab-test/app-manage.svelte'
+</script>
+<ABTestAppManage/>
