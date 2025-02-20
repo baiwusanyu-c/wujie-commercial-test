@@ -29637,7 +29637,7 @@ function instance$5($$self, $$props, $$invalidate) {
         activated,
         deactivated,
         loadError,
-        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test/#/"
+        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test/#/home"
       });
     } catch (error2) {
       console.log(error2);
@@ -29654,7 +29654,7 @@ function instance$5($$self, $$props, $$invalidate) {
   function getWujie() {
     return { setupApp, preloadApp, bus, destroyApp };
   }
-  console.log("6666666666");
+  console.log("777777777777");
   function div_binding($$value) {
     binding_callbacks[$$value ? "unshift" : "push"](() => {
       wujie = $$value;
