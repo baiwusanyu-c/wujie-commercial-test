@@ -12,10 +12,10 @@
   import Config from './lib/config.svelte'
   const handleMenuClick = (item: CustomEvent) => {
     localStorage.setItem('wujie-test-select', JSON.stringify(item.detail.uidPath))
-    navigate(item.detail.item.path, { replace: true })
+    navigate('/wujie-commercial-test' + item.detail.item.path, { replace: true })
   };
 
-  const url = location.pathname === '/' ? '/home' : location.pathname
+  const url = location.pathname === '/' ? '/wujie-commercial-test/home' : location.pathname
   const selectedUidPathsCache = localStorage.getItem('wujie-test-select') || '["首页"]'
   const selectedUidPaths = JSON.parse(selectedUidPathsCache)
   localStorage.setItem('wujie-test-select', JSON.stringify(selectedUidPaths))
