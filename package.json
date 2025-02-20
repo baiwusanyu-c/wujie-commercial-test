@@ -27,6 +27,15 @@
     "unocss": "^0.59.0",
     "wujie": "1.0.22",
     "wujie-polyfill": "^1.0.11",
-    "svelte-spa-router": "latest"
+    "svelte-spa-router": "latest",
+    "babel-loader": "8.1.0",
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.18.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.18.6"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.18.6"
   }
 }

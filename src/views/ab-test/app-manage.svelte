@@ -30,6 +30,5 @@
         url="{props.url}"
         sync={true}
         alive={true}
-        props="{props}"
-        plugins="{[InstanceofPlugin()]}">
+        props="{props}">
 </WujieSvelte>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, createEventDispatcher, onDestroy } from "svelte";
-  import { bus, preloadApp, startApp as rawStartApp, destroyApp, setupApp } from "wujie";
+  import { bus, preloadApp, startApp as rawStartApp, destroyApp, setupApp } from "../esm";
   export let width: string = ''
   export let height: string = ''
   export let name: string = ''
@@ -64,6 +64,7 @@
         activated: activated,
         deactivated: deactivated,
         loadError: loadError,
+        mainHostPath: 'https://baiwusanyu-c.github.io/wujie-commercial-test',
       });
     } catch (error) {
       console.log(error);
