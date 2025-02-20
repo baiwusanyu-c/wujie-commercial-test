@@ -28,7 +28,5 @@
         height="100%"
         name="app-experiment"
         url="{props.url}"
-        alive={true}
-        sync={true}
         props="{props}">
 </WujieSvelte>
