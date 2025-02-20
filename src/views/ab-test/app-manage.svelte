@@ -22,6 +22,7 @@
     parentName: 'comm',
     redirectUrl: '/app-manage',
   }
+
 </script>
 <WujieSvelte
         width="100%"
