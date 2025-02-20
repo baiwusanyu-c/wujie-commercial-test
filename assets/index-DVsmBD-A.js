@@ -31129,8 +31129,6 @@ function create_fragment$6(ctx) {
         /*props*/
         ctx[0].url
       ),
-      sync: true,
-      alive: true,
       props: (
         /*props*/
         ctx[0]
@@ -31201,8 +31199,6 @@ function create_fragment$5(ctx) {
         /*props*/
         ctx[0].url
       ),
-      alive: true,
-      sync: true,
       props: (
         /*props*/
         ctx[0]
