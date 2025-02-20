@@ -26052,8 +26052,8 @@ function getTargetValue(target, p) {
   if (isCallable(value) && !isBoundedFunction(value) && !isConstructable(value)) {
     var boundValue = Function.prototype.bind.call(value, target);
     setFnCacheMap.set(value, boundValue);
-    for (var _key in value) {
-      boundValue[_key] = value[_key];
+    for (var key in value) {
+      boundValue[key] = value[key];
     }
     if (value.hasOwnProperty("prototype") && !boundValue.hasOwnProperty("prototype")) {
       Object.defineProperty(boundValue, "prototype", {
@@ -26189,8 +26189,8 @@ function defaultGetPublicPath(entry) {
 }
 function compose$1(fnList) {
   return function(code) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key2 = 1; _key2 < _len; _key2++) {
-      args[_key2 - 1] = arguments[_key2];
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
     }
     return fnList.reduce(function(newCode, fn) {
       return isFunction(fn) ? fn.apply(void 0, [newCode].concat(args)) : newCode;
@@ -26201,8 +26201,8 @@ function nextTick(cb) {
   Promise.resolve().then(cb);
 }
 function execHooks(plugins, hookName) {
-  for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key3 = 2; _key3 < _len2; _key3++) {
-    args[_key3 - 2] = arguments[_key3];
+  for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+    args[_key2 - 2] = arguments[_key2];
   }
   try {
     if (plugins && plugins.length > 0) {
@@ -26256,6 +26256,7 @@ function mergeOptions(options, cacheOptions) {
     alive: options.alive !== void 0 ? options.alive : cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.alive,
     degrade: options.degrade !== void 0 ? options.degrade : cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.degrade,
     plugins: options.plugins || (cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.plugins),
+    mainHostPath: options.mainHostPath || (cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.mainHostPath),
     lifecycles: {
       beforeLoad: options.beforeLoad || (cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.beforeLoad),
       beforeMount: options.beforeMount || (cacheOptions === null || cacheOptions === void 0 ? void 0 : cacheOptions.beforeMount),
@@ -26285,7 +26286,7 @@ function stopMainAppRun() {
   throw new Error(WUJIE_TIPS_STOP_APP);
 }
 var ALL_SCRIPT_REGEX = /(<script[\s\S]*?>)[\s\S]*?<\/script>/gi;
-var SCRIPT_TAG_REGEX = /<(script)\s+((?!type=('|")text\/ng\x2Dtemplate\3)[\s\S])*?>[\s\S]*?<\/\1>/i;
+var SCRIPT_TAG_REGEX = /<(script)\s+((?!type=('|")text\/ng-template\3)[^])*?>[^]*?<\/\1>/i;
 var SCRIPT_SRC_REGEX = /.*\ssrc=('|")?([^>'"\s]+)/;
 var SCRIPT_TYPE_REGEX = /.*\stype=('|")?([^>'"\s]+)/;
 var SCRIPT_ENTRY_REGEX = /.*\sentry\s*.*/;
@@ -26293,7 +26294,7 @@ var SCRIPT_ASYNC_REGEX = /.*\sasync\s*.*/;
 var DEFER_ASYNC_REGEX = /.*\sdefer\s*.*/;
 var SCRIPT_NO_MODULE_REGEX = /.*\snomodule\s*.*/;
 var SCRIPT_MODULE_REGEX = /.*\stype=('|")?module('|")?\s*.*/;
-var LINK_TAG_REGEX = /<(link)\s+[\s\S]*?>/gi;
+var LINK_TAG_REGEX = /<(link)\s+[^]*?>/gi;
 var LINK_PRELOAD_OR_PREFETCH_REGEX = /\srel=('|")?(preload|prefetch|modulepreload)\1/;
 var LINK_HREF_REGEX = /.*\shref=('|")?([^>'"\s]+)/;
 var LINK_AS_FONT = /.*\sas=('|")?font\1.*/;
@@ -26301,9 +26302,9 @@ var STYLE_TAG_REGEX = /<style[^>]*>[\s\S]*?<\/style>/gi;
 var STYLE_TYPE_REGEX = /\s+rel=('|")?stylesheet\1.*/;
 var STYLE_HREF_REGEX = /.*\shref=('|")?([^>'"\s]+)/;
 var HTML_COMMENT_REGEX = /<!--([\s\S]*?)-->/g;
-var LINK_IGNORE_REGEX = /<link(\s+|\s+[\s\S]+\s+)ignore(\s*|\s+[\s\S]*|=[\s\S]*)>/i;
-var STYLE_IGNORE_REGEX = /<style(\s+|\s+[\s\S]+\s+)ignore(\s*|\s+[\s\S]*|=[\s\S]*)>/i;
-var SCRIPT_IGNORE_REGEX = /<script(\s+|\s+[\s\S]+\s+)ignore(\s*|\s+[\s\S]*|=[\s\S]*)>/i;
+var LINK_IGNORE_REGEX = /<link(\s+|\s+[^]+\s+)ignore(\s*|\s+[^]*|=[^]*)>/i;
+var STYLE_IGNORE_REGEX = /<style(\s+|\s+[^]+\s+)ignore(\s*|\s+[^]*|=[^]*)>/i;
+var SCRIPT_IGNORE_REGEX = /<script(\s+|\s+[^]+\s+)ignore(\s*|\s+[^]*|=[^]*)>/i;
 var CROSS_ORIGIN_REGEX = /.*\scrossorigin=?('|")?(use-credentials|anonymous)?('|")?/i;
 function hasProtocol(url) {
   return url.startsWith("//") || url.startsWith("http://") || url.startsWith("https://");
@@ -26816,6 +26817,20 @@ function _createClass(e, r2, t) {
     writable: false
   }), e;
 }
+function _assertThisInitialized(e) {
+  if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  return e;
+}
+function _possibleConstructorReturn(t, e) {
+  if (e && ("object" == _typeof$1(e) || "function" == typeof e)) return e;
+  if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
+  return _assertThisInitialized(t);
+}
+function _getPrototypeOf(t) {
+  return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(t2) {
+    return t2.__proto__ || Object.getPrototypeOf(t2);
+  }, _getPrototypeOf(t);
+}
 function _setPrototypeOf(t, e) {
   return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t2, e2) {
     return t2.__proto__ = e2, t2;
@@ -26832,20 +26847,6 @@ function _inherits(t, e) {
   }), Object.defineProperty(t, "prototype", {
     writable: false
   }), e && _setPrototypeOf(t, e);
-}
-function _assertThisInitialized(e) {
-  if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  return e;
-}
-function _possibleConstructorReturn(t, e) {
-  if (e && ("object" == _typeof$1(e) || "function" == typeof e)) return e;
-  if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
-  return _assertThisInitialized(t);
-}
-function _getPrototypeOf(t) {
-  return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(t2) {
-    return t2.__proto__ || Object.getPrototypeOf(t2);
-  }, _getPrototypeOf(t);
 }
 function _isNativeFunction(t) {
   try {
@@ -27397,30 +27398,18 @@ function _objectSpread$3(e) {
   }
   return e;
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived), result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
+function _callSuper(t, o, e) {
+  return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e));
 }
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
   try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
     }));
-    return true;
-  } catch (e) {
-    return false;
+  } catch (t2) {
   }
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct2() {
+    return !!t;
+  })();
 }
 var cssSelectorMap = {
   ":root": ":host"
@@ -27429,13 +27418,12 @@ function defineWujieWebComponent() {
   var customElements = window.customElements;
   if (customElements && !(customElements !== null && customElements !== void 0 && customElements.get("wujie-app"))) {
     var WujieApp = /* @__PURE__ */ function(_HTMLElement) {
-      _inherits(WujieApp2, _HTMLElement);
-      var _super = _createSuper(WujieApp2);
       function WujieApp2() {
         _classCallCheck(this, WujieApp2);
-        return _super.apply(this, arguments);
+        return _callSuper(this, WujieApp2, arguments);
       }
-      _createClass(WujieApp2, [{
+      _inherits(WujieApp2, _HTMLElement);
+      return _createClass(WujieApp2, [{
         key: "connectedCallback",
         value: function connectedCallback() {
           if (this.shadowRoot) return;
@@ -27453,7 +27441,6 @@ function defineWujieWebComponent() {
           sandbox === null || sandbox === void 0 || sandbox.unmount();
         }
       }]);
-      return WujieApp2;
     }(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
     customElements === null || customElements === void 0 || customElements.define("wujie-app", WujieApp);
   }
@@ -28731,7 +28718,7 @@ var EventBus = /* @__PURE__ */ function() {
     }
     this.eventObj = appEventObjMap.get(this.id);
   }
-  _createClass(EventBus2, [{
+  return _createClass(EventBus2, [{
     key: "$on",
     value: function $on(event, fn) {
       var cbs = this.eventObj[event];
@@ -28828,7 +28815,6 @@ var EventBus = /* @__PURE__ */ function() {
       return this;
     }
   }]);
-  return EventBus2;
 }();
 function ownKeys$1(e, r2) {
   var t = Object.keys(e);
@@ -28860,7 +28846,7 @@ var Wujie = /* @__PURE__ */ function() {
       this.inject = {
         idToSandboxMap: idToSandboxCacheMap,
         appEventObjMap,
-        mainHostPath: window.location.protocol + "//" + window.location.host
+        mainHostPath: options.mainHostPath || window.location.protocol + "//" + window.location.host
       };
     }
     var name = options.name, url = options.url, attrs = options.attrs, fiber = options.fiber, degradeAttrs = options.degradeAttrs, degrade = options.degrade, lifecycles = options.lifecycles, plugins = options.plugins;
@@ -28893,7 +28879,7 @@ var Wujie = /* @__PURE__ */ function() {
     this.provide.location = this.proxyLocation;
     addSandboxCacheWithWujie(this.id, this);
   }
-  _createClass(Wujie2, [{
+  return _createClass(Wujie2, [{
     key: "active",
     value: (
       /** $wujie对象，提供给子应用的接口 */
@@ -29267,7 +29253,6 @@ var Wujie = /* @__PURE__ */ function() {
       (hostStyleSheetElement || fontStyleSheetElement) && this.shadowRoot.host.setAttribute(WUJIE_DATA_ATTACH_CSS_FLAG, "");
     }
   }]);
-  return Wujie2;
 }();
 function ownKeys(e, r2) {
   var t = Object.keys(e);
@@ -29306,14 +29291,14 @@ function startApp(_x) {
 function _startApp() {
   _startApp = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function _callee2(startOptions) {
     var _newSandbox$lifecycle, _newSandbox$lifecycle2;
-    var sandbox, cacheOptions, options, name, url, html, replace, fetch2, props, attrs, degradeAttrs, fiber, alive, degrade, sync, prefix, el, loading, plugins, lifecycles, _iframeWindow, _sandbox$lifecycles3, _sandbox$lifecycles3$, _sandbox$lifecycles2, _sandbox$lifecycles2$, _yield$importHTML2, _getExternalScripts2, _sandbox$lifecycles4, _sandbox$lifecycles4$, _sandbox$lifecycles5, _sandbox$lifecycles5$, newSandbox, _yield$importHTML3, template, getExternalScripts, getExternalStyleSheets, processedHtml;
+    var sandbox, cacheOptions, options, name, url, html, replace, fetch2, props, attrs, degradeAttrs, fiber, alive, degrade, sync, prefix, el, loading, plugins, lifecycles, mainHostPath, _iframeWindow, _sandbox$lifecycles3, _sandbox$lifecycles3$, _sandbox$lifecycles2, _sandbox$lifecycles2$, _yield$importHTML2, _getExternalScripts2, _sandbox$lifecycles4, _sandbox$lifecycles4$, _sandbox$lifecycles5, _sandbox$lifecycles5$, newSandbox, _yield$importHTML3, template, getExternalScripts, getExternalStyleSheets, processedHtml;
     return _regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           sandbox = getWujieById(startOptions.name);
           cacheOptions = getOptionsById(startOptions.name);
           options = mergeOptions(startOptions, cacheOptions);
-          name = options.name, url = options.url, html = options.html, replace = options.replace, fetch2 = options.fetch, props = options.props, attrs = options.attrs, degradeAttrs = options.degradeAttrs, fiber = options.fiber, alive = options.alive, degrade = options.degrade, sync = options.sync, prefix = options.prefix, el = options.el, loading = options.loading, plugins = options.plugins, lifecycles = options.lifecycles;
+          name = options.name, url = options.url, html = options.html, replace = options.replace, fetch2 = options.fetch, props = options.props, attrs = options.attrs, degradeAttrs = options.degradeAttrs, fiber = options.fiber, alive = options.alive, degrade = options.degrade, sync = options.sync, prefix = options.prefix, el = options.el, loading = options.loading, plugins = options.plugins, lifecycles = options.lifecycles, mainHostPath = options.mainHostPath;
           if (!sandbox) {
             _context2.next = 39;
             break;
@@ -29404,7 +29389,8 @@ function _startApp() {
             fiber,
             degrade,
             plugins,
-            lifecycles
+            lifecycles,
+            mainHostPath
           });
           (_newSandbox$lifecycle = newSandbox.lifecycles) === null || _newSandbox$lifecycle === void 0 || (_newSandbox$lifecycle2 = _newSandbox$lifecycle.beforeLoad) === null || _newSandbox$lifecycle2 === void 0 || _newSandbox$lifecycle2.call(_newSandbox$lifecycle, newSandbox.iframe.contentWindow);
           _context2.next = 44;
@@ -29457,7 +29443,7 @@ function preloadApp(preOptions) {
     if (getWujieById(preOptions.name) || isMatchSyncQueryById(preOptions.name)) return;
     var cacheOptions = getOptionsById(preOptions.name);
     var options = mergeOptions(_objectSpread({}, preOptions), cacheOptions);
-    var name = options.name, url = options.url, html = options.html, props = options.props, alive = options.alive, replace = options.replace, fetch2 = options.fetch, exec = options.exec, attrs = options.attrs, degradeAttrs = options.degradeAttrs, fiber = options.fiber, degrade = options.degrade, prefix = options.prefix, plugins = options.plugins, lifecycles = options.lifecycles;
+    var name = options.name, url = options.url, html = options.html, props = options.props, alive = options.alive, replace = options.replace, fetch2 = options.fetch, exec = options.exec, attrs = options.attrs, degradeAttrs = options.degradeAttrs, fiber = options.fiber, degrade = options.degrade, prefix = options.prefix, plugins = options.plugins, lifecycles = options.lifecycles, mainHostPath = options.mainHostPath;
     var sandbox = new Wujie({
       name,
       url,
@@ -29466,7 +29452,8 @@ function preloadApp(preOptions) {
       fiber,
       degrade,
       plugins,
-      lifecycles
+      lifecycles,
+      mainHostPath
     });
     if (sandbox.preload) return sandbox.preload;
     var runPreload = /* @__PURE__ */ function() {
@@ -29649,7 +29636,8 @@ function instance$5($$self, $$props, $$invalidate) {
         afterUnmount,
         activated,
         deactivated,
-        loadError
+        loadError,
+        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test"
       });
     } catch (error2) {
       console.log(error2);
@@ -31146,8 +31134,7 @@ function create_fragment$6(ctx) {
       props: (
         /*props*/
         ctx[0]
-      ),
-      plugins: [InstanceofPlugin()]
+      )
     }
   });
   return {
@@ -31219,8 +31206,7 @@ function create_fragment$5(ctx) {
       props: (
         /*props*/
         ctx[0]
-      ),
-      plugins: [InstanceofPlugin()]
+      )
     }
   });
   return {
