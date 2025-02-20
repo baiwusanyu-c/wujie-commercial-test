@@ -31,7 +31,7 @@
     brandId: params.env.brandId,
     brandName: params.env.brandName,
     token: params.token,
-    url: params.env.abTestUrl,
+    url: params.env.commRedirectUrl,
     parentName: 'comm',
     redirectUrl: '/crowd',
   }

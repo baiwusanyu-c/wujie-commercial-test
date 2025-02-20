@@ -89,7 +89,7 @@
       destroyApp
     }
   }
-  console.log('8888888888')
+  console.log('9999999999')
 </script>
 
 <div bind:this={wujie} style:width={width} style:height={height}>
