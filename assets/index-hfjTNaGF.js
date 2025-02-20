@@ -31133,7 +31133,8 @@ function create_fragment$6(ctx) {
       props: (
         /*props*/
         ctx[0]
-      )
+      ),
+      plugins: [InstanceofPlugin()]
     }
   });
   return {
@@ -31201,6 +31202,7 @@ function create_fragment$5(ctx) {
         /*props*/
         ctx[0].url
       ),
+      plugins: [InstanceofPlugin()],
       props: (
         /*props*/
         ctx[0]
@@ -31251,6 +31253,7 @@ function instance$3($$self) {
     parentName: "comm",
     redirectUrl: "/experiment-manage/list"
   };
+  console.log("5555555555555");
   return [props];
 }
 class Layer extends SvelteComponent {
