@@ -1,7 +1,8 @@
 {
-  "name": "vite-project",
+  "name": "wujie-commercial-test",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@9.15.0",
   "type": "module",
   "scripts": {
     "init": "pnpm i",
