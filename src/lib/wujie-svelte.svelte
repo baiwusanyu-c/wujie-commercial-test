@@ -64,7 +64,7 @@
         activated: activated,
         deactivated: deactivated,
         loadError: loadError,
-        mainHostPath: 'https://baiwusanyu-c.github.io/wujie-commercial-test',
+        // mainHostPath: 'https://baiwusanyu-c.github.io/wujie-commercial-test',
       });
     } catch (error) {
       console.log(error);

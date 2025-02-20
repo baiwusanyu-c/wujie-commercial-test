@@ -29,5 +29,7 @@
         name="app-manage"
         alive="{false}"
         url="{props.url}"
-        props="{props}">
+        props="{props}"
+        plugins="{[InstanceofPlugin()]}"
+>
 </WujieSvelte>

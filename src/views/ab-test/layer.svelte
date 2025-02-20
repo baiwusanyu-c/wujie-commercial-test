@@ -29,5 +29,6 @@
         name="app-experiment"
         alive="{false}"
         url="{props.url}"
+        plugins="{[InstanceofPlugin()]}"
         props="{props}">
 </WujieSvelte>
