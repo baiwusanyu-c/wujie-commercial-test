@@ -27,6 +27,6 @@
     "unocss": "^0.59.0",
     "wujie": "1.0.22",
     "wujie-polyfill": "^1.0.11",
-    "svelte-routing": "^2.1.0"
+    "svelte-spa-router": "latest"
   }
 }

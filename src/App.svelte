@@ -1,21 +1,14 @@
-
 <script lang="ts">
   import { KMenu, KMenuItem, KButton, KDrawer } from "@ikun-ui/core";
   import { menuItems } from './utils/menu'
-  import { Route, Router, navigate } from 'svelte-routing'
-  import Home from './views/home/index.svelte'
-  import ABTestAppManage from './views/ab-test/app-manage.svelte'
-  import ABTestExpLayer from './views/ab-test/layer.svelte'
-  import UserLabel from './views/user-tower/user-label.svelte'
-  import UserTower from './views/user-tower/user-tower.svelte'
-  import CrowdInsight from './views/user-tower/crowd-insight.svelte'
+  import Router, { replace } from 'svelte-spa-router'
+  import { RouterConfig } from "./utils/router-config";
   import Config from './lib/config.svelte'
   const handleMenuClick = (item: CustomEvent) => {
     localStorage.setItem('wujie-test-select', JSON.stringify(item.detail.uidPath))
-    navigate('/wujie-commercial-test' + item.detail.item.path, { replace: true })
+    replace(item.detail.item.path)
   };
 
-  const url = location.pathname === '/' ? '/wujie-commercial-test/home' : location.pathname
   const selectedUidPathsCache = localStorage.getItem('wujie-test-select') || '["首页"]'
   const selectedUidPaths = JSON.parse(selectedUidPathsCache)
   localStorage.setItem('wujie-test-select', JSON.stringify(selectedUidPaths))
@@ -36,17 +29,9 @@
             <KMenuItem items="{menuItems}" ctxKey="inline"/>
         </KMenu>
     </div>
-
-    <Router {url} basepath="/wujie-commercial-test">
-        <div class="h-full w-full">
-            <Route path="/home" component={Home} />
-            <Route path="/ab-test/app-manage" component={ABTestAppManage} />
-            <Route path="/ab-test/experiment" component={ABTestExpLayer} />
-            <Route path="/user-tower/tower" component={UserTower} />
-            <Route path="/user-tower/label" component={UserLabel} />
-            <Route path="/user-tower/crowd-insight" component={CrowdInsight} />
-        </div>
-    </Router>
+    <div class="h-full w-full">
+        <Router routes = {RouterConfig}/>
+    </div>
 </div>
 
 <KDrawer value={show} on:close={close} cls='!w-[350px] !min-w-[300px]'>
