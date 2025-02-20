@@ -1,0 +1,31 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "init": "pnpm i",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.31",
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@sveltejs/adapter-auto": "^3.2.0",
+    "@tsconfig/svelte": "^5.0.4",
+    "svelte": "^4.2.12",
+    "svelte-check": "^3.6.9",
+    "typescript": "~5.7.2",
+    "vite": "^5.2.2",
+    "@ikun-ui/preset": "latest",
+    "@ikun-ui/core": "latest",
+    "@unocss/preset-mini": "^0.59.0",
+    "@unocss/preset-uno": "^0.59.0",
+    "unocss": "^0.59.0",
+    "wujie": "1.0.22",
+    "wujie-polyfill": "^1.0.11",
+    "svelte-routing": "^2.1.0"
+  }
+}
