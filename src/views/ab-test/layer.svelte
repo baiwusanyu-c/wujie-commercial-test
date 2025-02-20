@@ -27,6 +27,7 @@
         width="100%"
         height="100%"
         name="app-experiment"
+        alive="{false}"
         url="{props.url}"
         props="{props}">
 </WujieSvelte>
