@@ -7,6 +7,7 @@ import CrowdInsight from '../views/user-tower/crowd-insight.svelte'
 
 
 export const RouterConfig = {
+  '/': Home,
   '/home': Home,
   '/ab-test/app-manage': ABTestAppManage,
   '/ab-test/experiment': ABTestExpLayer,

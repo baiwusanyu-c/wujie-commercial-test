@@ -26,7 +26,7 @@
 <WujieSvelte
         width="100%"
         height="100%"
-        name="app-manage"
+        name="app-experiment"
         url="{props.url}"
         props="{props}"
         plugins="{[InstanceofPlugin()]}">

@@ -1,12 +1,12 @@
 <script lang="ts">
   import { KMenu, KMenuItem, KButton, KDrawer } from "@ikun-ui/core";
   import { menuItems } from './utils/menu'
-  import Router, { replace } from 'svelte-spa-router'
+  import Router, { push } from 'svelte-spa-router'
   import { RouterConfig } from "./utils/router-config";
   import Config from './lib/config.svelte'
   const handleMenuClick = (item: CustomEvent) => {
     localStorage.setItem('wujie-test-select', JSON.stringify(item.detail.uidPath))
-    replace(item.detail.item.path)
+    push(item.detail.item.path)
   };
 
   const selectedUidPathsCache = localStorage.getItem('wujie-test-select') || '["首页"]'
@@ -30,7 +30,7 @@
         </KMenu>
     </div>
     <div class="h-full w-full">
-        <Router routes = {RouterConfig}/>
+        <Router routes={RouterConfig}/>
     </div>
 </div>
 
