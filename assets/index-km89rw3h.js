@@ -29636,8 +29636,7 @@ function instance$5($$self, $$props, $$invalidate) {
         afterUnmount,
         activated,
         deactivated,
-        loadError,
-        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test"
+        loadError
       });
     } catch (error2) {
       console.log(error2);
@@ -31182,6 +31181,13 @@ function instance$4($$self) {
     parentName: "comm",
     redirectUrl: "/app-manage"
   };
+  const ctx = getContext("selectedUidPaths");
+  bus.$on("__AB_TEST_ENTER_EXP", (data) => {
+    console.log(data.appId);
+    if (ctx) {
+      ctx(`/ab-test/experiment?appId=${data.appId}`, ["ABTest", "实验列表"]);
+    }
+  });
   return [props];
 }
 class App_manage extends SvelteComponent {
@@ -31233,6 +31239,15 @@ function create_fragment$5(ctx) {
     }
   };
 }
+function getAppIdFromUrl(url) {
+  const regex = /[?&]appId=(\d+)/;
+  const match = url.match(regex);
+  if (match) {
+    return match[1];
+  } else {
+    return null;
+  }
+}
 function instance$3($$self) {
   const cache = localStorage.getItem("wujie-test-config") || "{}";
   const params2 = JSON.parse(cache);
@@ -31252,7 +31267,7 @@ function instance$3($$self) {
     token: params2.token,
     url: params2.env.abTestUrl,
     parentName: "comm",
-    redirectUrl: "/experiment-manage/list"
+    redirectUrl: `/experiment-manage/list?appId=${getAppIdFromUrl(location.href)}&u=baiwu`
   };
   return [props];
 }
@@ -31401,7 +31416,7 @@ const ENV_CONFIG = [
     value: "http://192.168.125.241:3012/user-tower/auth-redirect",
     dataPortalUrl: "http://localhost:3014/transfer.html#",
     commRedirectUrl: "https://web-dev.shuxinyc.shop/#/",
-    abTestUrl: "http://localhost:9100/abtest-web/transfer.html#/auth-redirect",
+    abTestUrl: "http://localhost:3014/abtest-web/transfer.html#/auth-redirect",
     brandId: 351503,
     brandName: "李与白"
   },
@@ -31878,11 +31893,11 @@ function create_fragment(ctx) {
       mode: "inline",
       selectedUids: (
         /*selectedUidPaths*/
-        ctx[2]
+        ctx[0]
       ),
       openUids: (
         /*selectedUidPaths*/
-        ctx[2]
+        ctx[0]
       ),
       ctxKey: "inline",
       $$slots: { default: [create_default_slot_1] },
@@ -31892,14 +31907,14 @@ function create_fragment(ctx) {
   kmenu.$on(
     "select",
     /*handleMenuClick*/
-    ctx[1]
+    ctx[2]
   );
   router = new Router({ props: { routes: RouterConfig } });
   kdrawer = new Dist$7({
     props: {
       value: (
         /*show*/
-        ctx[0]
+        ctx[1]
       ),
       cls: "!w-[350px] !min-w-[300px]",
       $$slots: { default: [create_default_slot] },
@@ -31951,6 +31966,12 @@ function create_fragment(ctx) {
       }
       kbutton.$set(kbutton_changes);
       const kmenu_changes = {};
+      if (dirty & /*selectedUidPaths*/
+      1) kmenu_changes.selectedUids = /*selectedUidPaths*/
+      ctx2[0];
+      if (dirty & /*selectedUidPaths*/
+      1) kmenu_changes.openUids = /*selectedUidPaths*/
+      ctx2[0];
       if (dirty & /*$$scope*/
       64) {
         kmenu_changes.$$scope = { dirty, ctx: ctx2 };
@@ -31958,8 +31979,8 @@ function create_fragment(ctx) {
       kmenu.$set(kmenu_changes);
       const kdrawer_changes = {};
       if (dirty & /*show*/
-      1) kdrawer_changes.value = /*show*/
-      ctx2[0];
+      2) kdrawer_changes.value = /*show*/
+      ctx2[1];
       if (dirty & /*$$scope*/
       64) {
         kdrawer_changes.$$scope = { dirty, ctx: ctx2 };
@@ -31999,12 +32020,17 @@ function instance($$self, $$props, $$invalidate) {
     push(item.detail.item.path);
   };
   const selectedUidPathsCache = localStorage.getItem("wujie-test-select") || '["首页"]';
-  const selectedUidPaths = JSON.parse(selectedUidPathsCache);
+  let selectedUidPaths = JSON.parse(selectedUidPathsCache);
   localStorage.setItem("wujie-test-select", JSON.stringify(selectedUidPaths));
   let show = false;
-  const open = () => $$invalidate(0, show = true);
-  const close = () => $$invalidate(0, show = false);
-  return [show, handleMenuClick, selectedUidPaths, open, close];
+  const open = () => $$invalidate(1, show = true);
+  const close = () => $$invalidate(1, show = false);
+  setContext("selectedUidPaths", (path, uids) => {
+    $$invalidate(0, selectedUidPaths = uids);
+    localStorage.setItem("wujie-test-select", JSON.stringify(selectedUidPaths));
+    push(path);
+  });
+  return [selectedUidPaths, show, handleMenuClick, open, close];
 }
 class App extends SvelteComponent {
   constructor(options) {
