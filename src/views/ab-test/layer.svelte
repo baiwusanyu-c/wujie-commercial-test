@@ -32,7 +32,8 @@
     token: params.token,
     url: params.env.abTestUrl,
     parentName: 'comm',
-    redirectUrl: `/experiment-manage/list?appId=${getAppIdFromUrl(location.href)}&u=baiwu`,
+    appId: getAppIdFromUrl(location.href),
+    redirectUrl: `/experiment-manage/list`
   }
 </script>
 <WujieSvelte
