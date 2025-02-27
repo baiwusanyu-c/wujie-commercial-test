@@ -4,17 +4,24 @@
   import Router, { push } from 'svelte-spa-router'
   import { RouterConfig } from "./utils/router-config";
   import Config from './lib/config.svelte'
+  import {setContext} from 'svelte'
   const handleMenuClick = (item: CustomEvent) => {
     localStorage.setItem('wujie-test-select', JSON.stringify(item.detail.uidPath))
     push(item.detail.item.path)
   };
 
   const selectedUidPathsCache = localStorage.getItem('wujie-test-select') || '["首页"]'
-  const selectedUidPaths = JSON.parse(selectedUidPathsCache)
+  let selectedUidPaths = JSON.parse(selectedUidPathsCache)
   localStorage.setItem('wujie-test-select', JSON.stringify(selectedUidPaths))
   let show = false;
   const open = () => (show = true);
   const close = () => (show = false);
+
+  setContext('selectedUidPaths', (path: string, uids: string[]) => {
+    selectedUidPaths = uids
+    localStorage.setItem('wujie-test-select', JSON.stringify(selectedUidPaths))
+    push(path)
+  })
 </script>
 <div class="w-full h-full flex p-0">
 

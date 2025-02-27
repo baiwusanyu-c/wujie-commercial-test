@@ -7,5 +7,10 @@ export default defineConfig({
   plugins: [ svelte(), Unocss()],
   build: {
     minify: false,
-  }
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',  // 禁用缓存
+    },
+  },
 })

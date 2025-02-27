@@ -12,6 +12,18 @@
     })
     params.env = {}
   }
+
+  function getAppIdFromUrl(url: string) {
+    const regex = /[?&]appId=(\d+)/; // 匹配 ?appId= 后面的数字
+    const match = url.match(regex);
+
+    if (match) {
+      return match[1]; // 返回捕获的数字部分，即 appId 的值
+    } else {
+      return null; // 如果没有找到 appId 参数，返回 null
+    }
+  }
+
   const props = {
     ...JSON.parse(cache),
     groupId: '267356',
@@ -20,7 +32,7 @@
     token: params.token,
     url: params.env.abTestUrl,
     parentName: 'comm',
-    redirectUrl: '/experiment-manage/list',
+    redirectUrl: `/experiment-manage/list?appId=${getAppIdFromUrl(location.href)}&u=baiwu`,
   }
 </script>
 <WujieSvelte

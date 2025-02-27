@@ -1,7 +1,9 @@
 <script lang="ts">
   import { KMessage } from '@ikun-ui/core'
   import WujieSvelte from '../../lib/wujie-svelte.svelte'
+  import { bus } from "../../esm";
   import { InstanceofPlugin } from 'wujie-polyfill'
+  import {getContext} from "svelte";
   const cache = localStorage.getItem('wujie-test-config') || '{}'
   const params = JSON.parse(cache)
   if (!params.env) {
@@ -23,6 +25,14 @@
     redirectUrl: '/app-manage',
   }
 
+  const ctx = getContext('selectedUidPaths')
+  bus.$on('__AB_TEST_ENTER_EXP', (data: {  appId: string }) => {
+    console.log(data.appId)
+    if(ctx){
+      ctx(`/ab-test/experiment?appId=${data.appId}`, ["ABTest","实验列表"])
+    }
+
+  })
 </script>
 <WujieSvelte
         width="100%"
