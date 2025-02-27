@@ -29636,7 +29636,8 @@ function instance$5($$self, $$props, $$invalidate) {
         afterUnmount,
         activated,
         deactivated,
-        loadError
+        loadError,
+        mainHostPath: "https://baiwusanyu-c.github.io/wujie-commercial-test"
       });
     } catch (error2) {
       console.log(error2);
@@ -31267,7 +31268,8 @@ function instance$3($$self) {
     token: params2.token,
     url: params2.env.abTestUrl,
     parentName: "comm",
-    redirectUrl: `/experiment-manage/list?appId=${getAppIdFromUrl(location.href)}&u=baiwu`
+    appId: getAppIdFromUrl(location.href),
+    redirectUrl: `/experiment-manage/list`
   };
   return [props];
 }
